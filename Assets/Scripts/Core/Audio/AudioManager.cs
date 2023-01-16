@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 
-namespace CBH.Core
+namespace CBH.Core.Audio
 {
     public class AudioManager
     {

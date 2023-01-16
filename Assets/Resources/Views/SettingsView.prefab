@@ -807,10 +807,10 @@ RectTransform:
   m_Father: {fileID: 7162755640068932187}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 775, y: -465}
-  m_SizeDelta: {x: -1620, y: -980}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -185, y: 75}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2023556111876653247
 CanvasRenderer:
@@ -1642,8 +1642,8 @@ MonoBehaviour:
   enableMusic: {fileID: 2023556111342027401}
   enableSounds: {fileID: 8000376779241085402}
   fpsSlider: {fileID: 5507457333407505766}
-  fpsText: {fileID: 2211958096794578071}
   buttonExit: {fileID: 2023556111876653245}
+  fpsText: {fileID: 2211958096794578071}
 --- !u!1 &7390535283345339582
 GameObject:
   m_ObjectHideFlags: 0

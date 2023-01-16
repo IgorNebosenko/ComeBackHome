@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using CBH.Core;
+using CBH.Core.Audio;
 using CBH.Core.Configs;
 using CBH.UI;
 using ElectrumGames.MVP;
