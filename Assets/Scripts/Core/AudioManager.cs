@@ -22,6 +22,7 @@ namespace CBH.Core
             {
                 _enableMusic = value;
                 PlayerPrefs.SetInt(EnableMusicKey, _enableMusic ? 1 : 0);
+                _audioMixer.SetFloat(EnableMusicKey, _enableMusic ? EnableVolume : DisableVolume);
             }
         }
 
@@ -32,6 +33,7 @@ namespace CBH.Core
             {
                 _enableSounds = value;
                 PlayerPrefs.SetInt(EnableSoundsKey, _enableSounds ? 1 : 0);
+                _audioMixer.SetFloat(EnableSoundsKey, _enableSounds ? EnableVolume : DisableVolume);
             }
         }
 
@@ -45,8 +47,8 @@ namespace CBH.Core
 
         public void Apply()
         {
-            _audioMixer.SetFloat(EnableMusicKey, EnableMusic ? EnableVolume : DisableVolume);
-            _audioMixer.SetFloat(EnableSoundsKey, EnableSounds ? EnableVolume : DisableVolume);
+            _audioMixer.SetFloat(EnableMusicKey, _enableMusic ? EnableVolume : DisableVolume);
+            _audioMixer.SetFloat(EnableSoundsKey, _enableSounds ? EnableVolume : DisableVolume);
         }
     }
 }

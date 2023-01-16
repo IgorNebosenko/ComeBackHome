@@ -1640,6 +1640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableMusic: {fileID: 2023556111342027401}
+  enableSounds: {fileID: 8000376779241085402}
   fpsSlider: {fileID: 5507457333407505766}
   fpsText: {fileID: 2211958096794578071}
   buttonExit: {fileID: 2023556111876653245}

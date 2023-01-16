@@ -55,8 +55,9 @@ namespace CBH.Core
 
         public void UpdateTargetFps(int newFps)
         {
-            PlayerPrefs.SetInt(TargetFpsPrefsName, newFps);
-            Application.targetFrameRate = newFps;
+            _targetFps = newFps;
+            PlayerPrefs.SetInt(TargetFpsPrefsName, _targetFps);
+            Application.targetFrameRate = _targetFps;
         }
     }
 }
