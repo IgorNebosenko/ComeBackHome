@@ -7,26 +7,33 @@ namespace CBH.Core
 {
     public class GameData
     {
-        private int currentScene;
+        private int _currentScene;
 
         private const string CompletedScenesPrefsName = "CompletedScenes";
         public const int CountLevels = 25;
 
-        public int CurrentScene => currentScene;
+        private const string TargetFpsPrefsName = "TargetFps";
+        private int _targetFps;
+        public int TargetFps => _targetFps;
 
-        private void Start()
+        public int CurrentScene => _currentScene;
+
+        public GameData()
         {
             GetData();
         }
 
         private void GetData()
         {
-            currentScene = PlayerPrefs.GetInt(CompletedScenesPrefsName, 0);
+            _currentScene = PlayerPrefs.GetInt(CompletedScenesPrefsName, 0);
+            
+            _targetFps = PlayerPrefs.GetInt(TargetFpsPrefsName, 30);
+            Application.targetFrameRate = _targetFps;
         }
 
         private void ResetGame()
         {
-            currentScene = 0;
+            _currentScene = 0;
             PlayerPrefs.SetInt(CompletedScenesPrefsName, 0);
         }
 
@@ -37,13 +44,19 @@ namespace CBH.Core
 
         public void LoadGame()
         {
-            SceneManager.LoadScene(currentScene + 1);
+            SceneManager.LoadScene(_currentScene + 1);
         }
 
         public void NewGame()
         {
             ResetGame();
             LoadGame();
+        }
+
+        public void UpdateTargetFps(int newFps)
+        {
+            PlayerPrefs.SetInt(TargetFpsPrefsName, newFps);
+            Application.targetFrameRate = newFps;
         }
     }
 }

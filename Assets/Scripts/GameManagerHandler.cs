@@ -13,8 +13,4 @@ public class GameManagerHandler : MonoBehaviour
             DontDestroyOnLoad(transform.gameObject);
         }
     }
-    private void Start()
-    {
-        Application.targetFrameRate = 144;
-    }
 }

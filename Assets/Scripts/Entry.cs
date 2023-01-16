@@ -1,4 +1,3 @@
-using System;
 using CBH.UI.Presenters;
 using ElectrumGames.MVP.Managers;
 using UnityEngine;

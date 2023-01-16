@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using CBH.Core;
+using CBH.Core.Configs;
 using CBH.UI;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Managers;
@@ -12,6 +13,7 @@ using Zenject;
 public class ProjectInstaller : MonoInstaller<ProjectInstaller>
 {
     [SerializeField] private CanvasContainer canvasContainerTemplate;
+    [SerializeField] private FpsConfig fpsConfig;
     
     public override void InstallBindings()
     {
@@ -28,6 +30,8 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
         Container.Bind<PresenterFactory>().FromInstance(presenterFactory).AsSingle();
         Container.BindInstance(viewManager);
         Container.BindInstance(popupManager);
+
+        Container.BindInstance(fpsConfig).AsSingle();
     }
 
     private (List<(Type view, Type presenter)> views, List<(Type view, Type presenter)> popups) AutoViewInstall()
