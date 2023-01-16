@@ -1632,7 +1632,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 705269439}
-  - component: {fileID: 705269438}
   - component: {fileID: 705269437}
   m_Layer: 0
   m_Name: MusicManager
@@ -1640,7 +1639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &705269437
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1737,20 +1736,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &705269438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705269436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ae3e22aeac432843848d92d5eb7b1b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicClip: {fileID: 0}
-  musicSource: {fileID: 0}
 --- !u!4 &705269439
 Transform:
   m_ObjectHideFlags: 0
@@ -1777,6 +1762,10 @@ PrefabInstance:
     - target: {fileID: 2498600124854488365, guid: 012ca96168a5340468a6295e73570606, type: 3}
       propertyPath: m_Name
       value: Canvas (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498600124854488365, guid: 012ca96168a5340468a6295e73570606, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3012936179141357387, guid: 012ca96168a5340468a6295e73570606, type: 3}
       propertyPath: m_Pivot.x
@@ -4238,7 +4227,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1760354614}
   - component: {fileID: 1760354616}
-  - component: {fileID: 1760354615}
   m_Layer: 5
   m_Name: Sound
   m_TagString: Untagged
@@ -4268,20 +4256,6 @@ RectTransform:
   m_AnchoredPosition: {x: 87, y: 36}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1760354615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1760354613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b3fc4ed647f35d48a8dd8531cfe718c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hander: {fileID: 0}
-  switcher: {fileID: 1760354616}
 --- !u!114 &1760354616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4328,19 +4302,7 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1760354615}
-        m_TargetAssemblyTypeName: SoundMenu, Assembly-CSharp
-        m_MethodName: OnOffMusic
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 1
 --- !u!1 &1792734043
 GameObject:
@@ -5023,23 +4985,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8196055677372513348, guid: a16a7818bfebdec489f18373650aeba3, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.14285715
       objectReference: {fileID: 0}
     - target: {fileID: 8196055677372513348, guid: a16a7818bfebdec489f18373650aeba3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8196055677372513348, guid: a16a7818bfebdec489f18373650aeba3, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.14285715
       objectReference: {fileID: 0}
     - target: {fileID: 8534954359438452689, guid: a16a7818bfebdec489f18373650aeba3, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.14285715
       objectReference: {fileID: 0}
     - target: {fileID: 8534954359438452689, guid: a16a7818bfebdec489f18373650aeba3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

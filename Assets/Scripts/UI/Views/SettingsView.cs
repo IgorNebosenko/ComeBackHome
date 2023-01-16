@@ -10,6 +10,7 @@ namespace CBH.UI.Views
     public class SettingsView : View<SettingsPresenter>
     {
         [SerializeField] private Toggle enableMusic;
+        [SerializeField] private Toggle enableSounds;
         [SerializeField] private Slider fpsSlider;
         [SerializeField] private TMP_Text fpsText;
         [SerializeField] private Button buttonExit;

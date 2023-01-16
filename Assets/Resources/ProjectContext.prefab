@@ -75,3 +75,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasContainerTemplate: {fileID: 580895631767047677, guid: 012ca96168a5340468a6295e73570606, type: 3}
+  fpsConfig: {fileID: 11400000, guid: efc7039fdcb1e294c9604fe302f5ff24, type: 2}
+  audioMixer: {fileID: 24100000, guid: 21edf37edfb20ce4ab266b326ab6d14f, type: 2}

@@ -8,12 +8,14 @@ using ElectrumGames.MVP;
 using ElectrumGames.MVP.Managers;
 using ElectrumGames.MVP.Utils;
 using UnityEngine;
+using UnityEngine.Audio;
 using Zenject;
 
 public class ProjectInstaller : MonoInstaller<ProjectInstaller>
 {
     [SerializeField] private CanvasContainer canvasContainerTemplate;
     [SerializeField] private FpsConfig fpsConfig;
+    [SerializeField] private AudioMixer audioMixer;
     
     public override void InstallBindings()
     {
@@ -32,6 +34,8 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
         Container.BindInstance(popupManager);
 
         Container.BindInstance(fpsConfig).AsSingle();
+
+        Container.Bind<AudioManager>().AsSingle().WithArguments(audioMixer);
     }
 
     private (List<(Type view, Type presenter)> views, List<(Type view, Type presenter)> popups) AutoViewInstall()
