@@ -7,5 +7,8 @@ namespace Level
         public Vector3 rocketStartPosition;
         public Vector3 launchPadStartPosition;
         public Vector3 landingPadPosition;
+
+        public GameObject visual;
+        public Skybox gameSkybox;
     }
 }
