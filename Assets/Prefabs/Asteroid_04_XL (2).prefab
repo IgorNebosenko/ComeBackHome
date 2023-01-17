@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 448101472324835574}
   - component: {fileID: 448101472325933622}
   - component: {fileID: 448101473425083000}
+  - component: {fileID: -6670028220564309347}
   m_Layer: 0
   m_Name: Asteroid_04_XL (2)
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -98,3 +99,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 87a7172321f03484a9f7bf3cdf05c6dc, type: 3}
+--- !u!114 &-6670028220564309347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448101472328189174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571409626767479ba1c2a0408b21c332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

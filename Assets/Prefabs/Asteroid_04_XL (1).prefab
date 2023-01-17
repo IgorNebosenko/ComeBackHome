@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2663396042765214401}
   - component: {fileID: 2663396042265516898}
   - component: {fileID: 756029910568922615}
+  - component: {fileID: -5786586991640450837}
   m_Layer: 0
   m_Name: Asteroid_04_XL (1)
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -115,3 +116,15 @@ MonoBehaviour:
   movementVector: {x: 0, y: 0, z: 0}
   period: 10
   factor: 0
+--- !u!114 &-5786586991640450837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2663396042762959873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571409626767479ba1c2a0408b21c332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
