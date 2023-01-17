@@ -5,33 +5,33 @@ using UnityEngine;
 [ExecuteAlways]
 public class Gps : MonoBehaviour
 {
-    [SerializeField] Transform _playerTransform;
-    [SerializeField] Camera _camera;
-    [SerializeField] Transform _pointerIconTransform;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Camera camera;
+    [SerializeField] private Transform pointerIconTransform;
+
+    private const int CountDirections = 4;
+    private const float ClampModifier = 1.1f;
+    
     private void FixedUpdate()
     {
-        Vector3 fromPlayerToTarget = transform.position - _playerTransform.position;
-        Ray ray = new Ray(_playerTransform.position, fromPlayerToTarget);
-        Debug.DrawRay( _playerTransform.position,fromPlayerToTarget, Color.yellow);
+        var distanceToPlayer = transform.position - playerTransform.position;
+        var ray = new Ray(playerTransform.position, distanceToPlayer);
+        Debug.DrawRay( playerTransform.position,distanceToPlayer, Color.yellow);
+        
+        var planes = GeometryUtility.CalculateFrustumPlanes(camera);
 
-        // 0 - left , 1 - Right , 2 - Down, 3 - Up
-        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(_camera);
+        var minDistance = Mathf.Infinity;
 
-        float minDistance = Mathf.Infinity;
-
-        for(int i = 0; i < 4; i++)
+        for(var i = 0; i < CountDirections; i++)
         {
-            if (planes[i].Raycast(ray, out float distance))
-            {
-                if(distance < minDistance)
-                {
-                    minDistance = distance; 
-                }
-            }
+            if (!planes[i].Raycast(ray, out var distance)) 
+                continue;
+            if(distance < minDistance)
+                minDistance = distance;
         }
-        minDistance = Mathf.Clamp(minDistance - 1.1f, 0, fromPlayerToTarget.magnitude);
-        Vector3 worldPosition = ray.GetPoint(minDistance);
-        _pointerIconTransform.position = _camera.WorldToScreenPoint(worldPosition);
+        minDistance = Mathf.Clamp(minDistance - ClampModifier, 0, distanceToPlayer.magnitude);
+        var worldPosition = ray.GetPoint(minDistance);
+        pointerIconTransform.position = camera.WorldToScreenPoint(worldPosition);
         
     }
 }
