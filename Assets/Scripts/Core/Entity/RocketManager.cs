@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using TMPro;
-using CBH.Core;
 using Zenject;
 
 namespace CBH.Core.Entity
@@ -14,13 +13,13 @@ namespace CBH.Core.Entity
         [SerializeField] private RocketManager rocketManager;
         [SerializeField] private GameObject rocketPrefab;
         [SerializeField] private BoxCollider[] rocketBoxColliders;
+
         private static Coroutine timer;
 
         private GameData _gameData;
 
-        [SerializeField] public static float _localTimer;
+        private static float _localTimer;
         private bool _timerWasStart;
-        [SerializeField] private bool _isGodMode;
 
         public static UnityAction TimerStarter;
         private UnityAction LoaderLevel;
@@ -53,7 +52,7 @@ namespace CBH.Core.Entity
             }
         }
 
-        void Awake()
+        private void Awake()
         {
             rocketManager = this;
             rocketBoxColliders = GetComponentsInChildren<BoxCollider>();

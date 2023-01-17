@@ -1,8 +1,6 @@
-using System;
 using CBH.Core.Audio;
 using CBH.Core.Entity;
 using UnityEngine;
-using Zenject;
 
 namespace CBH.Core.Collision
 {
@@ -10,15 +8,10 @@ namespace CBH.Core.Collision
     {
         [SerializeField] private RocketManager rocketManager;
 
-        [SerializeField] private ParticleSystem deadthRocketParticle;
+        [SerializeField] private ParticleSystem deathRocketParticle;
         [SerializeField] private ParticleSystem successParticle;
         
         private bool _isCalledTick;
-
-        private void Awake()
-        {
-            rocketManager = GetComponent<RocketManager>();
-        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -41,7 +34,7 @@ namespace CBH.Core.Collision
         {
             rocketManager.currentRocketState = RocketManager.RocketState.Dead;
             AudioHandler.PlaySoundEffect(SoundEffect.Death);
-            deadthRocketParticle.Play();
+            deathRocketParticle.Play();
             GetComponent<Movement>().enabled = false;
         }
 
