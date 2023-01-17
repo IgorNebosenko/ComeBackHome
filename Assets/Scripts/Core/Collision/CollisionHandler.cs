@@ -12,19 +12,12 @@ namespace CBH.Core.Collision
 
         [SerializeField] private ParticleSystem deadthRocketParticle;
         [SerializeField] private ParticleSystem successParticle;
-
-        private AudioManager _audioManager;
+        
         private bool _isCalledTick;
 
         private void Awake()
         {
             rocketManager = GetComponent<RocketManager>();
-        }
-
-        [Inject]
-        private void Inject(AudioManager audioManager)
-        {
-            _audioManager = audioManager;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -47,9 +40,7 @@ namespace CBH.Core.Collision
         private void HandleObstacleCollision()
         {
             rocketManager.currentRocketState = RocketManager.RocketState.Dead;
-            _audioManager.
-            _audioSource.Stop();
-            _audioSource.PlayOneShot(deadthRocketSFX);
+            AudioHandler.PlaySoundEffect(SoundEffect.Death);
             deadthRocketParticle.Play();
             GetComponent<Movement>().enabled = false;
         }
@@ -59,8 +50,7 @@ namespace CBH.Core.Collision
             if (rocketManager.currentRocketState != RocketManager.RocketState.Win)
             {
                 rocketManager.currentRocketState = RocketManager.RocketState.Win;
-                _audioSource.Stop();
-                _audioSource.PlayOneShot(successSFX);
+                AudioHandler.PlaySoundEffect(SoundEffect.Success);
                 successParticle.Play();
                 GetComponent<Movement>().enabled = false;
             }
