@@ -2,23 +2,17 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using TMPro;
-using Zenject;
 
 namespace CBH.Core.Entity
 {
-    public class RocketManager : MonoBehaviour
+    public class RocketManager
     {
-        [SerializeField] TextMeshProUGUI stateText;
-        [SerializeField] private RocketManager rocketManager;
-        [SerializeField] private GameObject rocketPrefab;
-        [SerializeField] private BoxCollider[] rocketBoxColliders;
-
-        private static Coroutine timer;
+        private Coroutine timer;
 
         private GameData _gameData;
+        private GameManager _gameManager;
 
-        private static float _localTimer;
+        private float _localTimer;
         private bool _timerWasStart;
 
         public static UnityAction TimerStarter;
@@ -26,40 +20,11 @@ namespace CBH.Core.Entity
 
         public RocketState currentRocketState;
 
-        public enum RocketState
-        {
-            Live,
-            Dead,
-            Win,
-        }
-
-        [Inject]
-        private void Construct(GameData gameData)
+        public RocketManager(GameData gameData, GameManager gameManager)
         {
             _gameData = gameData;
-        }
-
-        private void RocketLoadState()
-        {
-            switch (currentRocketState)
-            {
-                case RocketState.Win:
-                    LoaderNextSceneHandler();
-                    break;
-                case RocketState.Dead:
-                    RestarterNextLevelHandler();
-                    break;
-            }
-        }
-
-        private void Awake()
-        {
-            rocketManager = this;
-            rocketBoxColliders = GetComponentsInChildren<BoxCollider>();
-        }
-
-        private void Start()
-        {
+            _gameManager = gameManager;
+            
             _localTimer = 4f;
             _timerWasStart = false;
             currentRocketState = RocketState.Live;
@@ -67,26 +32,12 @@ namespace CBH.Core.Entity
             TimerStarter = StartTimer;
         }
 
-
-        private void LoaderNextSceneHandler()
+        private void RocketLoadState()
         {
-            int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
-            if (nextScene == SceneManager.sceneCountInBuildSettings)
-                nextScene = 0;
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.freezeRotation = true;
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-            _gameData.SaveGame(nextScene);
-            SceneManager.LoadScene(nextScene);
+            _gameManager.HandleRocketState(currentRocketState);
         }
 
-        private void RestarterNextLevelHandler()
-        {
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(currentSceneIndex);
-        }
-
-        public void StartTimer()
+        private void StartTimer()
         {
             timer = StartCoroutine(Timer());
         }
@@ -103,42 +54,6 @@ namespace CBH.Core.Entity
             _localTimer = 3;
             LoaderLevel.Invoke();
             yield return null;
-        }
-
-        private void ShowTextCounting()
-        {
-            string win, dead;
-            win = "Посадка...";
-            dead = "Неудача";
-            if (_localTimer > 2f)
-                stateText.text = $"{(_localTimer - 1):0}";
-            else
-            {
-                switch (currentRocketState)
-                {
-                    case RocketState.Win:
-                        stateText.text = win;
-                        break;
-                    case RocketState.Dead:
-                        stateText.text = dead;
-                        break;
-                }
-            }
-
-            SetTextColor();
-        }
-
-        private void SetTextColor()
-        {
-            switch (currentRocketState)
-            {
-                case RocketState.Win:
-                    stateText.color = Color.green;
-                    break;
-                case RocketState.Dead:
-                    stateText.color = Color.red;
-                    break;
-            }
         }
     }
 }

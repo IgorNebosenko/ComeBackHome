@@ -6,7 +6,7 @@ namespace CBH.Core.Collision
 {
     public class CollisionHandler : MonoBehaviour
     {
-        [SerializeField] private RocketManager rocketManager;
+        private RocketManager rocketManager;
 
         [SerializeField] private ParticleSystem deathRocketParticle;
         [SerializeField] private ParticleSystem successParticle;
@@ -32,7 +32,7 @@ namespace CBH.Core.Collision
 
         private void HandleObstacleCollision()
         {
-            rocketManager.currentRocketState = RocketManager.RocketState.Dead;
+            rocketManager.currentRocketState = RocketState.Dead;
             AudioHandler.PlaySoundEffect(SoundEffect.Death);
             deathRocketParticle.Play();
             GetComponent<Movement>().enabled = false;
@@ -40,9 +40,9 @@ namespace CBH.Core.Collision
 
         private void HandleFinishCollision()
         {
-            if (rocketManager.currentRocketState != RocketManager.RocketState.Win)
+            if (rocketManager.currentRocketState != RocketState.Win)
             {
-                rocketManager.currentRocketState = RocketManager.RocketState.Win;
+                rocketManager.currentRocketState = RocketState.Win;
                 AudioHandler.PlaySoundEffect(SoundEffect.Success);
                 successParticle.Play();
                 GetComponent<Movement>().enabled = false;
