@@ -18,7 +18,7 @@ namespace CBH.Core.Entity.Input
         [Space]
         [SerializeField] private Rigidbody physicModel;
         [SerializeField] private float trustPower = 5000f;
-        [SerializeField] private float rotationPerSecond = 200f;
+        [SerializeField] private float rotationSensitivity = 2000f;
 
         private GameManager _gameManager;
         private IInput _input;
@@ -36,7 +36,7 @@ namespace CBH.Core.Entity.Input
             _input = new RocketInput(inputSchema);
             _input.Init();
             
-            _motor = new RocketMotor(physicModel, trustPower, rotationPerSecond);
+            _motor = new RocketMotor(physicModel, trustPower, rotationSensitivity);
 
             _entityVisualsList = new List<IEntityVisual>()
             {
@@ -64,6 +64,8 @@ namespace CBH.Core.Entity.Input
 
             foreach (var visualEffect in _entityVisualsList)
                 visualEffect.Simulate(_input);
+            
+            _input.ResetInput();
         }
 
         private void OnDestroy()

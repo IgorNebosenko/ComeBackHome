@@ -94,7 +94,7 @@ namespace CBH.Core.Configs
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""positive"",
                     ""id"": ""410318be-2024-4368-a6df-fc96195ca551"",
                     ""path"": ""<Touchscreen>/delta/left"",
                     ""interactions"": """",
@@ -105,7 +105,7 @@ namespace CBH.Core.Configs
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""negative"",
                     ""id"": ""56288a95-44a6-42fe-b0d5-06cbf5cb5db9"",
                     ""path"": ""<Touchscreen>/delta/right"",
                     ""interactions"": """",
@@ -127,7 +127,7 @@ namespace CBH.Core.Configs
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""positive"",
                     ""id"": ""9305911f-3f4a-41f4-a970-f6b874f18457"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
@@ -138,7 +138,7 @@ namespace CBH.Core.Configs
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""negative"",
                     ""id"": ""3c617592-2273-412e-a647-0af528e019ef"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
@@ -160,7 +160,7 @@ namespace CBH.Core.Configs
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""positive"",
                     ""id"": ""052e7fcb-4298-428a-b653-7aeec2234980"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
@@ -171,7 +171,7 @@ namespace CBH.Core.Configs
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""negative"",
                     ""id"": ""bfeb4bca-2452-4ea6-a794-e8be685e1edd"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
