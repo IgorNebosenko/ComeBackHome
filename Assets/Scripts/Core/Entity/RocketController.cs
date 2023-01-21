@@ -64,8 +64,6 @@ namespace CBH.Core.Entity.Input
 
             foreach (var visualEffect in _entityVisualsList)
                 visualEffect.Simulate(_input);
-            
-            _input.ResetInput();
         }
 
         private void OnDestroy()

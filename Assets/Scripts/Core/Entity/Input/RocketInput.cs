@@ -1,5 +1,4 @@
 ﻿using CBH.Core.Configs;
-using Codice.Client.Common;
 using UnityEngine.InputSystem;
 
 namespace CBH.Core.Entity.Input
@@ -8,7 +7,7 @@ namespace CBH.Core.Entity.Input
     {
         private InputSchema _inputSchema;
         
-        private bool _isBoostUpdated = true;
+        private bool _isBoostUpdated;
         private bool _isRotationUpdated = true;
 
         public bool EnabledBoost { get; private set; }
@@ -39,11 +38,14 @@ namespace CBH.Core.Entity.Input
         {
             EnabledBoost = false;
             RotationDirection = 0f;
+
+            _isBoostUpdated = false;
+            _isBoostUpdated = false;
         }
 
         public void OnVelocity(InputAction.CallbackContext context)
         {
-            _isBoostUpdated = true;
+            _isBoostUpdated = context.phase != InputActionPhase.Canceled;
         }
 
         public void OnRotation(InputAction.CallbackContext context)
