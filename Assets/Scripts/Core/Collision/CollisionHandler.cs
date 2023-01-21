@@ -1,4 +1,3 @@
-using CBH.Core.Audio;
 using CBH.Core.Entity;
 using UnityEngine;
 using Zenject;
@@ -10,9 +9,6 @@ namespace CBH.Core.Collision
         private RocketManager _rocketManager;
         private GameManager _gameManager;
 
-        [SerializeField] private ParticleSystem deathRocketParticle;
-        [SerializeField] private ParticleSystem successParticle;
-        
         private bool _isCalledTick;
 
         [Inject]
@@ -42,9 +38,6 @@ namespace CBH.Core.Collision
         private void HandleObstacleCollision()
         {
             _rocketManager.SetRocketState(RocketState.Dead);
-            AudioHandler.PlaySoundEffect(SoundEffect.Death);
-            deathRocketParticle.Play();
-            GetComponent<Movement>().enabled = false;
         }
 
         private void HandleFinishCollision()
@@ -53,9 +46,6 @@ namespace CBH.Core.Collision
                 return;
             
             _rocketManager.SetRocketState(RocketState.Win);
-            AudioHandler.PlaySoundEffect(SoundEffect.Success);
-            successParticle.Play();
-            GetComponent<Movement>().enabled = false;
         }
     }
 }

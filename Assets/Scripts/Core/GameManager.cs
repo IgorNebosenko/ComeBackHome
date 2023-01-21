@@ -18,6 +18,9 @@ namespace CBH.Core
         public event Action<float> OnBeforeRestartLevel;
         public event Action OnRestartLevel;
 
+        public event Action OnLevelWin;
+        public event Action OnLevelLose;
+
         public GameManager(GameData gameData)
         {
             _gameData = gameData;

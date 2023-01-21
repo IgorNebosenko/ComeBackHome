@@ -207,9 +207,7 @@ GameObject:
   - component: {fileID: 190393411301559067}
   - component: {fileID: 2078302100116313151}
   - component: {fileID: 1392153954}
-  - component: {fileID: 1392153955}
-  - component: {fileID: 3311442063020633374}
-  - component: {fileID: 883163344}
+  - component: {fileID: 8922739313069778452}
   - component: {fileID: 883163345}
   m_Layer: 0
   m_Name: Rocket
@@ -322,7 +320,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &1392153955
+--- !u!114 &8922739313069778452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -331,127 +329,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1994240953013758848}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d07e182b6fe9534b8c990c062fd4cc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 3560a1552c7149d7a0cefc4a41bb67c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 883163344}
-  enginePowerSFX: {fileID: 8300000, guid: 9ac07d0bc45a57c4b90d7284b1cc167a, type: 3}
-  mainEngineParticle: {fileID: 3337748748465841126}
-  leftSideParticle: {fileID: 6415377587122469734}
-  rightSideParticle: {fileID: 2495348799807051305}
---- !u!82 &3311442063020633374
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1994240953013758848}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.56
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &883163344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1994240953013758848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6859e6594c1e83439e7491763f56272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateText: {fileID: 0}
-  rocketManager: {fileID: 0}
-  rocketPrefab: {fileID: 1994240953013758848}
-  rocketBoxColliders: []
-  currentRocketState: 0
+  leftParticleSystem: {fileID: 6415377587122469734}
+  rightParticleSystem: {fileID: 2495348799807051305}
+  boostEffect: {fileID: 3337748748465841126}
+  explosionEffect: {fileID: 4357508172462696090}
+  physicModel: {fileID: 1392153954}
+  trustPower: 5000
+  rotationPerSecond: 200
 --- !u!114 &883163345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,7 +351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b52dc56e13d384da34e4504d40cfc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocketManager: {fileID: 883163344}
   deathRocketParticle: {fileID: 4357508172462696090}
   successParticle: {fileID: 6016207488545587245}
 --- !u!1 &4936094067080741203

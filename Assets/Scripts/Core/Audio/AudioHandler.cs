@@ -33,7 +33,22 @@ namespace CBH.Core.Audio
 
         public static void PlaySoundEffect(SoundEffect effect)
         {
+            audioHandler.soundSource.loop = false;
+            audioHandler.soundSource.mute = false;
             audioHandler.soundSource.PlayOneShot(audioHandler.soundsAudioClips[(int) effect]);
+        }
+
+        public static void PlaySoundLooped(SoundEffect effect)
+        {
+            audioHandler.soundSource.loop = true;
+            audioHandler.soundSource.mute = false;
+            audioHandler.soundSource.PlayOneShot(audioHandler.soundsAudioClips[(int) effect]);
+        }
+
+        public static void StopLoopSound()
+        {
+            audioHandler.soundSource.loop = false;
+            audioHandler.soundSource.mute = true;
         }
     }
 }
