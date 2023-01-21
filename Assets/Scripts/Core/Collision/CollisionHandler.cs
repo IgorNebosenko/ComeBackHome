@@ -6,15 +6,13 @@ namespace CBH.Core.Collision
 {
     public class CollisionHandler : MonoBehaviour
     {
-        private RocketManager _rocketManager;
         private GameManager _gameManager;
 
         private bool _isCalledTick;
 
         [Inject]
-        private void Construct(RocketManager rocketManager, GameManager gameManager)
+        private void Construct(GameManager gameManager)
         {
-            _rocketManager = rocketManager;
             _gameManager = gameManager;
         }
 
@@ -37,15 +35,15 @@ namespace CBH.Core.Collision
 
         private void HandleObstacleCollision()
         {
-            _rocketManager.SetRocketState(RocketState.Dead);
+            _gameManager.HandleRocketState(RocketState.Dead);
         }
 
         private void HandleFinishCollision()
         {
-            if (_rocketManager.CurrentRocketState == RocketState.Win) 
+            if (_gameManager.CurrentState == RocketState.Win) 
                 return;
             
-            _rocketManager.SetRocketState(RocketState.Win);
+            _gameManager.HandleRocketState(RocketState.Win);
         }
     }
 }

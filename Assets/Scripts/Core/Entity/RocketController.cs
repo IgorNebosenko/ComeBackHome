@@ -53,6 +53,9 @@ namespace CBH.Core.Entity.Input
 
         private void Update()
         {
+            if (_gameManager.CurrentState != RocketState.Live)
+                return;
+            
             var deltaTime = Time.deltaTime;
             
             _input.Update(deltaTime);

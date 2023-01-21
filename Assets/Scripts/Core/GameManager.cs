@@ -20,20 +20,27 @@ namespace CBH.Core
 
         public event Action OnLevelWin;
         public event Action OnLevelLose;
+        
+        public RocketState CurrentState { get; private set; }
 
         public GameManager(GameData gameData)
         {
             _gameData = gameData;
+            CurrentState = RocketState.Live;
         }
 
         public void HandleRocketState(RocketState state)
         {
+            CurrentState = state;
+            
             switch (state)
             {
                 case RocketState.Dead:
+                    OnLevelLose?.Invoke();
                     Observable.FromCoroutine(RestartProcess).Subscribe();
                     break;
                 case RocketState.Win:
+                    OnLevelWin?.Invoke();
                     Observable.FromCoroutine(LoadNextLevelProcess).Subscribe();
                     break;
             }

@@ -299,7 +299,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994240953013758848}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -335,6 +335,7 @@ MonoBehaviour:
   leftParticleSystem: {fileID: 6415377587122469734}
   rightParticleSystem: {fileID: 2495348799807051305}
   boostEffect: {fileID: 3337748748465841126}
+  winEffect: {fileID: 0}
   explosionEffect: {fileID: 4357508172462696090}
   physicModel: {fileID: 1392153954}
   trustPower: 5000
@@ -351,8 +352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b52dc56e13d384da34e4504d40cfc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathRocketParticle: {fileID: 4357508172462696090}
-  successParticle: {fileID: 6016207488545587245}
 --- !u!1 &4936094067080741203
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,10 +1163,5 @@ PrefabInstance:
 --- !u!4 &5887014655787687931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4100699973242056, guid: 62198a3a5dbb64a4f9e1618929224faa, type: 3}
-  m_PrefabInstance: {fileID: 5889706877029323571}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &6016207488545587245 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198631066050499358, guid: 62198a3a5dbb64a4f9e1618929224faa, type: 3}
   m_PrefabInstance: {fileID: 5889706877029323571}
   m_PrefabAsset: {fileID: 0}
