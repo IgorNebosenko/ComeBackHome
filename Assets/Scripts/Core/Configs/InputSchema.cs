@@ -52,7 +52,7 @@ namespace CBH.Core.Configs
                 {
                     ""name"": """",
                     ""id"": ""82d4060a-efb4-4e2e-819c-5d3067538050"",
-                    ""path"": ""<Touchscreen>/Press"",
+                    ""path"": ""<Touchscreen>/touch0"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -85,7 +85,7 @@ namespace CBH.Core.Configs
                 {
                     ""name"": ""TouchScreen"",
                     ""id"": ""03b71792-192b-4470-8a59-1d78273630c9"",
-                    ""path"": ""1DAxis"",
+                    ""path"": ""1DAxis(minValue=-0.075,maxValue=0.075)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
