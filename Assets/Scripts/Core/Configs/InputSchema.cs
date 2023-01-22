@@ -31,12 +31,12 @@ namespace CBH.Core.Configs
             ""actions"": [
                 {
                     ""name"": ""Velocity"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""1eb850b2-1a96-4072-ac01-6642370671c0"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Rotation"",
