@@ -16,8 +16,10 @@ namespace CBH.Core.Collision
             _gameManager = gameManager;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(UnityEngine.Collision collision)
         {
+            var other = collision.collider;
+            
             if (other.TryGetComponent(typeof(CollisionObjectBase), out var obj))
             {
                 if (obj is ObstacleCollisionObject)
