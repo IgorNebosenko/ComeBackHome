@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using CBH.Core.Audio;
 using CBH.Core.Entity;
 using UniRx;
 using UnityEngine;
@@ -36,10 +37,12 @@ namespace CBH.Core
             switch (state)
             {
                 case RocketState.Dead:
+                    AudioHandler.StopLoopSound();
                     OnLevelLose?.Invoke();
                     Observable.FromCoroutine(RestartProcess).Subscribe();
                     break;
                 case RocketState.Win:
+                    AudioHandler.StopLoopSound();
                     OnLevelWin?.Invoke();
                     Observable.FromCoroutine(LoadNextLevelProcess).Subscribe();
                     break;

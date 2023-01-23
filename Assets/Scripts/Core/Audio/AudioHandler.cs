@@ -7,6 +7,7 @@ namespace CBH.Core.Audio
     {
         [SerializeField] private AudioSource musicSource;
         [SerializeField] private AudioSource soundSource;
+        [SerializeField] private AudioSource loopedSoundsSource;
 
         [SerializeField] private AudioClip[] soundsAudioClips;
 
@@ -33,22 +34,18 @@ namespace CBH.Core.Audio
 
         public static void PlaySoundEffect(SoundEffect effect)
         {
-            audioHandler.soundSource.loop = false;
-            audioHandler.soundSource.mute = false;
             audioHandler.soundSource.PlayOneShot(audioHandler.soundsAudioClips[(int) effect]);
         }
 
         public static void PlaySoundLooped(SoundEffect effect)
         {
-            audioHandler.soundSource.loop = true;
-            audioHandler.soundSource.mute = false;
-            audioHandler.soundSource.PlayOneShot(audioHandler.soundsAudioClips[(int) effect]);
+            audioHandler.loopedSoundsSource.mute = false;
+            audioHandler.loopedSoundsSource.PlayOneShot(audioHandler.soundsAudioClips[(int) effect]);
         }
 
         public static void StopLoopSound()
         {
-            audioHandler.soundSource.loop = false;
-            audioHandler.soundSource.mute = true;
+            audioHandler.loopedSoundsSource.mute = true;
         }
     }
 }

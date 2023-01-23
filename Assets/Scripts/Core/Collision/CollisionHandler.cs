@@ -8,8 +8,6 @@ namespace CBH.Core.Collision
     {
         private GameManager _gameManager;
 
-        private bool _isCalledTick;
-
         [Inject]
         private void Construct(GameManager gameManager)
         {
@@ -18,6 +16,9 @@ namespace CBH.Core.Collision
 
         private void OnCollisionEnter(UnityEngine.Collision collision)
         {
+            if (_gameManager.CurrentState != RocketState.Live)
+                return;
+            
             var other = collision.collider;
             
             if (other.TryGetComponent(typeof(CollisionObjectBase), out var obj))
@@ -26,12 +27,6 @@ namespace CBH.Core.Collision
                     HandleObstacleCollision();
                 else if (obj is FinishCollisionObject)
                     HandleFinishCollision();
-                
-                if (!_isCalledTick && obj is not SafeCollisionObject)
-                {
-                    _isCalledTick = true;
-                    _gameManager.HandleRocketState(RocketState.Dead);
-                }
             }
         }
 

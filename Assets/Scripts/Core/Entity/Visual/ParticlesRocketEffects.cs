@@ -35,6 +35,8 @@ namespace CBH.Core.Core.Entity.Visual
                     AddLeftEffect();
                     break;
             }
+            
+            SetBoostEffect(input.EnabledBoost);
         }
 
         private void StopAll()
@@ -61,12 +63,6 @@ namespace CBH.Core.Core.Entity.Visual
                 _particlesRight.Stop();
                 _isRightPlaying = false;
             }
-
-            if (!_isBoostEffectPlaying)
-            {
-                _boostEffect.Play();
-                _isBoostEffectPlaying = true;
-            }
         }
         
         private void AddRightEffect()
@@ -82,12 +78,19 @@ namespace CBH.Core.Core.Entity.Visual
                 _particlesLeft.Stop();
                 _isLeftPlaying = false;
             }
+        }
+
+        private void SetBoostEffect(bool state)
+        {
+            if (_isBoostEffectPlaying == state)
+                return;
+
+            _isBoostEffectPlaying = !_isBoostEffectPlaying;
             
-            if (!_isBoostEffectPlaying)
-            {
+            if (_isBoostEffectPlaying)
                 _boostEffect.Play();
-                _isBoostEffectPlaying = true;
-            }
+            else
+                _boostEffect.Pause();
         }
     }
 }
