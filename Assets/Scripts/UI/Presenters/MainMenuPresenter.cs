@@ -13,21 +13,24 @@ namespace CBH.UI.Presenters
     {
         private GameData _gameData;
         private ViewManager _viewManager;
+        private PopupManager _popupManager;
 
         public int CurrentLevel => _gameData.CurrentScene;
         public int MaxGameLevel => GameData.CountLevels;
         
-        public MainMenuPresenter(MainMenuView view, GameData gameData, ViewManager viewManager) : base(view)
+        public MainMenuPresenter(MainMenuView view, GameData gameData, ViewManager viewManager, PopupManager popupManager) :
+            base(view)
         {
             _gameData = gameData;
             _viewManager = viewManager;
+            _popupManager = popupManager;
             
             view.SubscribeEvents(this);
         }
 
         public void OnNewButtonPressed()
         {
-            if (_gameData.CurrentScene == 0)
+            if (_gameData.CurrentScene == 1)
                 Observable.FromCoroutine(LoadSceneProcess).Subscribe();
             else
                 Debug.Log("Show popup about reset game");
@@ -50,7 +53,7 @@ namespace CBH.UI.Presenters
 
         private IEnumerator LoadSceneProcess()
         {
-            yield return SceneManager.LoadSceneAsync(_gameData.CurrentScene + 1);
+            yield return SceneManager.LoadSceneAsync(_gameData.CurrentScene);
             Close();
         }
     }

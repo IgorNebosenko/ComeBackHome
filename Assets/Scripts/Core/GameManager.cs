@@ -70,7 +70,7 @@ namespace CBH.Core
             var nextScene = SceneManager.GetActiveScene().buildIndex + 1;
             
             if (nextScene == SceneManager.sceneCountInBuildSettings)
-                nextScene = 0;
+                nextScene = 1;
             
             OnLoadNextLevel?.Invoke();
             

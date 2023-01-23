@@ -25,13 +25,13 @@ namespace CBH.Core
 
         private void GetData()
         {
-            _currentScene = PlayerPrefs.GetInt(CompletedScenesPrefsName, 0);
+            _currentScene = PlayerPrefs.GetInt(CompletedScenesPrefsName, 1);
             
             _targetFps = PlayerPrefs.GetInt(TargetFpsPrefsName, 30);
             Application.targetFrameRate = _targetFps;
         }
 
-        private void ResetGame()
+        public void ResetGame()
         {
             _currentScene = 0;
             PlayerPrefs.SetInt(CompletedScenesPrefsName, 0);
@@ -40,17 +40,6 @@ namespace CBH.Core
         public void SaveGame(int index)
         {
             PlayerPrefs.SetInt(CompletedScenesPrefsName, index);
-        }
-
-        public void LoadGame()
-        {
-            SceneManager.LoadScene(_currentScene + 1);
-        }
-
-        public void NewGame()
-        {
-            ResetGame();
-            LoadGame();
         }
 
         public void UpdateTargetFps(int newFps)
