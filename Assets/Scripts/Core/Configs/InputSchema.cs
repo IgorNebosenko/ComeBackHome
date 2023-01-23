@@ -31,9 +31,9 @@ namespace CBH.Core.Configs
             ""actions"": [
                 {
                     ""name"": ""Velocity"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""1eb850b2-1a96-4072-ac01-6642370671c0"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -52,7 +52,7 @@ namespace CBH.Core.Configs
                 {
                     ""name"": """",
                     ""id"": ""82d4060a-efb4-4e2e-819c-5d3067538050"",
-                    ""path"": ""<Touchscreen>/touch0"",
+                    ""path"": ""<Touchscreen>/Press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

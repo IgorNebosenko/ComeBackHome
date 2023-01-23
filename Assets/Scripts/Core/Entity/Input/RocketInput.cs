@@ -1,4 +1,5 @@
 ﻿using CBH.Core.Configs;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace CBH.Core.Entity.Input
