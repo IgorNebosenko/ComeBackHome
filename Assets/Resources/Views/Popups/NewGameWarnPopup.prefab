@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e4bbfe8cc646a88b219a63e88f20b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restartButton: {fileID: 3667936364893481845}
+  backButton: {fileID: 3667936365829068822}
 --- !u!1 &3667936364893481843
 GameObject:
   m_ObjectHideFlags: 0
