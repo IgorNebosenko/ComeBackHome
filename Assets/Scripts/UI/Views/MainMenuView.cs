@@ -23,7 +23,7 @@ namespace CBH.UI.Views
             howPlayButton.onClick.AddListener(presenter.OnHowPlayButtonPressed);
             settingsButton.onClick.AddListener(presenter.OnSettingsButtonPressed);
 
-            continueButton.interactable = presenter.CurrentLevel != 0;
+            continueButton.interactable = presenter.CurrentLevel > 1;
             textProgress.text = $"Progress: {presenter.CurrentLevel}/{presenter.MaxGameLevel}";
         }
 

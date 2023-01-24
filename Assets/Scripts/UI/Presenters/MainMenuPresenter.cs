@@ -33,7 +33,9 @@ namespace CBH.UI.Presenters
             if (_gameData.CurrentScene == 1)
                 Observable.FromCoroutine(LoadSceneProcess).Subscribe();
             else
-                Debug.Log("Show popup about reset game");
+            {
+                _popupManager.ShowPopup<NewGameWarnPresenter>();
+            }
         }
         
         public void OnContinueButtonPressed()
@@ -54,7 +56,6 @@ namespace CBH.UI.Presenters
         private IEnumerator LoadSceneProcess()
         {
             yield return SceneManager.LoadSceneAsync(_gameData.CurrentScene);
-            Close();
         }
     }
 }
