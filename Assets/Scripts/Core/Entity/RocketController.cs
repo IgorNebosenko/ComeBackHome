@@ -28,6 +28,8 @@ namespace CBH.Core.Entity.Input
 
         private FinishGameEffect _finishGameEffect;
 
+        public Vector3 ControllerPosition => transform.position;
+
         [Inject]
         private void Construct(GameManager gameManager, InputSchema inputSchema)
         {
