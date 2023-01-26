@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3190555097190520914}
   - component: {fileID: 3190555097190520925}
   - component: {fileID: 3190555097190520924}
+  - component: {fileID: 2283726978756883861}
   m_Layer: 0
   m_Name: GameContext
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3190555097190520925
 MonoBehaviour:
@@ -75,5 +76,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43692274db49b13468ca8a8d404d431a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocketController: {fileID: 0}
+  landingPad: {fileID: 0}
+  mainCamera: {fileID: 0}
+--- !u!114 &2283726978756883861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3190555097190520927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5d1ce41f3f47f7990dc52dbfe47353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -1,11 +1,11 @@
-using CBH.UI.Presenters;
+﻿using CBH.UI.Presenters;
 using ElectrumGames.MVP.Managers;
 using UnityEngine;
 using Zenject;
 
-namespace CBH.Core
+namespace CBH.EntryPoints
 {
-    public class Entry : MonoBehaviour
+    public class GameEntry : MonoBehaviour
     {
         private ViewManager _viewManager;
         
@@ -15,9 +15,9 @@ namespace CBH.Core
             _viewManager = viewManager;
         }
 
-        private void Awake()
+        private void Start()
         {
-            _viewManager.ShowView<MainMenuPresenter>();
+            _viewManager.ShowView<GamePresenter>();
         }
     }
 }

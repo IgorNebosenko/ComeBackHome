@@ -33,8 +33,8 @@ namespace CBH.Core
 
         public void ResetGame()
         {
-            _currentScene = 0;
-            PlayerPrefs.SetInt(CompletedScenesPrefsName, 0);
+            _currentScene = 1;
+            PlayerPrefs.SetInt(CompletedScenesPrefsName, 1);
         }
 
         public void SaveGame(int index)
