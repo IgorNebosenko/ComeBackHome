@@ -34,7 +34,7 @@ public abstract class BaseSceneInstaller : MonoInstaller<BaseSceneInstaller>
         var viewRegistrationList = new List<(Type, Type)>();
         var popupRegistrationList = new List<(Type, Type)>();
 
-        var bindings = AutoRegisterViewAttribute.GetViews(new []{GetType().Assembly});
+        var bindings = AutoRegisterViewAttribute.GetViews(new []{UiAssembly});
 
         foreach (var binding in bindings)
         {
