@@ -1,11 +1,11 @@
 ﻿using CBH.Core;
 using CBH.Core.Audio;
 using CBH.Core.Configs;
-using CBH.UI.Views;
+using CBH.UI.Menu.Views;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Managers;
 
-namespace CBH.UI.Presenters
+namespace CBH.UI.Menu.Presenters
 {
     public class SettingsPresenter : Presenter<SettingsView>
     {

@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using CBH.Core;
-using CBH.UI.Views;
+using CBH.UI.Menu.Views;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Managers;
 using UniRx;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CBH.UI.Presenters
+namespace CBH.UI.Menu.Presenters
 {
     public class MainMenuPresenter : Presenter<MainMenuView>
     {

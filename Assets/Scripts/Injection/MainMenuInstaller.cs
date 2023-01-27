@@ -1,9 +1,7 @@
-using UnityEngine;
-using Zenject;
+using System.Reflection;
+using CBH.UI.Menu.UI.Menu;
 
-public class MainMenuInstaller : MonoInstaller
+public class MainMenuInstaller : BaseSceneInstaller
 {
-    public override void InstallBindings()
-    {
-    }
+    protected override Assembly UiAssembly => typeof(MenuAssemblyPlaceholder).Assembly;
 }

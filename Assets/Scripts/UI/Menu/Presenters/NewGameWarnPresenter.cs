@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using CBH.Core;
-using CBH.UI.Views;
+using CBH.UI.Menu.Views;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Utils;
 using UniRx;
 using UnityEngine.SceneManagement;
 
-namespace CBH.UI.Presenters
+namespace CBH.UI.Menu.Presenters
 {
     public class NewGameWarnPresenter : PopupPresenterCoroutine<NewGameWarnPopup, PopupArgs, PopupResult>
     {

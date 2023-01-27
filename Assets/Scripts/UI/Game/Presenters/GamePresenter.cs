@@ -2,13 +2,13 @@
 using System.Collections;
 using CBH.Core.Collision;
 using CBH.Core.Entity.Input;
-using CBH.UI.Views;
+using CBH.UI.Game.Views;
 using ElectrumGames.MVP;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CBH.UI.Presenters
+namespace CBH.UI.Game.Presenters
 {
     public class GamePresenter : Presenter<GameView>
     {

@@ -2,7 +2,7 @@ using CBH.Core;
 using CBH.Core.Collision;
 using CBH.Core.Configs;
 using CBH.Core.Entity.Input;
-using CBH.UI.Presenters;
+using CBH.UI.Game.Presenters;
 using UnityEngine;
 using Zenject;
 

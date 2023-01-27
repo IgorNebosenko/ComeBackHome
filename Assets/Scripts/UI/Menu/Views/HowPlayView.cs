@@ -1,9 +1,9 @@
-﻿using CBH.UI.Presenters;
+﻿using CBH.UI.Menu.Presenters;
 using ElectrumGames.MVP;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CBH.UI.Views
+namespace CBH.UI.Menu.Views
 {
     [AutoRegisterView]
     public class HowPlayView : View<HowPlayPresenter>

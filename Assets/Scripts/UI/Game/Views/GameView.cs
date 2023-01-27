@@ -1,12 +1,12 @@
 ﻿using System;
-using CBH.UI.Presenters;
+using CBH.UI.Game.Presenters;
 using ElectrumGames.MVP;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CBH.UI.Views
+namespace CBH.UI.Game.Views
 {
     [AutoRegisterView]
     public class GameView : View<GamePresenter>
