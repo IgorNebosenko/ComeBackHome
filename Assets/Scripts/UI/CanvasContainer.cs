@@ -6,10 +6,5 @@ namespace CBH.UI
     {
         public Transform viewContainer;
         public Transform popupContainer;
-
-        private void Awake()
-        {
-            DontDestroyOnLoad(gameObject);
-        }
     }
 }
