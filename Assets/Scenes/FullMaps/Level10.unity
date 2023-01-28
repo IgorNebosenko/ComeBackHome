@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.5703546, g: 0.13907051, b: 0.04965803, a: 1}
+  m_IndirectSpecularColor: {r: 0.57037425, g: 0.13901737, b: 0.050055146, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2256,26 +2256,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1804677839 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4149528743059008231, guid: 3ed0226a816e6a4449952c62fb5d6ecd, type: 3}
-  m_PrefabInstance: {fileID: 4783053302240476975}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1804677843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804677839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7785fc3d4f86cab4bbb9821c724e4704, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  camera: {fileID: 0}
-  pointerIconTransform: {fileID: 0}
 --- !u!1 &2020884405
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,7 +2266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2020884406}
   m_Layer: 0
-  m_Name: Environmen
+  m_Name: Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
