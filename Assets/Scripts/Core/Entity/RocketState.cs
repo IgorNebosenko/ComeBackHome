@@ -4,6 +4,8 @@
     {
         Live,
         Dead,
-        Win,
+        LandFinishPad,
+        LeaveFinishPad,
+        Win
     }
 }

@@ -11,9 +11,11 @@ namespace CBH.Core
     public class GameManager
     {
         private GameData _gameData;
+        private IDisposable _winProcess;
 
         private const float RestartDuration = 3f;
         private const float RestartTickDuration = 1f;
+        private const float LandingDuration = 3f;
         
         public event Action OnLoadNextLevel;
         public event Action<float> OnBeforeRestartLevel;
@@ -41,10 +43,13 @@ namespace CBH.Core
                     OnLevelLose?.Invoke();
                     Observable.FromCoroutine(RestartProcess).Subscribe();
                     break;
-                case RocketState.Win:
+                case RocketState.LandFinishPad:
                     AudioHandler.StopLoopSound();
                     OnLevelWin?.Invoke();
-                    Observable.FromCoroutine(LoadNextLevelProcess).Subscribe();
+                    break;
+                case RocketState.LeaveFinishPad:
+                    _winProcess?.Dispose();
+                    CurrentState = RocketState.Live;
                     break;
             }
         }

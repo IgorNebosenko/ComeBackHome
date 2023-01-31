@@ -1,3 +1,4 @@
+using System;
 using CBH.Core.Entity;
 using UnityEngine;
 using Zenject;
@@ -30,6 +31,17 @@ namespace CBH.Core.Collision
             }
         }
 
+        private void OnCollisionExit(UnityEngine.Collision collision)
+        {
+            if (_gameManager.CurrentState != RocketState.Win)
+                return;
+            
+            var other = collision.collider;
+            
+            if (other.TryGetComponent(typeof(FinishCollisionObject), out var obj))
+                _gameManager.HandleRocketState(RocketState.LeaveFinishPad);
+        }
+
         private void HandleObstacleCollision()
         {
             _gameManager.HandleRocketState(RocketState.Dead);
@@ -37,10 +49,10 @@ namespace CBH.Core.Collision
 
         private void HandleFinishCollision()
         {
-            if (_gameManager.CurrentState == RocketState.Win) 
+            if (_gameManager.CurrentState == RocketState.LandFinishPad) 
                 return;
             
-            _gameManager.HandleRocketState(RocketState.Win);
+            _gameManager.HandleRocketState(RocketState.LandFinishPad);
         }
     }
 }
