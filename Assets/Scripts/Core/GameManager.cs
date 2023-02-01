@@ -21,7 +21,6 @@ namespace CBH.Core
         private const float LandingDuration = 3f;
         private const float BeforeWinDuration = 2f;
         
-        public event Action LoadNextLevel;
         public event Action<float> BeforeRestartLevel;
         public event Action RestartLevel;
 
