@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CBH.Core.Audio;
 using CBH.Core.Configs;
 using CBH.Core.Core.Entity.Motors;
 using CBH.Core.Core.Entity.Visual;
@@ -22,6 +23,7 @@ namespace CBH.Core.Entity.Input
 
         private GameManager _gameManager;
         private IInput _input;
+        private bool _isInputMade;
 
         private RocketMotor _motor;
         private List<IEntityVisual> _entityVisualsList;
@@ -48,9 +50,9 @@ namespace CBH.Core.Entity.Input
 
             _finishGameEffect = new FinishGameEffect(winEffect, explosionEffect);
 
-            _gameManager.OnLoadNextLevel += OnLoadNextLevel;
-            _gameManager.OnLevelWin += _finishGameEffect.PlayWin;
-            _gameManager.OnLevelLose += _finishGameEffect.PlayLose;
+            _gameManager.LevelWin += OnWin;
+            _gameManager.LevelWin += _finishGameEffect.PlayWin;
+            _gameManager.LevelLose += _finishGameEffect.PlayLose;
         }
 
         private void Update()
@@ -61,6 +63,7 @@ namespace CBH.Core.Entity.Input
             var deltaTime = Time.deltaTime;
             
             _input.Update(deltaTime);
+            HandleFirstInput();
             
             _motor.Simulate(deltaTime, _input);
 
@@ -70,15 +73,28 @@ namespace CBH.Core.Entity.Input
 
         private void OnDestroy()
         {
-            _gameManager.OnLoadNextLevel -= OnLoadNextLevel;
-            _gameManager.OnLevelWin -= _finishGameEffect.PlayWin;
-            _gameManager.OnLevelLose -= _finishGameEffect.PlayLose;
+            _gameManager.LevelWin -= OnWin;
+            _gameManager.LevelWin -= _finishGameEffect.PlayWin;
+            _gameManager.LevelLose -= _finishGameEffect.PlayLose;
         }
 
-        private void OnLoadNextLevel()
+        private void OnWin()
         {
+            AudioHandler.StopLoopSound();
             physicModel.freezeRotation = true;
             physicModel.constraints = RigidbodyConstraints.FreezeAll;
+        }
+
+        private void HandleFirstInput()
+        {
+            if (_isInputMade)
+                return;
+
+            if (_input.EnabledBoost || _input.RotationDirection != 0)
+            {
+                _isInputMade = true;
+                _gameManager.StartFlyProcess();
+            }
         }
     }
 }
