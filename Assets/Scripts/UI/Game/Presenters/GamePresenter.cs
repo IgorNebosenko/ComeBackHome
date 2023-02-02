@@ -86,16 +86,20 @@ namespace CBH.UI.Game.Presenters
 
         private void OnBeforeRestartLevel(float time)
         {
-            if ((int)time > 0)
-                HeaderTextChanged?.Invoke($"Oops. Restarting on {(int)time} seconds...");
+            var roundedTime = Mathf.Round(time);
+            
+            if (roundedTime > 0)
+                HeaderTextChanged?.Invoke($"Oops. Restarting on {roundedTime} seconds...");
             else
                 HeaderTextChanged?.Invoke("Restart...");
         }
 
         private void OnPlatformStay(float time)
         {
-            if ((int)time > 0)
-                HeaderTextChanged?.Invoke($"Stay on platform for {(int)time} seconds");
+            var roundedTime = Mathf.Round(time);
+            
+            if (roundedTime > 0)
+                HeaderTextChanged?.Invoke($"Stay on platform for {roundedTime} seconds");
             else
                 OnBeforeWin();
         }
@@ -115,7 +119,7 @@ namespace CBH.UI.Game.Presenters
             if (time.TotalHours > 1)
                 TimerTextChanged?.Invoke("More than 1 hour!");
             else
-                TimerTextChanged?.Invoke($"{time.Minutes:00}:{time.Seconds:00}:{time.Milliseconds:00}");
+                TimerTextChanged?.Invoke($"{time.Minutes:00}:{time.Seconds:00}:{time.Milliseconds / 10:00}");
         }
     }
 }
