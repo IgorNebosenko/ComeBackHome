@@ -135,9 +135,10 @@ GameObject:
   - component: {fileID: 26821481}
   - component: {fileID: 26821480}
   - component: {fileID: 26821479}
+  - component: {fileID: 26821482}
   m_Layer: 0
   m_Name: Tree_Cut_2
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,6 +222,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26821477}
   m_Mesh: {fileID: 4300000, guid: d2243a990b902f4468bbffc757d16963, type: 2}
+--- !u!114 &26821482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26821477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571409626767479ba1c2a0408b21c332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &63609170
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,8 +549,6 @@ GameObject:
   - component: {fileID: 276063804}
   - component: {fileID: 276063808}
   - component: {fileID: 276063807}
-  - component: {fileID: 276063806}
-  - component: {fileID: 276063805}
   m_Layer: 0
   m_Name: PP_Forest_Mountain_Moss_01
   m_TagString: Untagged
@@ -560,32 +571,6 @@ Transform:
   m_Father: {fileID: 2099545227}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &276063805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276063803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571409626767479ba1c2a0408b21c332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!64 &276063806
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276063803}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4890176300591525589, guid: d818648c1b009ab48a03dbcc4ae09583, type: 3}
 --- !u!23 &276063807
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -776,8 +761,6 @@ GameObject:
   - component: {fileID: 614104754}
   - component: {fileID: 614104758}
   - component: {fileID: 614104757}
-  - component: {fileID: 614104756}
-  - component: {fileID: 614104755}
   m_Layer: 0
   m_Name: PP_Forest_Mountain_Moss_01 (2)
   m_TagString: Untagged
@@ -800,32 +783,6 @@ Transform:
   m_Father: {fileID: 2099545227}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: -147.057, z: 0}
---- !u!114 &614104755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 614104753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571409626767479ba1c2a0408b21c332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!64 &614104756
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 614104753}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4890176300591525589, guid: d818648c1b009ab48a03dbcc4ae09583, type: 3}
 --- !u!23 &614104757
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1099,9 +1056,10 @@ GameObject:
   - component: {fileID: 816688668}
   - component: {fileID: 816688667}
   - component: {fileID: 816688666}
+  - component: {fileID: 816688669}
   m_Layer: 0
   m_Name: Top
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1184,6 +1142,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816688664}
   m_Mesh: {fileID: 4300000, guid: 8de0bba6ac3c6c044a1204aec9828b28, type: 2}
+--- !u!114 &816688669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816688664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571409626767479ba1c2a0408b21c332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &839481703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,8 +1165,6 @@ GameObject:
   - component: {fileID: 839481704}
   - component: {fileID: 839481708}
   - component: {fileID: 839481707}
-  - component: {fileID: 839481706}
-  - component: {fileID: 839481705}
   m_Layer: 0
   m_Name: PP_Grass_15
   m_TagString: Untagged
@@ -1219,32 +1187,6 @@ Transform:
   m_Father: {fileID: 2099545227}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &839481705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839481703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571409626767479ba1c2a0408b21c332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!64 &839481706
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839481703}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6859858418456897516, guid: ac41480a091ee2446a41d386b366ae44, type: 3}
 --- !u!23 &839481707
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1417,7 +1359,6 @@ GameObject:
   - component: {fileID: 903882471}
   - component: {fileID: 903882474}
   - component: {fileID: 903882473}
-  - component: {fileID: 903882472}
   m_Layer: 0
   m_Name: Rocks_5
   m_TagString: Untagged
@@ -1440,20 +1381,6 @@ Transform:
   m_Father: {fileID: 2099545227}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &903882472
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 903882470}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 6177e76834d6d2849b2c9d8f56c44085, type: 2}
 --- !u!23 &903882473
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2073,8 +2000,6 @@ GameObject:
   - component: {fileID: 1178561080}
   - component: {fileID: 1178561084}
   - component: {fileID: 1178561083}
-  - component: {fileID: 1178561082}
-  - component: {fileID: 1178561081}
   m_Layer: 0
   m_Name: PP_Forest_Mountain_Moss_01 (1)
   m_TagString: Untagged
@@ -2097,32 +2022,6 @@ Transform:
   m_Father: {fileID: 2099545227}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1178561081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1178561079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571409626767479ba1c2a0408b21c332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!64 &1178561082
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1178561079}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4890176300591525589, guid: d818648c1b009ab48a03dbcc4ae09583, type: 3}
 --- !u!23 &1178561083
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2296,9 +2195,10 @@ GameObject:
   - component: {fileID: 1303246633}
   - component: {fileID: 1303246632}
   - component: {fileID: 1303246631}
+  - component: {fileID: 1303246634}
   m_Layer: 0
   m_Name: Rocks_2
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2327,7 +2227,7 @@ MeshCollider:
   m_GameObject: {fileID: 1303246629}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -2382,109 +2282,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303246629}
   m_Mesh: {fileID: 4300000, guid: 6bf72093416f8c048ad69829d710f2a9, type: 2}
+--- !u!114 &1303246634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303246629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571409626767479ba1c2a0408b21c332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1520347660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4387158593977690291, guid: f4e0b7038f3f47b449fa27223498fb36, type: 3}
   m_PrefabInstance: {fileID: 756371962}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1737924927
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1737924928}
-  - component: {fileID: 1737924931}
-  - component: {fileID: 1737924930}
-  - component: {fileID: 1737924929}
-  m_Layer: 0
-  m_Name: Rocks_3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1737924928
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737924927}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -143.39122, y: -14.22802, z: 105}
-  m_LocalScale: {x: 35.233006, y: 35.233, z: 35.233006}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2099545227}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1737924929
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737924927}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: b7c9f9f642c7a1a4b831af72ddccde39, type: 2}
---- !u!23 &1737924930
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737924927}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 10758faf62da7984fa55d0fab1382efc, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1737924931
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737924927}
-  m_Mesh: {fileID: 4300000, guid: b7c9f9f642c7a1a4b831af72ddccde39, type: 2}
 --- !u!1 &1799113340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,7 +2310,6 @@ GameObject:
   - component: {fileID: 1799113341}
   - component: {fileID: 1799113344}
   - component: {fileID: 1799113343}
-  - component: {fileID: 1799113342}
   m_Layer: 0
   m_Name: PP_Lake_Ground_Water_04
   m_TagString: Untagged
@@ -2519,20 +2332,6 @@ Transform:
   m_Father: {fileID: 912039701}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1799113342
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799113340}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8742333629135278839, guid: 38b178f6a1ea19f4baf761918779b712, type: 3}
 --- !u!23 &1799113343
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2817,9 +2616,10 @@ GameObject:
   - component: {fileID: 1887326841}
   - component: {fileID: 1887326840}
   - component: {fileID: 1887326839}
+  - component: {fileID: 1887326842}
   m_Layer: 0
   m_Name: Tree_Cut
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2904,6 +2704,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887326837}
   m_Mesh: {fileID: 4300000, guid: 79ff099a5ee8ba344b929353a7276dae, type: 2}
+--- !u!114 &1887326842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887326837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571409626767479ba1c2a0408b21c332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2070167811
 GameObject:
   m_ObjectHideFlags: 0
@@ -2916,9 +2728,10 @@ GameObject:
   - component: {fileID: 2070167815}
   - component: {fileID: 2070167814}
   - component: {fileID: 2070167813}
+  - component: {fileID: 2070167816}
   m_Layer: 0
   m_Name: Base_9 _tall
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3002,6 +2815,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070167811}
   m_Mesh: {fileID: 4300000, guid: fded3093017dc114696f91d4cbf4d09d, type: 2}
+--- !u!114 &2070167816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070167811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571409626767479ba1c2a0408b21c332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2099545226
 GameObject:
   m_ObjectHideFlags: 0
@@ -3031,7 +2856,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 903882471}
-  - {fileID: 1737924928}
   - {fileID: 1852860712}
   - {fileID: 399239417}
   - {fileID: 912039701}
