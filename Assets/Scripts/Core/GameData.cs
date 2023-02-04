@@ -39,6 +39,7 @@ namespace CBH.Core
 
         public void SaveGame(int index)
         {
+            _lastCompletedScene = index;
             PlayerPrefs.SetInt(CompletedScenesPrefsName, index);
         }
 
