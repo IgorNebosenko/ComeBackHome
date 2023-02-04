@@ -9,6 +9,7 @@ namespace CBH.UI.Menu.UI.Menu.Components
     {
         [SerializeField] private Button buttonInstance;
         [SerializeField] private TMP_Text levelNumberText;
+        [SerializeField] private GameObject borderImage;
 
         private Action _cachedEvent;
         
@@ -19,6 +20,7 @@ namespace CBH.UI.Menu.UI.Menu.Components
             buttonInstance.onClick.AddListener(() => _cachedEvent?.Invoke());
             levelNumberText.text = $"{levelId}";
             buttonInstance.interactable = isInteractable;
+            borderImage.SetActive(isInteractable);
         }
 
         private void OnDestroy()

@@ -460,7 +460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue
+  m_text: Select level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9da84dc41cb47b44caabada3e0e17907, type: 2}
   m_sharedMaterial: {fileID: -3151201376398331799, guid: 9da84dc41cb47b44caabada3e0e17907, type: 2}
@@ -596,7 +596,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Game
+  m_text: Play!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9da84dc41cb47b44caabada3e0e17907, type: 2}
   m_sharedMaterial: {fileID: -3151201376398331799, guid: 9da84dc41cb47b44caabada3e0e17907, type: 2}
@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 2050869151975356374}
   - component: {fileID: 6941783968550106136}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: SelectLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -999,7 +999,7 @@ GameObject:
   - component: {fileID: 7897458905202848822}
   - component: {fileID: 6206426295261021322}
   m_Layer: 5
-  m_Name: NewGame
+  m_Name: Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1299,8 +1299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432b0211b03f43a08e12485e1301ae51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameButton: {fileID: 6206426295261021322}
-  continueButton: {fileID: 6941783968550106136}
+  playButton: {fileID: 6206426295261021322}
+  selectLevelButton: {fileID: 6941783968550106136}
   howPlayButton: {fileID: 2075791460348419625}
   settingsButton: {fileID: 3425591265268652744}
   textProgress: {fileID: 8033102267562596184}

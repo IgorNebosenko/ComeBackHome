@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 namespace CBH.UI.Menu.Views
 {
+    [AutoRegisterView]
     public class LevelSelectView : View<LevelSelectPresenter>
     {
         [SerializeField] private Button toMenuButton;

@@ -9,8 +9,8 @@ namespace CBH.UI.Menu.Views
     [AutoRegisterView]
     public class MainMenuView : View<MainMenuPresenter>
     {
-        [SerializeField] private Button newGameButton;
-        [SerializeField] private Button continueButton;
+        [SerializeField] private Button playButton;
+        [SerializeField] private Button selectLevelButton;
         [SerializeField] private Button howPlayButton;
         [SerializeField] private Button settingsButton;
 
@@ -18,19 +18,18 @@ namespace CBH.UI.Menu.Views
 
         public void SubscribeEvents(MainMenuPresenter presenter)
         {
-            newGameButton.onClick.AddListener(presenter.OnNewButtonPressed);
-            continueButton.onClick.AddListener(presenter.OnContinueButtonPressed);
+            playButton.onClick.AddListener(presenter.OnPlayButtonPressed);
+            selectLevelButton.onClick.AddListener(presenter.OnLevelSelectButtonPressed);
             howPlayButton.onClick.AddListener(presenter.OnHowPlayButtonPressed);
             settingsButton.onClick.AddListener(presenter.OnSettingsButtonPressed);
-
-            continueButton.interactable = presenter.CurrentLevel > 1;
+            
             textProgress.text = $"Progress: {presenter.CurrentLevel}/{presenter.MaxGameLevel}";
         }
 
         private void OnDestroy()
         {
-            newGameButton.onClick.RemoveListener(Presenter.OnNewButtonPressed);
-            continueButton.onClick.RemoveListener(Presenter.OnContinueButtonPressed);
+            playButton.onClick.RemoveListener(Presenter.OnPlayButtonPressed);
+            selectLevelButton.onClick.RemoveListener(Presenter.OnLevelSelectButtonPressed);
             howPlayButton.onClick.RemoveListener(Presenter.OnHowPlayButtonPressed);
             settingsButton.onClick.RemoveListener(Presenter.OnSettingsButtonPressed);
         }
