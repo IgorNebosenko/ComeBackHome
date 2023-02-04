@@ -74,9 +74,9 @@ namespace CBH.Core
             _isGameEnded = true;
             var timeLeft = RestartDuration;
 
-            while (timeLeft > 0f)
+            while (timeLeft >= 0f)
             {
-                BeforeRestartLevel?.Invoke(RestartTickDuration);
+                BeforeRestartLevel?.Invoke(timeLeft);
                 yield return new WaitForSeconds(RestartTickDuration);
                 timeLeft -= RestartTickDuration;
             }
