@@ -7,7 +7,7 @@ namespace CBH.Core
 {
     public class GameData
     {
-        private int _currentScene;
+        private int _lastCompletedScene;
 
         private const string CompletedScenesPrefsName = "CompletedScenes";
         public const int CountLevels = 25;
@@ -16,7 +16,7 @@ namespace CBH.Core
         private int _targetFps;
         public int TargetFps => _targetFps;
 
-        public int CurrentScene => _currentScene;
+        public int LastCompletedScene => _lastCompletedScene;
 
         public GameData()
         {
@@ -25,7 +25,7 @@ namespace CBH.Core
 
         private void GetData()
         {
-            _currentScene = PlayerPrefs.GetInt(CompletedScenesPrefsName, 1);
+            _lastCompletedScene = PlayerPrefs.GetInt(CompletedScenesPrefsName, 1);
             
             _targetFps = PlayerPrefs.GetInt(TargetFpsPrefsName, 30);
             Application.targetFrameRate = _targetFps;
@@ -33,7 +33,7 @@ namespace CBH.Core
 
         public void ResetGame()
         {
-            _currentScene = 1;
+            _lastCompletedScene = 1;
             PlayerPrefs.SetInt(CompletedScenesPrefsName, 1);
         }
 

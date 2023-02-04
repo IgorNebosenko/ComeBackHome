@@ -14,7 +14,7 @@ namespace CBH.UI.Menu.Presenters
         private ViewManager _viewManager;
         private PopupManager _popupManager;
 
-        public int CurrentLevel => _gameData.CurrentScene;
+        public int CurrentLevel => _gameData.LastCompletedScene;
         public int MaxGameLevel => GameData.CountLevels;
         
         public MainMenuPresenter(MainMenuView view, GameData gameData, ViewManager viewManager, PopupManager popupManager) :
@@ -29,7 +29,7 @@ namespace CBH.UI.Menu.Presenters
 
         public void OnNewButtonPressed()
         {
-            if (_gameData.CurrentScene == 1)
+            if (_gameData.LastCompletedScene == 1)
                 Observable.FromCoroutine(LoadSceneProcess).Subscribe();
             else
             {
@@ -54,7 +54,7 @@ namespace CBH.UI.Menu.Presenters
 
         private IEnumerator LoadSceneProcess()
         {
-            yield return SceneManager.LoadSceneAsync(_gameData.CurrentScene);
+            yield return SceneManager.LoadSceneAsync(_gameData.LastCompletedScene);
         }
     }
 }

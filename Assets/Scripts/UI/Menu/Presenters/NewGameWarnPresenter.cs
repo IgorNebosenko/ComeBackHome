@@ -28,7 +28,7 @@ namespace CBH.UI.Menu.Presenters
 
         private IEnumerator ProcessLoadScene()
         {
-            yield return SceneManager.LoadSceneAsync(_gameData.CurrentScene);
+            yield return SceneManager.LoadSceneAsync(_gameData.LastCompletedScene);
             Close();
         }
 
