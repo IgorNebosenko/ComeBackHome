@@ -33,7 +33,7 @@ namespace CBH.Core.Collision
 
         private void OnCollisionExit(UnityEngine.Collision collision)
         {
-            if (_gameManager.CurrentState != RocketState.Win)
+            if (_gameManager.CurrentState != RocketState.Win && _gameManager.CurrentState != RocketState.LandFinishPad)
                 return;
             
             var other = collision.collider;

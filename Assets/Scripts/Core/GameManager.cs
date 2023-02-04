@@ -49,6 +49,7 @@ namespace CBH.Core
             switch (state)
             {
                 case RocketState.Dead:
+                    Debug.Log(CurrentState);
                     AudioHandler.StopLoopSound();
                     LevelLose?.Invoke();
                     Observable.FromCoroutine(RestartProcess).Subscribe();

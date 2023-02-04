@@ -50,14 +50,15 @@ namespace CBH.Core.Entity.Input
 
             _finishGameEffect = new FinishGameEffect(winEffect, explosionEffect);
 
-            _gameManager.LevelWin += OnWin;
+            _gameManager.BeforeWin += OnBeforeWin;
             _gameManager.LevelWin += _finishGameEffect.PlayWin;
             _gameManager.LevelLose += _finishGameEffect.PlayLose;
         }
 
         private void Update()
         {
-            if (_gameManager.CurrentState != RocketState.Live)
+            if (_gameManager.CurrentState != RocketState.Live &&
+                _gameManager.CurrentState != RocketState.LandFinishPad)
                 return;
             
             var deltaTime = Time.deltaTime;
@@ -73,12 +74,12 @@ namespace CBH.Core.Entity.Input
 
         private void OnDestroy()
         {
-            _gameManager.LevelWin -= OnWin;
+            _gameManager.BeforeWin -= OnBeforeWin;
             _gameManager.LevelWin -= _finishGameEffect.PlayWin;
             _gameManager.LevelLose -= _finishGameEffect.PlayLose;
         }
 
-        private void OnWin()
+        private void OnBeforeWin()
         {
             AudioHandler.StopLoopSound();
             physicModel.freezeRotation = true;
