@@ -1,10 +1,28 @@
-using System;
+using System.Reflection;
+using CBH.Core;
+using CBH.Core.Collision;
+using CBH.Core.Configs;
+using CBH.Core.Entity.Input;
+using CBH.UI.Game.Presenters;
+using CBH.UI.Game.UI.Game;
 using UnityEngine;
-using Zenject;
 
-public class GameInstaller : MonoInstaller
+public class GameInstaller : BaseSceneInstaller
 {
+    [SerializeField] private RocketController rocketController;
+    [SerializeField] private FinishCollisionObject landingPad;
+    [SerializeField] private Camera mainCamera;
+
+    protected override Assembly UiAssembly => typeof(GameAssemblyPlaceholder).Assembly;
+
     public override void InstallBindings()
     {
+        base.InstallBindings();
+        Container.Bind<GameManager>().AsSingle();
+        Container.Bind<RocketController>().FromInstance(rocketController);
+        Container.Bind<FinishCollisionObject>().FromInstance(landingPad);
+        Container.Bind<Camera>().FromInstance(mainCamera).WhenInjectedInto<GamePresenter>();
+
+        Container.Bind<InputSchema>().WhenInjectedInto<RocketController>();
     }
 }
