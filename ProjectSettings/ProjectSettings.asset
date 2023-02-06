@@ -836,11 +836,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 1
-  cloudProjectId: 
+  cloudProjectId: e878df2c-5628-4052-90f7-0f351015c98c
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Come Back Home
+  organizationId: unity_6915ea9368cfd8dbef58
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
