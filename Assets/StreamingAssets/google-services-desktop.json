@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "496197143292",
+    "project_id": "come-back-home-eg",
+    "storage_bucket": "come-back-home-eg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:496197143292:android:6836192327c2cd36096579",
+        "android_client_info": {
+          "package_name": "com.electrumGames.comeBackHome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "496197143292-2lu227kkbku3tf1i5hu2kb6hdkanu801.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIzTuWz1HfemLmY1s-WDulXU1KFfQZTbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "496197143292-2lu227kkbku3tf1i5hu2kb6hdkanu801.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

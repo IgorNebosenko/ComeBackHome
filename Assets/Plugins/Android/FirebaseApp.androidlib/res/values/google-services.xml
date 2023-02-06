@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="gcm_defaultSenderId" translatable="false">496197143292</string>
+  <string name="google_storage_bucket" translatable="false">come-back-home-eg.appspot.com</string>
+  <string name="project_id" translatable="false">come-back-home-eg</string>
+  <string name="google_api_key" translatable="false">AIzaSyDIzTuWz1HfemLmY1s-WDulXU1KFfQZTbU</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDIzTuWz1HfemLmY1s-WDulXU1KFfQZTbU</string>
+  <string name="google_app_id" translatable="false">1:496197143292:android:6836192327c2cd36096579</string>
+  <string name="default_web_client_id" translatable="false">496197143292-2lu227kkbku3tf1i5hu2kb6hdkanu801.apps.googleusercontent.com</string>
+</resources>
