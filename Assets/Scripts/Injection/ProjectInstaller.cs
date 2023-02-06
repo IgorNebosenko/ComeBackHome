@@ -1,3 +1,4 @@
+using CBH.Analytics;
 using CBH.Core;
 using CBH.Core.Audio;
 using CBH.Core.Configs;
@@ -15,5 +16,7 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
         Container.Bind<GameData>().AsSingle();
         Container.BindInstance(fpsConfig).AsSingle();
         Container.Bind<AudioManager>().AsSingle().WithArguments(audioMixer);
+
+        Container.Bind<IAnalyticsManager>().To<DefaultAnalyticsManager>().AsSingle();
     }
 }
