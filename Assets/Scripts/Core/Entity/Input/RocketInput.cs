@@ -1,6 +1,7 @@
 ﻿using CBH.Core.Configs;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Composites;
 
 namespace CBH.Core.Entity.Input
 {
@@ -40,7 +41,7 @@ namespace CBH.Core.Entity.Input
             EnabledBoost = false;
             RotationDirection = 0f;
 
-            _isBoostUpdated = false;
+            _isRotationUpdated = false;
             _isBoostUpdated = false;
         }
 
@@ -51,7 +52,7 @@ namespace CBH.Core.Entity.Input
 
         public void OnRotation(InputAction.CallbackContext context)
         {
-            _isRotationUpdated = true;
+            _isRotationUpdated = context.phase != InputActionPhase.Canceled;
         }
     }
 }

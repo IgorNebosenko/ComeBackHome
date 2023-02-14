@@ -163,6 +163,10 @@ namespace ElectrumGames.Joystick.Base
         {
             _input = Vector2.zero;
             handle.anchoredPosition = Vector2.zero;
+            
+#if ENABLE_INPUT_SYSTEM
+            SendValueToControl(handle.anchoredPosition);
+#endif
         }
 
         protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)

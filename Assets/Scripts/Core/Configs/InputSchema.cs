@@ -40,12 +40,12 @@ namespace CBH.Core.Configs
                 },
                 {
                     ""name"": ""Rotation"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""eaab7a4f-da60-42c1-b957-d92b40403060"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -83,7 +83,7 @@ namespace CBH.Core.Configs
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""positive"",
                     ""id"": ""405f6e5c-1521-4b66-98a2-4bd418eb9629"",
                     ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
@@ -94,7 +94,7 @@ namespace CBH.Core.Configs
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""negative"",
                     ""id"": ""3bb35e72-6e97-42a8-a781-2c5d3f7c80d5"",
                     ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
