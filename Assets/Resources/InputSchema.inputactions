@@ -48,39 +48,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "BoostAxis",
-                    "id": "82422b39-d3bd-41b7-a0cb-78700992f2b9",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Velocity",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "1f596b0b-817b-42b3-a696-dfc04f25c351",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Velocity",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "44a65e74-8caa-45a0-98f2-e3e929804376",
-                    "path": "<Gamepad>/leftStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Velocity",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "RotationJoystick",
                     "id": "e5a9491c-396a-457f-81c7-bc0c662e974f",
                     "path": "1DAxis",
