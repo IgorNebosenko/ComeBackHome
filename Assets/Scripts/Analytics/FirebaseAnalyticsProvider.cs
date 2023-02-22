@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using CBH.Analytics.Events;
-using Firebase;
-using Firebase.Analytics;
-using Firebase.Extensions;
+// using Firebase;
+// using Firebase.Analytics;
+// using Firebase.Extensions;
 using UnityEngine;
 
 namespace CBH.Analytics
@@ -20,14 +20,14 @@ namespace CBH.Analytics
         {
             _enableLogs = enableLogs;
             _bufferEvents = new Queue<AnalyticsEvent>();
-            FirebaseApp.CheckDependenciesAsync().ContinueWithOnMainThread(task =>
-            {
-                FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
-                SendBufferEvents();
-                if (_enableLogs)
-                    Debug.Log($"[{GetType().Name}] analytics enabled!");
-                Ready = true;
-            });
+            // FirebaseApp.CheckDependenciesAsync().ContinueWithOnMainThread(task =>
+            // {
+            //     FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
+            //     SendBufferEvents();
+            //     if (_enableLogs)
+            //         Debug.Log($"[{GetType().Name}] analytics enabled!");
+            //     Ready = true;
+            // });
         }
 
         public void SendEvent(AnalyticsEvent analyticsEvent)
@@ -49,32 +49,32 @@ namespace CBH.Analytics
             if (_enableLogs)
                 Debug.Log($"[FirebaseAnalyticsProvider] send event {analyticsEvent.Key}");
             
-            if (analyticsEvent.Data != null)
-                FirebaseAnalytics.LogEvent(analyticsEvent.Key, ConvertToParameters(analyticsEvent.Data));
-            else
-                FirebaseAnalytics.LogEvent(analyticsEvent.Key);
+            // if (analyticsEvent.Data != null)
+            //     FirebaseAnalytics.LogEvent(analyticsEvent.Key, ConvertToParameters(analyticsEvent.Data));
+            // else
+            //     FirebaseAnalytics.LogEvent(analyticsEvent.Key);
         }
 
-        private Parameter[] ConvertToParameters(Dictionary<string, object> data)
-        {
-            return data.Select(p => ConvertToParameter(p.Key, p.Value)).ToArray();
-        }
-
-        private Parameter ConvertToParameter(string key, object value)
-        {
-            switch (value)
-            {
-                case int _:
-                case long _:
-                    return new Parameter(key, Convert.ToInt64(value));
-                case float _:
-                case double _:
-                    return new Parameter(key, Convert.ToDouble(value));
-                case string s:
-                    return new Parameter(key, s);
-                default:
-                    return new Parameter(key, value.ToString());
-            }
-        }
+        // private Parameter[] ConvertToParameters(Dictionary<string, object> data)
+        // {
+        //     return data.Select(p => ConvertToParameter(p.Key, p.Value)).ToArray();
+        // }
+        //
+        // private Parameter ConvertToParameter(string key, object value)
+        // {
+        //     switch (value)
+        //     {
+        //         case int _:
+        //         case long _:
+        //             return new Parameter(key, Convert.ToInt64(value));
+        //         case float _:
+        //         case double _:
+        //             return new Parameter(key, Convert.ToDouble(value));
+        //         case string s:
+        //             return new Parameter(key, s);
+        //         default:
+        //             return new Parameter(key, value.ToString());
+        //     }
+        // }
     }
 }
