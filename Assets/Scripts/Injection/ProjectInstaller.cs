@@ -2,6 +2,7 @@ using CBH.Analytics;
 using CBH.Core;
 using CBH.Core.Audio;
 using CBH.Core.Configs;
+using CBH.Core.IAP;
 using UnityEngine;
 using UnityEngine.Audio;
 using Zenject;
@@ -18,5 +19,6 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
         Container.Bind<AudioManager>().AsSingle().WithArguments(audioMixer);
 
         Container.Bind<IAnalyticsManager>().To<DefaultAnalyticsManager>().AsSingle();
+        Container.Bind<IStorePurchaseController>().To<GooglePlayStoreModule>().AsSingle();
     }
 }
