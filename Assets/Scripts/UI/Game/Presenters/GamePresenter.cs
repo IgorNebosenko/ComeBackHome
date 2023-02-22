@@ -8,6 +8,7 @@ using ElectrumGames.MVP;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace CBH.UI.Game.Presenters
 {
@@ -20,6 +21,10 @@ namespace CBH.UI.Game.Presenters
         
         private const int CountDirections = 4;
         private const float ClampModifier = 1.1f;
+
+        private const float distanceFullVisibleGPS = 50f;
+        private const float distanceInvisibleGPS = 15f;
+        private const float distanceDifferenceVisibility = distanceFullVisibleGPS - distanceInvisibleGPS;
 
         public event Action<string> HeaderTextChanged;
         public event Action<string> TimerTextChanged; 
@@ -53,7 +58,7 @@ namespace CBH.UI.Game.Presenters
             _gameManager.UpdateFlyTime -= OnUpdateFlyTimer;
         }
 
-        public void UpdateGps(RectTransform pointerTransform)
+        public void UpdateGps(Image gpsImage)
         {
             var distanceToPlayer = _landingPad.transform.position - _rocketController.ControllerPosition;
             var ray = new Ray(_rocketController.ControllerPosition, distanceToPlayer);
@@ -71,7 +76,22 @@ namespace CBH.UI.Game.Presenters
             }
 
             minDistance = Mathf.Clamp(minDistance - ClampModifier, 0, distanceToPlayer.magnitude);
-            pointerTransform.position = _mainCamera.WorldToScreenPoint(ray.GetPoint(minDistance));
+            gpsImage.rectTransform.position = _mainCamera.WorldToScreenPoint(ray.GetPoint(minDistance));
+
+            var distanceLength = distanceToPlayer.magnitude;
+            
+            if (distanceLength >= distanceFullVisibleGPS)
+                gpsImage.color = Color.white;
+            else
+            {
+                if (distanceLength <= distanceInvisibleGPS)
+                    gpsImage.color = Color.clear;
+                else
+                {
+                    distanceLength -= distanceInvisibleGPS;
+                    gpsImage.color = new Color(1, 1, 1, distanceLength / distanceDifferenceVisibility);
+                }
+            }
         }
 
         public void OnToMenuClicked()

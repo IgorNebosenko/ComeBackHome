@@ -38,7 +38,7 @@ namespace CBH.UI.Game.Views
 
         private void UpdateGps()
         {
-            Presenter.UpdateGps(gpsImage.rectTransform);
+            Presenter.UpdateGps(gpsImage);
         }
 
         private void SetHeaderText(string text)
