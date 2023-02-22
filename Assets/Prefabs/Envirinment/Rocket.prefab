@@ -339,7 +339,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 4357508172462696090}
   physicModel: {fileID: 1392153954}
   trustPower: 5000
-  rotationSensitivity: 2000
+  rotationSensitivity: 6000
 --- !u!114 &883163345
 MonoBehaviour:
   m_ObjectHideFlags: 0
