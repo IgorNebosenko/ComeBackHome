@@ -71,5 +71,17 @@ namespace CBH.Core.IAP
             _storeController.InitiatePurchase(product);
             return true;
         }
+
+        public string GetNoAdsSubscriptionCost()
+        {
+            if (_storeController == null)
+                return "Not available";
+
+            var product = _storeController.products.WithID(SubscriptionId);
+            if (product == null || !product.availableToPurchase)
+                return "Not available";
+
+            return $"{product.metadata.localizedPrice} {product.metadata.isoCurrencyCode}";
+        }
     }
 }

@@ -5,5 +5,6 @@
         bool HasNoAdsSubscription { get; }
         
         bool TryPurchaseSubscription();
+        string GetNoAdsSubscriptionCost();
     }
 }

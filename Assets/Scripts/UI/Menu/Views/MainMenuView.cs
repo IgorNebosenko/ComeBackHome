@@ -13,6 +13,7 @@ namespace CBH.UI.Menu.Views
         [SerializeField] private Button selectLevelButton;
         [SerializeField] private Button howPlayButton;
         [SerializeField] private Button settingsButton;
+        [SerializeField] private Button noAdsButton;
 
         [SerializeField] private TMP_Text textProgress;
 
@@ -22,6 +23,7 @@ namespace CBH.UI.Menu.Views
             selectLevelButton.onClick.AddListener(presenter.OnLevelSelectButtonPressed);
             howPlayButton.onClick.AddListener(presenter.OnHowPlayButtonPressed);
             settingsButton.onClick.AddListener(presenter.OnSettingsButtonPressed);
+            noAdsButton.onClick.AddListener(presenter.OnNoAdsButtonPressed);
             
             textProgress.text = $"Progress: {presenter.CurrentLevel}/{presenter.MaxGameLevel}";
         }
@@ -32,6 +34,7 @@ namespace CBH.UI.Menu.Views
             selectLevelButton.onClick.RemoveListener(Presenter.OnLevelSelectButtonPressed);
             howPlayButton.onClick.RemoveListener(Presenter.OnHowPlayButtonPressed);
             settingsButton.onClick.RemoveListener(Presenter.OnSettingsButtonPressed);
+            noAdsButton.onClick.RemoveListener(Presenter.OnNoAdsButtonPressed);
         }
     }
 }
