@@ -4,22 +4,20 @@ using UnityEngine;
 
 namespace CBH.Analytics
 {
-    public class DefaultAnalyticsManager : IAnalyticsManager
-
+    public class AndroidAnalyticsManager : IAnalyticsManager
     {
         private List<IAnalyticsProvider> _analyticsProviders;
         private bool _enableLogs;
 
-        public DefaultAnalyticsManager()
+        public AndroidAnalyticsManager()
         {
             _analyticsProviders = new List<IAnalyticsProvider>()
             {
                 new FirebaseAnalyticsProvider()
             };
 
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-            _enableLogs = true;
-#endif
+            _enableLogs = Debug.isDebugBuild;
+            
             foreach (var analyticsProvider in _analyticsProviders)
                 analyticsProvider.Init(_enableLogs);
         }

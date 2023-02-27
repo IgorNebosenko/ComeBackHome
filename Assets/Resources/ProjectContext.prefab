@@ -74,6 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe7de8706d5b4c4c880025db4150096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasContainerTemplate: {fileID: 580895631767047677, guid: 012ca96168a5340468a6295e73570606, type: 3}
   fpsConfig: {fileID: 11400000, guid: efc7039fdcb1e294c9604fe302f5ff24, type: 2}
   audioMixer: {fileID: 24100000, guid: 21edf37edfb20ce4ab266b326ab6d14f, type: 2}
+  adsConfig: {fileID: 11400000, guid: 3fda3390265414c4b8bfb31a7a3d3aa8, type: 2}
