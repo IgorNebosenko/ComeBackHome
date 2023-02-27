@@ -40,6 +40,8 @@ namespace CBH.Ads
             
             if (IronSource.Agent.isInterstitialReady())
                 IronSource.Agent.showInterstitial();
+            
+            LoadInterstitial();
         }
     }
 }
