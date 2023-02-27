@@ -34,13 +34,14 @@ Transform:
   - {fileID: 1655714029224395240}
   - {fileID: 1655714030277017348}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3606274674044860147
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1388322474810483122}
     m_Modifications:
     - target: {fileID: 756029910568922615, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
@@ -58,6 +59,10 @@ PrefabInstance:
     - target: {fileID: 2663396042762959873, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
       propertyPath: m_Name
       value: Asteroid_04_XL (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663396042762959873, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2663396042763313185, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
       propertyPath: m_RootOrder
@@ -116,6 +121,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
 --- !u!4 &1655714030774965970 stripped
 Transform:
@@ -127,6 +133,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1388322474810483122}
     m_Modifications:
     - target: {fileID: 756029910568922615, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
@@ -144,6 +151,10 @@ PrefabInstance:
     - target: {fileID: 2663396042762959873, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
       propertyPath: m_Name
       value: Asteroid_04_XL (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663396042762959873, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2663396042763313185, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
       propertyPath: m_RootOrder
@@ -202,6 +213,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
 --- !u!4 &1655714030277017348 stripped
 Transform:
@@ -213,6 +225,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1388322474810483122}
     m_Modifications:
     - target: {fileID: 756029910568922615, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
@@ -230,6 +243,10 @@ PrefabInstance:
     - target: {fileID: 2663396042762959873, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
       propertyPath: m_Name
       value: Asteroid_04_XL (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663396042762959873, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2663396042763313185, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
       propertyPath: m_RootOrder
@@ -288,6 +305,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
 --- !u!4 &1655714029915177026 stripped
 Transform:
@@ -299,6 +317,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1388322474810483122}
     m_Modifications:
     - target: {fileID: 756029910568922615, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
@@ -316,6 +335,10 @@ PrefabInstance:
     - target: {fileID: 2663396042762959873, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
       propertyPath: m_Name
       value: Asteroid_04_XL (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663396042762959873, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2663396042763313185, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
       propertyPath: m_RootOrder
@@ -374,6 +397,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
 --- !u!4 &1655714029224395240 stripped
 Transform:
@@ -385,6 +409,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1388322474810483122}
     m_Modifications:
     - target: {fileID: 756029910568922615, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
@@ -402,6 +427,10 @@ PrefabInstance:
     - target: {fileID: 2663396042762959873, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
       propertyPath: m_Name
       value: Asteroid_04_XL (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663396042762959873, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2663396042763313185, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
       propertyPath: m_RootOrder
@@ -460,6 +489,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 67f3be5654e15fc4bb87a4bbcaeeed87, type: 3}
 --- !u!4 &1655714029425959932 stripped
 Transform:

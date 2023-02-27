@@ -55,13 +55,13 @@ namespace CBH.Core.Entity.Input
             _gameManager.LevelLose += _finishGameEffect.PlayLose;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_gameManager.CurrentState != RocketState.Live &&
                 _gameManager.CurrentState != RocketState.LandFinishPad)
                 return;
             
-            var deltaTime = Time.deltaTime;
+            var deltaTime = Time.fixedDeltaTime;
             
             _input.Update(deltaTime);
             HandleFirstInput();

@@ -95,6 +95,7 @@ namespace CBH.Core
             {
                 _adsData.countRestartsFromLastAd++;
                 _adsData.timeFlyFromLastAd += (float)_timeFly.TotalSeconds;
+                Debug.Log(_adsData.timeFlyFromLastAd);
 
                 if (_adsData.countRestartsFromLastAd >= _adsConfig.countRestartsBetweenAds ||
                     _adsData.timeFlyFromLastAd >= _adsConfig.timeFlyBetweenAds)

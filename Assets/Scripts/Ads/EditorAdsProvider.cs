@@ -8,6 +8,7 @@ namespace CBH.Ads
         public EditorAdsProvider()
         {
             Debug.Log("[EditorAdsProvider] CTOR");
+            LoadInterstitial();
         }
         
         public void LoadInterstitial()
@@ -18,6 +19,7 @@ namespace CBH.Ads
         public void ShowInterstitial()
         {
             Debug.Log("[EditorAdsProvider] Show interstitial");
+            LoadInterstitial();
         }
     }
 }
