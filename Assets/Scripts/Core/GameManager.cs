@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using CBH.Ads;
 using CBH.Core.Audio;
 using CBH.Core.Entity;
 using UniRx;
@@ -11,9 +12,14 @@ namespace CBH.Core
     public class GameManager
     {
         private GameData _gameData;
+        private AdsData _adsData;
+        private AdsConfig _adsConfig;
+        private IAdsProvider _adsProvider;
         
         private bool _isLanded;
         private bool _isGameEnded;
+
+        private TimeSpan _timeFly = TimeSpan.Zero;
         
         private const float RestartDuration = 3f;
         private const float RestartTickDuration = 1f;
@@ -36,9 +42,13 @@ namespace CBH.Core
 
         public RocketState CurrentState { get; private set; }
 
-        public GameManager(GameData gameData)
+        public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig, IAdsProvider adsProvider)
         {
             _gameData = gameData;
+            _adsData = adsData;
+            _adsConfig = adsConfig;
+            _adsProvider = adsProvider;
+            
             CurrentState = RocketState.Live;
         }
 
@@ -80,7 +90,21 @@ namespace CBH.Core
                 yield return new WaitForSeconds(RestartTickDuration);
                 timeLeft -= RestartTickDuration;
             }
-            
+
+            if (!_adsData.hasNoAds)
+            {
+                _adsData.countRestartsFromLastAd++;
+                _adsData.timeFlyFromLastAd += (float)_timeFly.TotalSeconds;
+                Debug.Log(_adsData.timeFlyFromLastAd);
+
+                if (_adsData.countRestartsFromLastAd >= _adsConfig.countRestartsBetweenAds ||
+                    _adsData.timeFlyFromLastAd >= _adsConfig.timeFlyBetweenAds)
+                {
+                    _adsProvider.ShowInterstitial();
+                    _adsData.Reset();
+                }
+            }
+
             var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             RestartLevel?.Invoke();
             yield return SceneManager.LoadSceneAsync(currentSceneIndex);
@@ -119,7 +143,7 @@ namespace CBH.Core
 
         private IEnumerator UpdateFlyTimeProcess()
         {
-            var time = TimeSpan.Zero;
+            _timeFly = TimeSpan.Zero;
 
             while (!_isGameEnded)
             {
@@ -127,8 +151,8 @@ namespace CBH.Core
                 if (_isLanded)
                     continue;
                 
-                time = time.Add(TimeSpan.FromSeconds(Time.deltaTime));
-                UpdateFlyTime?.Invoke(time);
+                _timeFly = _timeFly.Add(TimeSpan.FromSeconds(Time.deltaTime));
+                UpdateFlyTime?.Invoke(_timeFly);
             }
         }
     }

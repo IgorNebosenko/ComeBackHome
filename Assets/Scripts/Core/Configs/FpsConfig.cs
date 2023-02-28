@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CBH.Core.Configs
 {
-    [CreateAssetMenu(fileName = "FpsConfig", menuName = "Config/FPS")]
+    [CreateAssetMenu(fileName = "FpsConfig", menuName = "Configs/FPS")]
     public class FpsConfig : ScriptableObject
     {
         public FpsConfigData[] config;
