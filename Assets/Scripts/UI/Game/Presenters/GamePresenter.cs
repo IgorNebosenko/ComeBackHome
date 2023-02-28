@@ -36,8 +36,6 @@ namespace CBH.UI.Game.Presenters
             _landingPad = landingPad;
             _mainCamera = mainCamera;
             _gameManager = gameManager;
-
-            view.Init(this);
         }
 
         protected override void Init()
