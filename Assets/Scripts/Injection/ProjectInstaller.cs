@@ -20,11 +20,9 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
         Container.Bind<GameData>().AsSingle();
         Container.BindInstance(fpsConfig).AsSingle();
         Container.Bind<AudioManager>().AsSingle().WithArguments(audioMixer);
-
-<<<<<<< HEAD
-        Container.Bind<IAnalyticsManager>().To<DefaultAnalyticsManager>().AsSingle();
+        
         Container.Bind<IStorePurchaseController>().To<GooglePlayStoreModule>().AsSingle();
-=======
+        
         Container.BindInstance(adsConfig).AsSingle();
         Container.Bind<AdsData>().AsSingle();
         
@@ -35,6 +33,5 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
         Container.Bind<IAnalyticsManager>().To<AndroidAnalyticsManager>().AsSingle();
         Container.Bind<IAdsProvider>().To<AndroidAdsProvider>().AsSingle();
 #endif
->>>>>>> dev
     }
 }
