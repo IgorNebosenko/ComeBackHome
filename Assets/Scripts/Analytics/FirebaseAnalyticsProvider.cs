@@ -54,12 +54,12 @@ namespace CBH.Analytics
             else
                 FirebaseAnalytics.LogEvent(analyticsEvent.Key);
         }
-
+        
         private Parameter[] ConvertToParameters(Dictionary<string, object> data)
         {
             return data.Select(p => ConvertToParameter(p.Key, p.Value)).ToArray();
         }
-
+        
         private Parameter ConvertToParameter(string key, object value)
         {
             switch (value)

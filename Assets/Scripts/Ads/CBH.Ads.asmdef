@@ -1,0 +1,17 @@
+{
+    "name": "CBH.Ads",
+    "rootNamespace": "CBH.Ads",
+    "references": [
+        "GUID:97d0a4f264066144ab49af827146245c",
+        "GUID:e2f57278ffde95d4c8f391f22ac7f57a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
