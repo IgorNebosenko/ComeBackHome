@@ -23,7 +23,6 @@ namespace CBH.Ads
             IronSource.Agent.init(AdsKey);
             
             LoadInterstitial();
-            Debug.Log("Test");
         }
         
         public void LoadInterstitial()
