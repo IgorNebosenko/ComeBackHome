@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using CBH.Analytics;
+using CBH.Analytics.Events;
 using CBH.Core;
 using CBH.UI.Menu.Views;
 using ElectrumGames.MVP;
@@ -10,6 +12,7 @@ namespace CBH.UI.Menu.Presenters
 {
     public class MainMenuPresenter : Presenter<MainMenuView>
     {
+        private IAnalyticsManager _analyticsManager;
         private GameData _gameData;
         private ViewManager _viewManager;
         private PopupManager _popupManager;
@@ -17,9 +20,10 @@ namespace CBH.UI.Menu.Presenters
         public int CurrentLevel => _gameData.LastCompletedScene;
         public int MaxGameLevel => GameData.CountLevels;
         
-        public MainMenuPresenter(MainMenuView view, GameData gameData, PopupManager popupManager,
-            ViewManager viewManager) : base(view)
+        public MainMenuPresenter(IAnalyticsManager analyticsManager, GameData gameData, PopupManager popupManager,
+            ViewManager viewManager, MainMenuView view) : base(view)
         {
+            _analyticsManager = analyticsManager;
             _gameData = gameData;
             _viewManager = viewManager;
             _popupManager = popupManager;
@@ -54,6 +58,7 @@ namespace CBH.UI.Menu.Presenters
 
         public void OnNoAdsButtonPressed()
         {
+            _analyticsManager.SendEvent(new OpenBuyNoAdsEvent(_gameData.LastCompletedScene));
             _popupManager.ShowPopup<NoAdsSubscriptionPresenter>();
         }
     }
