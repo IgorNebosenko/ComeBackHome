@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Purchasing;
 
 namespace CBH.Core.IAP
@@ -6,12 +7,22 @@ namespace CBH.Core.IAP
     public class GooglePlayStoreModule : IStoreListener, IStorePurchaseController
     {
         private IStoreController _storeController;
-        private IExtensionProvider _extensionProvider;
+        private bool _hasNoAds;
+
+        public event Action<bool> SubscriptionStatusUpdated; 
 
         private const string SubscriptionId = "no_ads_mounth";
-        
-        public bool HasNoAdsSubscription { get; private set; }
-        
+
+        public bool HasNoAdsSubscription
+        {
+            get => _hasNoAds;
+            private set
+            {
+                _hasNoAds = value;
+                SubscriptionStatusUpdated?.Invoke(_hasNoAds);
+            }
+        }
+
         public GooglePlayStoreModule()
         {
             var configBuilder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
@@ -31,8 +42,7 @@ namespace CBH.Core.IAP
         public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
         {
             _storeController = controller;
-            _extensionProvider = extensions;
-            
+
             ResolveProducts();
         }
 
@@ -69,7 +79,9 @@ namespace CBH.Core.IAP
                 return false;
             
             _storeController.InitiatePurchase(product);
-            return true;
+            var sm = new SubscriptionManager(product, null);
+            HasNoAdsSubscription = sm.getSubscriptionInfo().isSubscribed() == Result.True;
+            return HasNoAdsSubscription;
         }
 
         public string GetNoAdsSubscriptionCost()

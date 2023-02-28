@@ -3,6 +3,7 @@ using System.Collections;
 using CBH.Ads;
 using CBH.Core.Audio;
 using CBH.Core.Entity;
+using CBH.Core.IAP;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,7 @@ namespace CBH.Core
         private AdsData _adsData;
         private AdsConfig _adsConfig;
         private IAdsProvider _adsProvider;
+        private IStorePurchaseController _storePurchaseController;
         
         private bool _isLanded;
         private bool _isGameEnded;
@@ -42,12 +44,16 @@ namespace CBH.Core
 
         public RocketState CurrentState { get; private set; }
 
-        public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig, IAdsProvider adsProvider)
+        public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig, 
+            IAdsProvider adsProvider, IStorePurchaseController storePurchaseController)
         {
             _gameData = gameData;
             _adsData = adsData;
             _adsConfig = adsConfig;
             _adsProvider = adsProvider;
+            _storePurchaseController = storePurchaseController;
+
+            _storePurchaseController.SubscriptionStatusUpdated += OnSubscriptionStatusUpdated;
             
             CurrentState = RocketState.Live;
         }
@@ -154,6 +160,11 @@ namespace CBH.Core
                 _timeFly = _timeFly.Add(TimeSpan.FromSeconds(Time.deltaTime));
                 UpdateFlyTime?.Invoke(_timeFly);
             }
+        }
+
+        private void OnSubscriptionStatusUpdated(bool status)
+        {
+            _adsData.hasNoAds = status;
         }
     }
 }

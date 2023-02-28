@@ -14,5 +14,21 @@ namespace CBH.UI.Menu.Views
         [SerializeField] private Button buttonBuy;
         [SerializeField] private Button buttonClose;
         [SerializeField] private TMP_Text textCost;
+
+        private void Start()
+        {
+            Presenter.SendEventShowPopup();
+            
+            buttonBuy.onClick.AddListener(Presenter.OnButtonBuyPressed);
+            buttonClose.onClick.AddListener(Presenter.OnButtonClosePressed);
+
+            textCost.text = $"{Presenter.CostLocalized} per month";
+        }
+
+        protected override void OnBeforeClose()
+        {
+            buttonBuy.onClick.RemoveListener(Presenter.OnButtonBuyPressed);
+            buttonClose.onClick.RemoveListener(Presenter.OnButtonClosePressed);
+        }
     }
 }
