@@ -20,18 +20,18 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
         Container.Bind<GameData>().AsSingle();
         Container.BindInstance(fpsConfig).AsSingle();
         Container.Bind<AudioManager>().AsSingle().WithArguments(audioMixer);
-        
-        Container.Bind<IStorePurchaseController>().To<GooglePlayStoreModule>().AsSingle();
-        
+
         Container.BindInstance(adsConfig).AsSingle();
         Container.Bind<AdsData>().AsSingle();
         
 #if UNITY_EDITOR
         Container.Bind<IAdsProvider>().To<EditorAdsProvider>().AsSingle();
         Container.Bind<IAnalyticsManager>().To<EditorAnalyticsManager>().AsSingle();
+        Container.Bind<IStorePurchaseController>().To<EditorStoreModule>().AsSingle();
 #elif UNITY_ANDROID
         Container.Bind<IAnalyticsManager>().To<AndroidAnalyticsManager>().AsSingle();
         Container.Bind<IAdsProvider>().To<AndroidAdsProvider>().AsSingle();
+        Container.Bind<IStorePurchaseController>().To<GooglePlayStoreModule>().AsSingle();
 #endif
     }
 }

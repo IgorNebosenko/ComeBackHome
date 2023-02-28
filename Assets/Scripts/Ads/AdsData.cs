@@ -2,7 +2,6 @@
 {
     public class AdsData
     {
-        public bool hasNoAds;
         public float timeFlyFromLastAd;
         public int countRestartsFromLastAd;
 

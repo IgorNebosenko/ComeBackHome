@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CBH.Ads;
 using CBH.Analytics;
 using CBH.Analytics.Events;
@@ -20,7 +21,10 @@ namespace CBH.UI.Menu.Presenters
 
         private float _startShowingTime;
 
+        public event Action<bool> SubscriptionStatusChanged;
+
         public string CostLocalized => _storePurchaseController.GetNoAdsSubscriptionCost();
+        public bool HasNoAds => _storePurchaseController.HasNoAdsSubscription;
         
         public NoAdsSubscriptionPresenter(IAnalyticsManager analyticsManager, IStorePurchaseController storePurchaseController,
             GameData gameData, AdsData adsData, NoAdsSubscriptionPopup view) : base(view)
@@ -42,15 +46,14 @@ namespace CBH.UI.Menu.Presenters
         {
             var result = _storePurchaseController.TryPurchaseSubscription();
             _analyticsManager.SendEvent(new ResultBuyNoAdsEvent(_gameData.LastCompletedScene, result));
+            SubscriptionStatusChanged?.Invoke(result);
         }
 
         public void OnButtonClosePressed()
         {
             var timeShowingPopup = Time.realtimeSinceStartup - _startShowingTime;
-            if (_adsData.hasNoAds)
-                timeShowingPopup = -1f;
-            
-            _analyticsManager.SendEvent(new NoAdsShowResultEvent(_gameData.LastCompletedScene, !_adsData.hasNoAds, timeShowingPopup));
+
+            _analyticsManager.SendEvent(new NoAdsShowResultEvent(_gameData.LastCompletedScene, !_storePurchaseController.HasNoAdsSubscription, timeShowingPopup));
             
             Close();
         }

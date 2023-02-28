@@ -53,8 +53,6 @@ namespace CBH.Core
             _adsProvider = adsProvider;
             _storePurchaseController = storePurchaseController;
 
-            _storePurchaseController.SubscriptionStatusUpdated += OnSubscriptionStatusUpdated;
-            
             CurrentState = RocketState.Live;
         }
 
@@ -97,7 +95,7 @@ namespace CBH.Core
                 timeLeft -= RestartTickDuration;
             }
 
-            if (!_adsData.hasNoAds)
+            if (!_storePurchaseController.HasNoAdsSubscription)
             {
                 _adsData.countRestartsFromLastAd++;
                 _adsData.timeFlyFromLastAd += (float)_timeFly.TotalSeconds;
@@ -160,11 +158,6 @@ namespace CBH.Core
                 _timeFly = _timeFly.Add(TimeSpan.FromSeconds(Time.deltaTime));
                 UpdateFlyTime?.Invoke(_timeFly);
             }
-        }
-
-        private void OnSubscriptionStatusUpdated(bool status)
-        {
-            _adsData.hasNoAds = status;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace CBH.UI.Menu.Views
 
         [SerializeField] private Button buttonBuy;
         [SerializeField] private Button buttonClose;
+        [SerializeField] private GameObject subscribedPlaceholder;
         [SerializeField] private TMP_Text textCost;
 
         private void Start()
@@ -23,12 +24,23 @@ namespace CBH.UI.Menu.Views
             buttonClose.onClick.AddListener(Presenter.OnButtonClosePressed);
 
             textCost.text = $"{Presenter.CostLocalized} per month";
+
+            SetSubscriptionVisualStatus(Presenter.HasNoAds);
+            Presenter.SubscriptionStatusChanged += SetSubscriptionVisualStatus;
         }
 
         protected override void OnBeforeClose()
         {
             buttonBuy.onClick.RemoveListener(Presenter.OnButtonBuyPressed);
             buttonClose.onClick.RemoveListener(Presenter.OnButtonClosePressed);
+
+            Presenter.SubscriptionStatusChanged -= SetSubscriptionVisualStatus;
+        }
+
+        private void SetSubscriptionVisualStatus(bool status)
+        {
+            buttonBuy.gameObject.SetActive(!status);
+            subscribedPlaceholder.SetActive(status);
         }
     }
 }
