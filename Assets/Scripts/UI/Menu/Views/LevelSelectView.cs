@@ -15,19 +15,19 @@ namespace CBH.UI.Menu.Views
         [Space] 
         [SerializeField] private LevelButton levelButtonTemplate;
 
-        public void Init(LevelSelectPresenter presenter, int lastCompletedScene)
+        private void Start()
         {
-            toMenuButton.onClick.AddListener(presenter.OnToMenuClicked);
+            toMenuButton.onClick.AddListener(Presenter.OnToMenuClicked);
 
             for (var i = 0; i < GameData.CountLevels; i++)
             {
                 var j = i + 1; //<- Solve closure
                 var levelButton = Instantiate(levelButtonTemplate, containerLevels);
-                levelButton.Init(() => presenter.LoadLevel(j), j, j <= lastCompletedScene);
+                levelButton.Init(() => Presenter.LoadLevel(j), j, j <= Presenter.LastCompletedScene);
             }
         }
 
-        private void OnDestroy()
+        protected override void OnBeforeClose()
         {
             toMenuButton.onClick.RemoveListener(Presenter.OnToMenuClicked);
         }

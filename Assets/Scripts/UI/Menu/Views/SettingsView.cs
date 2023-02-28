@@ -16,22 +16,22 @@ namespace CBH.UI.Menu.Views
         
         public TMP_Text fpsText;
 
-        public void Init(SettingsPresenter presenter, SettingsInitData initData)
+        private void Start()
         {
-            enableMusic.isOn = initData.enableMusic;
-            enableSounds.isOn = initData.enableSounds;
+            enableMusic.isOn = Presenter.SettingsInitData.enableMusic;
+            enableSounds.isOn = Presenter.SettingsInitData.enableSounds;
 
-            fpsSlider.value = initData.fpsSliderIndex;
-            fpsText.text = initData.fpsData.name;
-            fpsSlider.maxValue = initData.fpsSliderMaxValue;
+            fpsSlider.value = Presenter.SettingsInitData.fpsSliderIndex;
+            fpsText.text = Presenter.SettingsInitData.fpsData.name;
+            fpsSlider.maxValue = Presenter.SettingsInitData.fpsSliderMaxValue;
             
-            enableMusic.onValueChanged.AddListener(presenter.OnMusicStateChanged);
-            enableSounds.onValueChanged.AddListener(presenter.OnSoundsStateChanged);
-            fpsSlider.onValueChanged.AddListener(presenter.OnSliderValueChanged);
-            buttonExit.onClick.AddListener(presenter.OnButtonExitPressed);
+            enableMusic.onValueChanged.AddListener(Presenter.OnMusicStateChanged);
+            enableSounds.onValueChanged.AddListener(Presenter.OnSoundsStateChanged);
+            fpsSlider.onValueChanged.AddListener(Presenter.OnSliderValueChanged);
+            buttonExit.onClick.AddListener(Presenter.OnButtonExitPressed);
         }
 
-        private void OnDestroy()
+        protected override void OnBeforeClose()
         {
             enableMusic.onValueChanged.RemoveListener(Presenter.OnMusicStateChanged);
             enableSounds.onValueChanged.RemoveListener(Presenter.OnSoundsStateChanged);

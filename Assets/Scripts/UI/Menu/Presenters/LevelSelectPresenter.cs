@@ -14,13 +14,13 @@ namespace CBH.UI.Menu.Presenters
         private GameData _gameData;
 
         private int _cachedSelectedLevel = -1;
+
+        public int LastCompletedScene => _gameData.LastCompletedScene;
         
         public LevelSelectPresenter(ViewManager viewManager, GameData gameData, LevelSelectView view) : base(view)
         {
             _viewManager = viewManager;
             _gameData = gameData;
-            
-            view.Init(this, _gameData.LastCompletedScene);
         }
 
         public void OnToMenuClicked()

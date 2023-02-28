@@ -17,18 +17,18 @@ namespace CBH.UI.Menu.Views
 
         [SerializeField] private TMP_Text textProgress;
 
-        public void SubscribeEvents(MainMenuPresenter presenter)
+        private void Start()
         {
-            playButton.onClick.AddListener(presenter.OnPlayButtonPressed);
-            selectLevelButton.onClick.AddListener(presenter.OnLevelSelectButtonPressed);
-            howPlayButton.onClick.AddListener(presenter.OnHowPlayButtonPressed);
-            settingsButton.onClick.AddListener(presenter.OnSettingsButtonPressed);
-            noAdsButton.onClick.AddListener(presenter.OnNoAdsButtonPressed);
+            playButton.onClick.AddListener(Presenter.OnPlayButtonPressed);
+            selectLevelButton.onClick.AddListener(Presenter.OnLevelSelectButtonPressed);
+            howPlayButton.onClick.AddListener(Presenter.OnHowPlayButtonPressed);
+            settingsButton.onClick.AddListener(Presenter.OnSettingsButtonPressed);
+            noAdsButton.onClick.AddListener(Presenter.OnNoAdsButtonPressed);
             
-            textProgress.text = $"Progress: {presenter.CurrentLevel}/{presenter.MaxGameLevel}";
+            textProgress.text = $"Progress: {Presenter.CurrentLevel}/{Presenter.MaxGameLevel}";
         }
 
-        private void OnDestroy()
+        protected override void OnBeforeClose()
         {
             playButton.onClick.RemoveListener(Presenter.OnPlayButtonPressed);
             selectLevelButton.onClick.RemoveListener(Presenter.OnLevelSelectButtonPressed);

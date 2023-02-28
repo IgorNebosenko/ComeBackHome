@@ -26,8 +26,8 @@ namespace CBH.UI.Menu.Presenters
         public string CostLocalized => _storePurchaseController.GetNoAdsSubscriptionCost();
         public bool HasNoAds => _storePurchaseController.HasNoAdsSubscription;
         
-        public NoAdsSubscriptionPresenter(IAnalyticsManager analyticsManager, IStorePurchaseController storePurchaseController,
-            GameData gameData, AdsData adsData, NoAdsSubscriptionPopup view) : base(view)
+        public NoAdsSubscriptionPresenter(NoAdsSubscriptionPopup view, IAnalyticsManager analyticsManager, IStorePurchaseController storePurchaseController,
+            GameData gameData, AdsData adsData) : base(view)
         {
             _analyticsManager = analyticsManager;
             _storePurchaseController = storePurchaseController;

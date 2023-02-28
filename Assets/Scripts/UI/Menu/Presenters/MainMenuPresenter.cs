@@ -20,15 +20,13 @@ namespace CBH.UI.Menu.Presenters
         public int CurrentLevel => _gameData.LastCompletedScene;
         public int MaxGameLevel => GameData.CountLevels;
         
-        public MainMenuPresenter(IAnalyticsManager analyticsManager, GameData gameData, PopupManager popupManager,
-            ViewManager viewManager, MainMenuView view) : base(view)
+        public MainMenuPresenter(MainMenuView view, IAnalyticsManager analyticsManager, GameData gameData, PopupManager popupManager,
+            ViewManager viewManager) : base(view)
         {
             _analyticsManager = analyticsManager;
             _gameData = gameData;
             _viewManager = viewManager;
             _popupManager = popupManager;
-
-            view.SubscribeEvents(this);
         }
 
         public void OnPlayButtonPressed()
