@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using CBH.Ads;
+using CBH.Analytics;
+using CBH.Analytics.Events;
 using CBH.Core.Audio;
 using CBH.Core.Entity;
 using CBH.Core.IAP;
@@ -17,9 +19,12 @@ namespace CBH.Core
         private AdsConfig _adsConfig;
         private IAdsProvider _adsProvider;
         private IStorePurchaseController _storePurchaseController;
+        private IAnalyticsManager _analyticsManager;
         
         private bool _isLanded;
         private bool _isGameEnded;
+
+        private float _timeAtStartLevel;
 
         private const float RestartDuration = 3f;
         private const float RestartTickDuration = 1f;
@@ -43,16 +48,18 @@ namespace CBH.Core
         public RocketState CurrentState { get; private set; }
         public TimeSpan TimeFly { get; private set; } = TimeSpan.Zero;
 
-        public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig, 
-            IAdsProvider adsProvider, IStorePurchaseController storePurchaseController)
+        public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig, IAdsProvider adsProvider, 
+            IStorePurchaseController storePurchaseController, IAnalyticsManager analyticsManager)
         {
             _gameData = gameData;
             _adsData = adsData;
             _adsConfig = adsConfig;
             _adsProvider = adsProvider;
             _storePurchaseController = storePurchaseController;
+            _analyticsManager = analyticsManager;
 
             CurrentState = RocketState.Live;
+            _timeAtStartLevel = Time.realtimeSinceStartup;
         }
 
         public void HandleRocketState(RocketState state)
@@ -79,6 +86,9 @@ namespace CBH.Core
 
         public void StartFlyProcess()
         {
+            var timeDifference = Time.realtimeSinceStartup - _timeAtStartLevel;
+            _analyticsManager.SendEvent(new LaunchFromLaunchPadEvent(SceneManager.GetActiveScene().buildIndex, 
+                _gameData.LastCompletedScene, timeDifference));
             Observable.FromCoroutine(UpdateFlyTimeProcess).Subscribe();
         }
 
