@@ -1,4 +1,4 @@
-﻿namespace CBH.Core.Core.Entity.Input
+﻿namespace CBH.Analytics
 {
     public class InputData
     {

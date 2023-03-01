@@ -4,7 +4,6 @@ using CBH.Ads;
 using CBH.Analytics;
 using CBH.Analytics.Events;
 using CBH.Core.Audio;
-using CBH.Core.Core.Entity.Input;
 using CBH.Core.Entity;
 using CBH.Core.IAP;
 using UniRx;
@@ -27,6 +26,7 @@ namespace CBH.Core
         private bool _isGameEnded;
 
         private float _timeAtStartLevel;
+        private int _attemptsLanding;
 
         private const float RestartDuration = 3f;
         private const float RestartTickDuration = 1f;
@@ -70,10 +70,14 @@ namespace CBH.Core
             {
                 case RocketState.Dead:
                     AudioHandler.StopLoopSound();
+                    _analyticsManager.SendEvent(new CrashPlayerRocketEvent(SceneManager.GetActiveScene().buildIndex,
+                        _gameData.LastCompletedScene,
+                        (float) TimeFly.TotalSeconds, _inputData, _attemptsLanding));
                     LevelLose?.Invoke();
                     Observable.FromCoroutine(RestartProcess).Subscribe();
                     break;
                 case RocketState.LandFinishPad:
+                    _attemptsLanding++;
                     Observable.FromCoroutine(LandingProcess).Subscribe();
                     break;
                 case RocketState.LeaveFinishPad:
@@ -146,6 +150,10 @@ namespace CBH.Core
                     _gameData.LastCompletedScene, _adsData.timeFlyFromLastAd, _adsData.countRestartsFromLastAd));
                 BeforeWin?.Invoke();
                 yield return new WaitForSeconds(BeforeWinDuration);
+                
+                _analyticsManager.SendEvent(new SuccessfulLandingRocketEvent(SceneManager.GetActiveScene().buildIndex,
+                    _gameData.LastCompletedScene,
+                    (float) TimeFly.TotalSeconds, _inputData, _attemptsLanding));
 
                 LevelWin?.Invoke();
                 var nextScene = SceneManager.GetActiveScene().buildIndex + 1;
