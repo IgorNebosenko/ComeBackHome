@@ -36,21 +36,25 @@ namespace CBH.UI.Menu.Presenters
 
         public void OnLevelSelectButtonPressed()
         {
+            _analyticsManager.SendEvent(new OpenLevelSelectMenuEvent(_gameData.LastCompletedScene));
             _viewManager.ShowView<LevelSelectPresenter>();
         }
 
         public void OnHowPlayButtonPressed()
         {
+            _analyticsManager.SendEvent(new HowToPlayMenuEvent());
             _viewManager.ShowView<HowPlayPresenter>();
         }
         
         public void OnSettingsButtonPressed()
         {
+            _analyticsManager.SendEvent(new SettingsOpenMenuEvent());
             _viewManager.ShowView<SettingsPresenter>();
         }
 
         private IEnumerator LoadSceneProcess()
         {
+            _analyticsManager.SendEvent(new ContinueLevelFromMenuEvent(_gameData.LastCompletedScene));
             yield return SceneManager.LoadSceneAsync(_gameData.LastCompletedScene);
         }
 
