@@ -26,7 +26,9 @@ namespace CBH.Core
         private bool _isGameEnded;
 
         private float _timeAtStartLevel;
+        
         private int _attemptsLanding;
+        private float _timeStayLeft = LandingDuration;
 
         private const float RestartDuration = 3f;
         private const float RestartTickDuration = 1f;
@@ -77,10 +79,13 @@ namespace CBH.Core
                     Observable.FromCoroutine(RestartProcess).Subscribe();
                     break;
                 case RocketState.LandFinishPad:
-                    _attemptsLanding++;
+                    _analyticsManager.SendEvent(new LandingOnLandingPadEvent(SceneManager.GetActiveScene().buildIndex,
+                        _gameData.LastCompletedScene, (float) TimeFly.TotalSeconds, ++_attemptsLanding));
                     Observable.FromCoroutine(LandingProcess).Subscribe();
                     break;
                 case RocketState.LeaveFinishPad:
+                    _analyticsManager.SendEvent(new LeaveLandingPadEvent(SceneManager.GetActiveScene().buildIndex,
+                        _gameData.LastCompletedScene, (float) TimeFly.TotalSeconds, _attemptsLanding, _timeStayLeft));
                     PlatformLeave?.Invoke();
                     CurrentState = RocketState.Live;
                     break;
@@ -133,13 +138,13 @@ namespace CBH.Core
         
         private IEnumerator LandingProcess()
         {
+            _timeStayLeft = LandingDuration;
             _isLanded = true;
-            var timeLeft = LandingDuration;
 
-            while (timeLeft >= 0 && CurrentState == RocketState.LandFinishPad)
+            while (_timeStayLeft >= 0 && CurrentState == RocketState.LandFinishPad)
             {
-                timeLeft -= Time.deltaTime;
-                PlatformStay?.Invoke(timeLeft);
+                _timeStayLeft -= Time.deltaTime;
+                PlatformStay?.Invoke(_timeStayLeft);
                 yield return new WaitForEndOfFrame();
             }
 
