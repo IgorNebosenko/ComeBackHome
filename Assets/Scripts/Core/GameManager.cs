@@ -100,6 +100,8 @@ namespace CBH.Core
                 timeLeft -= RestartTickDuration;
             }
 
+            var isNeedAd = false;
+            
             if (!_storePurchaseController.HasNoAdsSubscription)
             {
                 _adsData.countRestartsFromLastAd++;
@@ -108,10 +110,15 @@ namespace CBH.Core
                 if (_adsData.countRestartsFromLastAd >= _adsConfig.countRestartsBetweenAds ||
                     _adsData.timeFlyFromLastAd >= _adsConfig.timeFlyBetweenAds)
                 {
+                    isNeedAd = true;
                     _adsProvider.ShowInterstitial();
                     _adsData.Reset();
                 }
             }
+
+            _analyticsManager.SendEvent(new RestartLevelEvent(SceneManager.GetActiveScene().buildIndex,
+                _gameData.LastCompletedScene, _adsData.timeFlyFromLastAd, _adsData.countRestartsFromLastAd, isNeedAd,
+                _storePurchaseController.HasNoAdsSubscription));
 
             var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             yield return SceneManager.LoadSceneAsync(currentSceneIndex);
@@ -132,6 +139,8 @@ namespace CBH.Core
             if (CurrentState == RocketState.LandFinishPad)
             {
                 _isGameEnded = true;
+                _analyticsManager.SendEvent(new LoadNextGameLevelEvent(SceneManager.GetActiveScene().buildIndex,
+                    _gameData.LastCompletedScene, _adsData.timeFlyFromLastAd, _adsData.countRestartsFromLastAd));
                 BeforeWin?.Invoke();
                 yield return new WaitForSeconds(BeforeWinDuration);
 
