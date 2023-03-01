@@ -2,6 +2,7 @@ using System.Reflection;
 using CBH.Core;
 using CBH.Core.Collision;
 using CBH.Core.Configs;
+using CBH.Core.Core.Entity.Input;
 using CBH.Core.Entity.Input;
 using CBH.UI.Game.Presenters;
 using CBH.UI.Game.UI.Game;
@@ -24,5 +25,6 @@ public class GameInstaller : BaseSceneInstaller
         Container.Bind<Camera>().FromInstance(mainCamera).WhenInjectedInto<GamePresenter>();
 
         Container.Bind<InputSchema>().WhenInjectedInto<RocketController>();
+        Container.Bind<InputData>().AsSingle();
     }
 }

@@ -4,6 +4,7 @@ using CBH.Ads;
 using CBH.Analytics;
 using CBH.Analytics.Events;
 using CBH.Core.Audio;
+using CBH.Core.Core.Entity.Input;
 using CBH.Core.Entity;
 using CBH.Core.IAP;
 using UniRx;
@@ -17,6 +18,7 @@ namespace CBH.Core
         private GameData _gameData;
         private AdsData _adsData;
         private AdsConfig _adsConfig;
+        private InputData _inputData;
         private IAdsProvider _adsProvider;
         private IStorePurchaseController _storePurchaseController;
         private IAnalyticsManager _analyticsManager;
@@ -45,12 +47,13 @@ namespace CBH.Core
         public RocketState CurrentState { get; private set; }
         public TimeSpan TimeFly { get; private set; } = TimeSpan.Zero;
 
-        public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig, IAdsProvider adsProvider, 
+        public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig, InputData inputData, IAdsProvider adsProvider, 
             IStorePurchaseController storePurchaseController, IAnalyticsManager analyticsManager)
         {
             _gameData = gameData;
             _adsData = adsData;
             _adsConfig = adsConfig;
+            _inputData = inputData;
             _adsProvider = adsProvider;
             _storePurchaseController = storePurchaseController;
             _analyticsManager = analyticsManager;
