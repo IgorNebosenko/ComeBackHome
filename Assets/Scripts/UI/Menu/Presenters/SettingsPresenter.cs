@@ -1,4 +1,6 @@
-﻿using CBH.Core;
+﻿using CBH.Analytics;
+using CBH.Analytics.Events;
+using CBH.Core;
 using CBH.Core.Audio;
 using CBH.Core.Configs;
 using CBH.UI.Menu.Views;
@@ -9,6 +11,7 @@ namespace CBH.UI.Menu.Presenters
 {
     public class SettingsPresenter : Presenter<SettingsView>
     {
+        private IAnalyticsManager _analyticsManager;
         private FpsConfig _fpsConfig;
         private GameData _gameData;
         private AudioManager _audioManager;
@@ -16,10 +19,11 @@ namespace CBH.UI.Menu.Presenters
         
         public SettingsInitData SettingsInitData { get; private set; }
         
-        public SettingsPresenter(SettingsView view, FpsConfig fpsConfig, AudioManager audioManager, 
+        public SettingsPresenter(SettingsView view, IAnalyticsManager analyticsManager, FpsConfig fpsConfig, AudioManager audioManager, 
             GameData gameData, ViewManager viewManager) :
             base(view)
         {
+            _analyticsManager = analyticsManager;
             _fpsConfig = fpsConfig;
             _gameData = gameData;
             _audioManager = audioManager;
@@ -41,11 +45,13 @@ namespace CBH.UI.Menu.Presenters
 
         public void OnMusicStateChanged(bool state)
         {
+            _analyticsManager.SendEvent(new ChangeEnableMusicEvent(state));
             _audioManager.EnableMusic = state;
         }
         
         public void OnSoundsStateChanged(bool state)
         {
+            _analyticsManager.SendEvent(new ChangeEnableSoundsEvent(state));
             _audioManager.EnableSounds = state;
         }
 
@@ -54,11 +60,14 @@ namespace CBH.UI.Menu.Presenters
             var fpsData = _fpsConfig.config[(int)index];
             
             _gameData.UpdateTargetFps(fpsData.fps);
+            
+            _analyticsManager.SendEvent(new ChangeTargetFpsEvent(fpsData.fps));
             View.fpsText.text = fpsData.name;
         }
 
         public void OnButtonExitPressed()
         {
+            _analyticsManager.SendEvent(new CloseButtonMenuEvent());
             _viewManager.ShowView<MainMenuPresenter>();
         }
     }
