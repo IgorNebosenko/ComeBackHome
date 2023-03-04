@@ -820,6 +820,7 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     Collab: 0
+    Purchasing: 1
     UNet: 1
     Unity Ads: 1
   luminIcon:
