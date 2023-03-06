@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+﻿//#if UNITY_EDITOR
 namespace CBH.Core.IAP
 {
     public class EditorStoreModule : IStorePurchaseController
@@ -17,4 +17,4 @@ namespace CBH.Core.IAP
         }
     }
 }
-#endif
+//#endif
