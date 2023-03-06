@@ -15,7 +15,7 @@ namespace CBH.Core
         private AdsData _adsData;
         private AdsConfig _adsConfig;
         private IAdsProvider _adsProvider;
-        
+
         private bool _isLanded;
         private bool _isGameEnded;
 
@@ -42,13 +42,14 @@ namespace CBH.Core
 
         public RocketState CurrentState { get; private set; }
 
-        public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig, IAdsProvider adsProvider)
+        public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig,
+            IAdsProvider adsProvider)
         {
             _gameData = gameData;
             _adsData = adsData;
             _adsConfig = adsConfig;
             _adsProvider = adsProvider;
-            
+
             CurrentState = RocketState.Live;
         }
 
