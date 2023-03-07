@@ -28,9 +28,6 @@ namespace CBH.Core
         private const float BeforeWinDuration = 2f;
         
         public event Action<float> BeforeRestartLevel;
-        public event Action RestartLevel;
-
-        public event Action PlatformLand;
         public event Action<float> PlatformStay;
         public event Action BeforeWin;
         public event Action PlatformLeave;
@@ -68,7 +65,6 @@ namespace CBH.Core
                     Observable.FromCoroutine(RestartProcess).Subscribe();
                     break;
                 case RocketState.LandFinishPad:
-                    PlatformLand?.Invoke();
                     Observable.FromCoroutine(LandingProcess).Subscribe();
                     break;
                 case RocketState.LeaveFinishPad:
@@ -99,7 +95,6 @@ namespace CBH.Core
             {
                 _adsData.countRestartsFromLastAd++;
                 _adsData.timeFlyFromLastAd += (float)TimeFly.TotalSeconds;
-                Debug.Log(_adsData.timeFlyFromLastAd);
 
                 if (_adsData.countRestartsFromLastAd >= _adsConfig.countRestartsBetweenAds ||
                     _adsData.timeFlyFromLastAd >= _adsConfig.timeFlyBetweenAds)
@@ -110,7 +105,6 @@ namespace CBH.Core
             }
 
             var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            RestartLevel?.Invoke();
             yield return SceneManager.LoadSceneAsync(currentSceneIndex);
         }
         
