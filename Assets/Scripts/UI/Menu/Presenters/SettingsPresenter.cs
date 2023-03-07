@@ -1,4 +1,6 @@
-﻿using CBH.Core;
+﻿using CBH.Analytics;
+using CBH.Analytics.Events;
+using CBH.Core;
 using CBH.Core.Audio;
 using CBH.Core.Configs;
 using CBH.UI.Menu.Views;
@@ -13,17 +15,20 @@ namespace CBH.UI.Menu.Presenters
         private GameData _gameData;
         private AudioManager _audioManager;
         private ViewManager _viewManager;
+
+        private IAnalyticsManager _analyticsManager;
         
         public SettingsInitData InitData { get; private set; }
         
         public SettingsPresenter(SettingsView view, FpsConfig fpsConfig, AudioManager audioManager, 
-            GameData gameData, ViewManager viewManager) :
+            GameData gameData, IAnalyticsManager analyticsManager, ViewManager viewManager) :
             base(view)
         {
             _fpsConfig = fpsConfig;
             _gameData = gameData;
             _audioManager = audioManager;
             _viewManager = viewManager;
+            _analyticsManager = analyticsManager;
 
             var fpsIndex = -1;
             for (var i = 0; i < _fpsConfig.config.Length; i++)
@@ -42,11 +47,13 @@ namespace CBH.UI.Menu.Presenters
         public void OnMusicStateChanged(bool state)
         {
             _audioManager.EnableMusic = state;
+            _analyticsManager.SendEvent(new ChangeEnableMusicEvent(state));
         }
         
         public void OnSoundsStateChanged(bool state)
         {
             _audioManager.EnableSounds = state;
+            _analyticsManager.SendEvent(new ChangeEnableSoundsEvent(state));
         }
 
         public void OnSliderValueChanged(float index)
@@ -54,6 +61,8 @@ namespace CBH.UI.Menu.Presenters
             var fpsData = _fpsConfig.config[(int)index];
             
             _gameData.UpdateTargetFps(fpsData.fps);
+            _analyticsManager.SendEvent(new ChangeTargetFpsEvent(fpsData.fps));
+            
             View.fpsText.text = fpsData.name;
         }
 

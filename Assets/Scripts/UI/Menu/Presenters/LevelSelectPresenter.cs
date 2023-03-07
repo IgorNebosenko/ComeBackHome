@@ -39,6 +39,8 @@ namespace CBH.UI.Menu.Presenters
         public void LoadLevel(int level)
         {
             _cachedSelectedLevel = level;
+            _analyticsManager.SendEvent(new StartLevelFromMenuEvent(_cachedSelectedLevel, LastCompletedScene));
+            
             Observable.FromCoroutine(LoadLevelProcess).Subscribe();
         }
 
