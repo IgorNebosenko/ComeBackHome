@@ -11,8 +11,6 @@ namespace CBH.UI.Menu.Presenters
         public HowPlayPresenter(HowPlayView view, ViewManager viewManager) : base(view)
         {
             _viewManager = viewManager;
-            
-            view.SubscribeEvents(this);
         }
 
         public void OnButtonBackPressed()

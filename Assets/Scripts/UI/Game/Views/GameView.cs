@@ -18,16 +18,16 @@ namespace CBH.UI.Game.Views
 
         private IDisposable _updateGpsProcess;
 
-        public void Init(GamePresenter presenter)
+        private void Start()
         {
-            presenter.HeaderTextChanged += SetHeaderText;
-            presenter.TimerTextChanged += SetTimerText;
-            buttonToMenu.onClick.AddListener(presenter.OnToMenuClicked);
+            Presenter.HeaderTextChanged += SetHeaderText;
+            Presenter.TimerTextChanged += SetTimerText;
+            buttonToMenu.onClick.AddListener(Presenter.OnToMenuClicked);
             
             _updateGpsProcess = Observable.EveryLateUpdate().Subscribe(_ => UpdateGps());
         }
 
-        private void OnDestroy()
+        protected override void OnBeforeClose()
         {
             Presenter.HeaderTextChanged -= SetHeaderText;
             Presenter.TimerTextChanged -= SetTimerText;

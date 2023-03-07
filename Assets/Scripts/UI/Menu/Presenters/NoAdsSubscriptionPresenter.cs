@@ -14,7 +14,7 @@ namespace CBH.UI.Menu.Presenters
 {
     public class NoAdsSubscriptionPresenter : PopupPresenterCoroutine<NoAdsSubscriptionPopup, PopupArgs, PopupResult>
     {
-        //private IAnalyticsManager _analyticsManager;
+        private IAnalyticsManager _analyticsManager;
         private IStorePurchaseController _storePurchaseController;
         private GameData _gameData;
         private AdsData _adsData;
@@ -29,7 +29,7 @@ namespace CBH.UI.Menu.Presenters
         public NoAdsSubscriptionPresenter(NoAdsSubscriptionPopup view, IAnalyticsManager analyticsManager, IStorePurchaseController storePurchaseController,
             GameData gameData, AdsData adsData) : base(view)
         {
-            //_analyticsManager = analyticsManager;
+            _analyticsManager = analyticsManager;
             _storePurchaseController = storePurchaseController;
             _gameData = gameData;
             _adsData = adsData;
@@ -45,7 +45,7 @@ namespace CBH.UI.Menu.Presenters
         public void OnButtonBuyPressed()
         {
             var result = _storePurchaseController.TryPurchaseSubscription();
-            //_analyticsManager.SendEvent(new ResultBuyNoAdsEvent(_gameData.LastCompletedScene, result));
+            _analyticsManager.SendEvent(new ResultBuyNoAdsEvent(_gameData.LastCompletedScene, result));
             SubscriptionStatusChanged?.Invoke(result);
         }
 
@@ -53,14 +53,14 @@ namespace CBH.UI.Menu.Presenters
         {
             var timeShowingPopup = Time.realtimeSinceStartup - _startShowingTime;
 
-            //_analyticsManager.SendEvent(new NoAdsShowResultEvent(_gameData.LastCompletedScene, !_storePurchaseController.HasNoAdsSubscription, timeShowingPopup));
+            _analyticsManager.SendEvent(new NoAdsShowResultEvent(_gameData.LastCompletedScene, !_storePurchaseController.HasNoAdsSubscription, timeShowingPopup));
             
             Close();
         }
 
         public void SendEventShowPopup()
         {
-            //_analyticsManager.SendEvent(new ShowNoAdsPopupEvent(_gameData.LastCompletedScene));
+            _analyticsManager.SendEvent(new ShowNoAdsPopupEvent(_gameData.LastCompletedScene));
         }
     }
 }

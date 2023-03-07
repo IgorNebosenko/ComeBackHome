@@ -14,6 +14,8 @@ namespace CBH.UI.Menu.Presenters
         private AudioManager _audioManager;
         private ViewManager _viewManager;
         
+        public SettingsInitData InitData { get; private set; }
+        
         public SettingsPresenter(SettingsView view, FpsConfig fpsConfig, AudioManager audioManager, 
             GameData gameData, ViewManager viewManager) :
             base(view)
@@ -33,10 +35,8 @@ namespace CBH.UI.Menu.Presenters
                 break;
             }
 
-            var initData = new SettingsInitData(_audioManager.EnableMusic, _audioManager.EnableSounds, 
+            InitData = new SettingsInitData(_audioManager.EnableMusic, _audioManager.EnableSounds, 
                     fpsIndex, _fpsConfig.config[fpsIndex], _fpsConfig.config.Length - 1);
-            
-            view.Init(this, initData);
         }
 
         public void OnMusicStateChanged(bool state)

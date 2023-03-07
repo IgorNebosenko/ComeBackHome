@@ -10,12 +10,12 @@ namespace CBH.UI.Menu.Views
     {
         [SerializeField] private Button buttonClose;
 
-        public void SubscribeEvents(HowPlayPresenter presenter)
+        private void Start()
         {
-            buttonClose.onClick.AddListener(presenter.OnButtonBackPressed);
+            buttonClose.onClick.AddListener(Presenter.OnButtonBackPressed);
         }
 
-        private void OnDestroy()
+        protected override void OnBeforeClose()
         {
             buttonClose.onClick.RemoveListener(Presenter.OnButtonBackPressed);
         }
