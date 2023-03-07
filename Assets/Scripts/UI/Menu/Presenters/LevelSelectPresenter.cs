@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using CBH.Analytics;
+using CBH.Analytics.Events;
 using CBH.Core;
 using CBH.UI.Menu.Views;
 using ElectrumGames.MVP;
@@ -13,18 +15,24 @@ namespace CBH.UI.Menu.Presenters
         private ViewManager _viewManager;
         private GameData _gameData;
 
+        private IAnalyticsManager _analyticsManager;
+
         private int _cachedSelectedLevel = -1;
 
         public int LastCompletedScene => _gameData.LastCompletedScene;
         
-        public LevelSelectPresenter(ViewManager viewManager, GameData gameData, LevelSelectView view) : base(view)
+        public LevelSelectPresenter(ViewManager viewManager, GameData gameData, LevelSelectView view, 
+            IAnalyticsManager analyticsManager) : base(view)
         {
             _viewManager = viewManager;
             _gameData = gameData;
+
+            _analyticsManager = analyticsManager;
         }
 
         public void OnToMenuClicked()
         {
+            _analyticsManager.SendEvent(new CloseLevelSelectMenuEvent(LastCompletedScene));
             _viewManager.ShowView<MainMenuPresenter>();
         }
 
