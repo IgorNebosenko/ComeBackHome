@@ -2,10 +2,12 @@
 using CBH.Analytics;
 using CBH.Analytics.Events;
 using CBH.Core;
+using CBH.Core.IAP;
 using CBH.UI.Menu.Views;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Managers;
 using UniRx;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace CBH.UI.Menu.Presenters
@@ -21,12 +23,14 @@ namespace CBH.UI.Menu.Presenters
         public int MaxGameLevel => GameData.CountLevels;
         
         public MainMenuPresenter(MainMenuView view, IAnalyticsManager analyticsManager, GameData gameData, PopupManager popupManager,
-            ViewManager viewManager) : base(view)
+            ViewManager viewManager, IStorePurchaseController storePurchaseController) : base(view)
         {
             _analyticsManager = analyticsManager;
             _gameData = gameData;
             _viewManager = viewManager;
             _popupManager = popupManager;
+
+            //Debug.Log(storePurchaseController.HasNoAdsSubscription);
         }
 
         public void OnPlayButtonPressed()

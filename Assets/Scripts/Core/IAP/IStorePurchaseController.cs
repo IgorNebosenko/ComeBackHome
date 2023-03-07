@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CBH.Core.IAP
+﻿namespace CBH.Core.IAP
 {
     public interface IStorePurchaseController
     {

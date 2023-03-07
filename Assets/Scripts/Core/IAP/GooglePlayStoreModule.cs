@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UniRx;
+using Unity.Services.Core;
+using UnityEngine;
 using UnityEngine.Purchasing;
 
 namespace CBH.Core.IAP
@@ -13,6 +16,12 @@ namespace CBH.Core.IAP
 
         public GooglePlayStoreModule()
         {
+            Observable.FromCoroutine(InitProcess).Subscribe();
+        }
+        
+        private IEnumerator InitProcess()
+        {
+            yield return UnityServices.InitializeAsync();
             var configBuilder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
             configBuilder.Configure<IGooglePlayConfiguration>().SetServiceDisconnectAtInitializeListener(() =>
             {
@@ -53,8 +62,10 @@ namespace CBH.Core.IAP
             if (product == null || !product.availableToPurchase)
                 return;
 
-            var sm = new SubscriptionManager(product, null);
-            HasNoAdsSubscription = sm.getSubscriptionInfo().isSubscribed() == Result.True;
+            var sm = new SubscriptionManager(product, product.definition.storeSpecificId);
+            HasNoAdsSubscription = sm.getSubscriptionInfo().isFreeTrial() == Result.True || 
+                                   sm.getSubscriptionInfo().isSubscribed() == Result.True ||
+                                   sm.getSubscriptionInfo().isAutoRenewing() == Result.True;
         }
 
         public bool TryPurchaseSubscription()

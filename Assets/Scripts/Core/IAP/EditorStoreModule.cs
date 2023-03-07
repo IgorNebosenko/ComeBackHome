@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using UnityEngine;
 
 #if UNITY_EDITOR
 namespace CBH.Core.IAP
