@@ -7,21 +7,10 @@ namespace CBH.Core.IAP
     public class GooglePlayStoreModule : IStoreListener, IStorePurchaseController
     {
         private IStoreController _storeController;
-        private bool _hasNoAds;
 
         private const string SubscriptionId = "no_ads_mounth";
 
-        public bool HasNoAdsSubscription
-        {
-            get => _hasNoAds;
-            set
-            {
-                _hasNoAds = value;
-                SubscriptionStatusUpdated?.Invoke(_hasNoAds);
-            }
-        }
-        
-        public event Action<bool> SubscriptionStatusUpdated;
+        public bool HasNoAdsSubscription { get; private set; }
 
         public GooglePlayStoreModule()
         {

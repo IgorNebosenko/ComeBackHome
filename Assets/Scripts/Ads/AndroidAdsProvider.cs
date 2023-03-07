@@ -1,5 +1,6 @@
 ﻿using CBH.Analytics;
 using CBH.Analytics.Events;
+using CBH.Core.IAP;
 using UnityEngine;
 
 namespace CBH.Ads
@@ -7,12 +8,14 @@ namespace CBH.Ads
     public class AndroidAdsProvider : IAdsProvider
     {
         private IAnalyticsManager _analyticsManager;
+        private IStorePurchaseController _storePurchaseController;
         private AdsConfig _adsConfig;
         private AdsData _adsData;
         
         private const string AdsKey = "18895eccd";
 
-        public AndroidAdsProvider(IAnalyticsManager analyticsManager, AdsConfig adsConfig, AdsData adsData)
+        public AndroidAdsProvider(IAnalyticsManager analyticsManager, IStorePurchaseController _storePurchaseController,
+            AdsConfig adsConfig, AdsData adsData)
         {
             _analyticsManager = analyticsManager;
             _adsConfig = adsConfig;
@@ -34,7 +37,7 @@ namespace CBH.Ads
         {
             _analyticsManager.SendEvent(new ShowInterstitialAdEvent(
                 _adsData.timeFlyFromLastAd >= _adsConfig.timeFlyBetweenAds,
-                _adsData.hasNoAds,
+                _storePurchaseController.HasNoAdsSubscription,
                 IronSource.Agent.isInterstitialReady().ToString()));
             
             if (IronSource.Agent.isInterstitialReady())
