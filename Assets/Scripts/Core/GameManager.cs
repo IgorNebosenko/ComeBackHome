@@ -21,8 +21,6 @@ namespace CBH.Core
         private bool _isLanded;
         private bool _isGameEnded;
 
-        private TimeSpan _timeFly = TimeSpan.Zero;
-        
         private const float RestartDuration = 3f;
         private const float RestartTickDuration = 1f;
         
@@ -43,6 +41,8 @@ namespace CBH.Core
         public event Action<TimeSpan> UpdateFlyTime; 
 
         public RocketState CurrentState { get; private set; }
+
+        public TimeSpan TimeFly { get; private set; } = TimeSpan.Zero;
 
         public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig,
             IAdsProvider adsProvider, IStorePurchaseController storePurchaseController)
@@ -98,7 +98,7 @@ namespace CBH.Core
             if (!_storePurchaseController.HasNoAdsSubscription)
             {
                 _adsData.countRestartsFromLastAd++;
-                _adsData.timeFlyFromLastAd += (float)_timeFly.TotalSeconds;
+                _adsData.timeFlyFromLastAd += (float)TimeFly.TotalSeconds;
                 Debug.Log(_adsData.timeFlyFromLastAd);
 
                 if (_adsData.countRestartsFromLastAd >= _adsConfig.countRestartsBetweenAds ||
@@ -147,7 +147,7 @@ namespace CBH.Core
 
         private IEnumerator UpdateFlyTimeProcess()
         {
-            _timeFly = TimeSpan.Zero;
+            TimeFly = TimeSpan.Zero;
 
             while (!_isGameEnded)
             {
@@ -155,8 +155,8 @@ namespace CBH.Core
                 if (_isLanded)
                     continue;
                 
-                _timeFly = _timeFly.Add(TimeSpan.FromSeconds(Time.deltaTime));
-                UpdateFlyTime?.Invoke(_timeFly);
+                TimeFly += TimeSpan.FromSeconds(Time.deltaTime);
+                UpdateFlyTime?.Invoke(TimeFly);
             }
         }
     }

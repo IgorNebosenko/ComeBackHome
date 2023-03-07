@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using CBH.Analytics;
+using CBH.Analytics.Events;
 using CBH.Core;
 using CBH.Core.Collision;
 using CBH.Core.Entity.Input;
@@ -18,7 +20,9 @@ namespace CBH.UI.Game.Presenters
         private FinishCollisionObject _landingPad;
         private Camera _mainCamera;
         private GameManager _gameManager;
-        
+        private GameData _gameData;
+        private IAnalyticsManager _analyticsManager;
+
         private const int CountDirections = 4;
         private const float ClampModifier = 1.1f;
 
@@ -30,12 +34,14 @@ namespace CBH.UI.Game.Presenters
         public event Action<string> TimerTextChanged; 
 
         public GamePresenter(GameView view, RocketController rocketController, Camera mainCamera, GameManager gameManager,
-            FinishCollisionObject landingPad) : base(view)
+            GameData gameData, FinishCollisionObject landingPad, IAnalyticsManager analyticsManager) : base(view)
         {
             _rocketController = rocketController;
             _landingPad = landingPad;
             _mainCamera = mainCamera;
             _gameManager = gameManager;
+            _gameData = gameData;
+            _analyticsManager = analyticsManager;
         }
 
         protected override void Init()
@@ -94,6 +100,8 @@ namespace CBH.UI.Game.Presenters
 
         public void OnToMenuClicked()
         {
+            _analyticsManager.SendEvent(new ToMenuButtonPressedEvent(SceneManager.GetActiveScene().buildIndex, 
+                _gameData.LastCompletedScene, (float)_gameManager.TimeFly.TotalSeconds));
             Observable.FromCoroutine(ToMenuProcess).Subscribe();
         }
 
