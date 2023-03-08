@@ -12,32 +12,35 @@ namespace CBH.UI.Menu.Presenters
 {
     public class LevelSelectPresenter : Presenter<LevelSelectView>
     {
-        private IAnalyticsManager _analyticsManager;
         private ViewManager _viewManager;
         private GameData _gameData;
+
+        private IAnalyticsManager _analyticsManager;
 
         private int _cachedSelectedLevel = -1;
 
         public int LastCompletedScene => _gameData.LastCompletedScene;
         
-        public LevelSelectPresenter(ViewManager viewManager, IAnalyticsManager analyticsManager,
-            GameData gameData, LevelSelectView view) : base(view)
+        public LevelSelectPresenter(ViewManager viewManager, GameData gameData, LevelSelectView view, 
+            IAnalyticsManager analyticsManager) : base(view)
         {
-            _analyticsManager = analyticsManager;
             _viewManager = viewManager;
             _gameData = gameData;
+
+            _analyticsManager = analyticsManager;
         }
 
         public void OnToMenuClicked()
         {
-            _analyticsManager.SendEvent(new CloseLevelSelectMenuEvent(_gameData.LastCompletedScene));
+            _analyticsManager.SendEvent(new CloseLevelSelectMenuEvent(LastCompletedScene));
             _viewManager.ShowView<MainMenuPresenter>();
         }
 
         public void LoadLevel(int level)
         {
             _cachedSelectedLevel = level;
-            _analyticsManager.SendEvent(new StartLevelFromMenuEvent(level, _gameData.LastCompletedScene));
+            _analyticsManager.SendEvent(new StartLevelFromMenuEvent(_cachedSelectedLevel, LastCompletedScene));
+            
             Observable.FromCoroutine(LoadLevelProcess).Subscribe();
         }
 

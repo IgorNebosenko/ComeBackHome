@@ -11,23 +11,24 @@ namespace CBH.UI.Menu.Presenters
 {
     public class SettingsPresenter : Presenter<SettingsView>
     {
-        private IAnalyticsManager _analyticsManager;
         private FpsConfig _fpsConfig;
         private GameData _gameData;
         private AudioManager _audioManager;
         private ViewManager _viewManager;
+
+        private IAnalyticsManager _analyticsManager;
         
-        public SettingsInitData SettingsInitData { get; private set; }
+        public SettingsInitData InitData { get; private set; }
         
-        public SettingsPresenter(SettingsView view, IAnalyticsManager analyticsManager, FpsConfig fpsConfig, AudioManager audioManager, 
-            GameData gameData, ViewManager viewManager) :
+        public SettingsPresenter(SettingsView view, FpsConfig fpsConfig, AudioManager audioManager, 
+            GameData gameData, IAnalyticsManager analyticsManager, ViewManager viewManager) :
             base(view)
         {
-            _analyticsManager = analyticsManager;
             _fpsConfig = fpsConfig;
             _gameData = gameData;
             _audioManager = audioManager;
             _viewManager = viewManager;
+            _analyticsManager = analyticsManager;
 
             var fpsIndex = -1;
             for (var i = 0; i < _fpsConfig.config.Length; i++)
@@ -39,20 +40,20 @@ namespace CBH.UI.Menu.Presenters
                 break;
             }
 
-            SettingsInitData = new SettingsInitData(_audioManager.EnableMusic, _audioManager.EnableSounds, 
+            InitData = new SettingsInitData(_audioManager.EnableMusic, _audioManager.EnableSounds, 
                     fpsIndex, _fpsConfig.config[fpsIndex], _fpsConfig.config.Length - 1);
         }
 
         public void OnMusicStateChanged(bool state)
         {
-            _analyticsManager.SendEvent(new ChangeEnableMusicEvent(state));
             _audioManager.EnableMusic = state;
+            _analyticsManager.SendEvent(new ChangeEnableMusicEvent(state));
         }
         
         public void OnSoundsStateChanged(bool state)
         {
-            _analyticsManager.SendEvent(new ChangeEnableSoundsEvent(state));
             _audioManager.EnableSounds = state;
+            _analyticsManager.SendEvent(new ChangeEnableSoundsEvent(state));
         }
 
         public void OnSliderValueChanged(float index)
@@ -60,14 +61,13 @@ namespace CBH.UI.Menu.Presenters
             var fpsData = _fpsConfig.config[(int)index];
             
             _gameData.UpdateTargetFps(fpsData.fps);
-            
             _analyticsManager.SendEvent(new ChangeTargetFpsEvent(fpsData.fps));
+            
             View.fpsText.text = fpsData.name;
         }
 
         public void OnButtonExitPressed()
         {
-            _analyticsManager.SendEvent(new CloseButtonMenuEvent());
             _viewManager.ShowView<MainMenuPresenter>();
         }
     }

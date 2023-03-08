@@ -2,7 +2,7 @@
 {
     public class CloseLevelSelectMenuEvent : AnalyticsEvent
     {
-        public override string Key => "close_level_select_menu";
+        public override string Key => "close_level_select_from_menu";
 
         public CloseLevelSelectMenuEvent(int maxOpenedLevel)
         {

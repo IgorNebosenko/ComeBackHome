@@ -18,12 +18,12 @@ namespace CBH.UI.Menu.Views
 
         private void Start()
         {
-            enableMusic.isOn = Presenter.SettingsInitData.enableMusic;
-            enableSounds.isOn = Presenter.SettingsInitData.enableSounds;
+            enableMusic.isOn = Presenter.InitData.enableMusic;
+            enableSounds.isOn = Presenter.InitData.enableSounds;
 
-            fpsSlider.value = Presenter.SettingsInitData.fpsSliderIndex;
-            fpsText.text = Presenter.SettingsInitData.fpsData.name;
-            fpsSlider.maxValue = Presenter.SettingsInitData.fpsSliderMaxValue;
+            fpsSlider.value = Presenter.InitData.fpsSliderIndex;
+            fpsText.text = Presenter.InitData.fpsData.name;
+            fpsSlider.maxValue = Presenter.InitData.fpsSliderMaxValue;
             
             enableMusic.onValueChanged.AddListener(Presenter.OnMusicStateChanged);
             enableSounds.onValueChanged.AddListener(Presenter.OnSoundsStateChanged);

@@ -11,14 +11,13 @@ namespace CBH.Ads
         private IStorePurchaseController _storePurchaseController;
         private AdsConfig _adsConfig;
         private AdsData _adsData;
-
+        
         private const string AdsKey = "18895eccd";
 
-        public AndroidAdsProvider(IAnalyticsManager analyticsManager, IStorePurchaseController storePurchaseController,
+        public AndroidAdsProvider(IAnalyticsManager analyticsManager, IStorePurchaseController _storePurchaseController,
             AdsConfig adsConfig, AdsData adsData)
         {
             _analyticsManager = analyticsManager;
-            _storePurchaseController = storePurchaseController;
             _adsConfig = adsConfig;
             _adsData = adsData;
             

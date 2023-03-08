@@ -1,5 +1,4 @@
-﻿#if UNITY_EDITOR
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CBH.Analytics.Events;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -14,7 +13,7 @@ namespace CBH.Analytics
         }
         public void SendEvent(AnalyticsEvent analyticsEvent)
         {
-            Debug.Log($"[EditorAnalyticsManager] Send analytics event with key: {analyticsEvent.Key}. Data: {DictionaryToString(analyticsEvent.Data)}");
+            Debug.Log($"[EditorAnalyticsManager] Send analytics event with key: {analyticsEvent.Key}. Data: {analyticsEvent.Data}");
         }
 
         private string DictionaryToString(Dictionary<string, object> dictionary)
@@ -23,4 +22,3 @@ namespace CBH.Analytics
         }
     }
 }
-#endif
