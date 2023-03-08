@@ -35,7 +35,12 @@ namespace CBH.Core.IAP
         {
             Debug.LogWarning($"[{GetType().Name}] error of init! Reason: {error}");
         }
-        
+
+        public void OnInitializeFailed(InitializationFailureReason error, string message)
+        {
+            Debug.LogWarning($"[{GetType().Name}] error of init! Reason: {error}, message: {message}");
+        }
+
         public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
         {
             _storeController = controller;
