@@ -32,7 +32,10 @@ namespace CBH.UI.Game.Views
             Presenter.HeaderTextChanged -= SetHeaderText;
             Presenter.TimerTextChanged -= SetTimerText;
             buttonToMenu.onClick.RemoveListener(Presenter.OnToMenuClicked);
-            
+        }
+
+        private void OnDestroy()
+        {
             _updateGpsProcess?.Dispose();
         }
 
