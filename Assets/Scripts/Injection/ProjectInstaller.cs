@@ -24,8 +24,6 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
         Container.BindInstance(adsConfig).AsSingle();
         Container.Bind<AdsData>().AsSingle();
 
-        Container.Bind<InputData>().AsSingle();
-
 #if UNITY_EDITOR
         Container.Bind<IAdsProvider>().To<EditorAdsProvider>().AsSingle();
         Container.Bind<IAnalyticsManager>().To<EditorAnalyticsManager>().AsSingle();
