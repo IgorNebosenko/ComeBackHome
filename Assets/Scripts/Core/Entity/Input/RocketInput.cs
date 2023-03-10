@@ -1,7 +1,6 @@
-﻿using CBH.Core.Configs;
-using UnityEngine;
+﻿using CBH.Analytics;
+using CBH.Core.Configs;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Composites;
 
 namespace CBH.Core.Entity.Input
 {
@@ -15,7 +14,7 @@ namespace CBH.Core.Entity.Input
         public bool EnabledBoost { get; private set; }
         public float RotationDirection { get; private set; }
 
-        public RocketInput(InputSchema inputSchema)
+        public RocketInput(InputSchema inputSchema, InputData inputData)
         {
             _inputSchema = inputSchema;
         }

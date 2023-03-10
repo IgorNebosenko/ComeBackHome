@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CBH.Analytics;
 using CBH.Core.Audio;
 using CBH.Core.Configs;
 using CBH.Core.Core.Entity.Motors;
@@ -33,11 +34,11 @@ namespace CBH.Core.Entity.Input
         public Vector3 ControllerPosition => transform.position;
 
         [Inject]
-        private void Construct(GameManager gameManager, InputSchema inputSchema)
+        private void Construct(GameManager gameManager, InputSchema inputSchema, InputData inputData)
         {
             _gameManager = gameManager;
             
-            _input = new RocketInput(inputSchema);
+            _input = new RocketInput(inputSchema, inputData);
             _input.Init();
             
             _motor = new RocketMotor(physicModel, trustPower, rotationSensitivity);
