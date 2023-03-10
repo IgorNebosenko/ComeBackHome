@@ -7,6 +7,11 @@ namespace CBH.Core.Entity.Input
     public class RocketInput : IInput, InputSchema.IPlayerActions
     {
         private InputSchema _inputSchema;
+        private InputData _inputData;
+
+        private bool _lastBoostState;
+        private bool _lastRotationLeftState;
+        private bool _lastRotationRightState;
         
         private bool _isBoostUpdated;
         private bool _isRotationUpdated = true;
@@ -17,6 +22,7 @@ namespace CBH.Core.Entity.Input
         public RocketInput(InputSchema inputSchema, InputData inputData)
         {
             _inputSchema = inputSchema;
+            _inputData = inputData;
         }
         
         public void Init()
@@ -29,10 +35,49 @@ namespace CBH.Core.Entity.Input
         {
             EnabledBoost = _isBoostUpdated;
 
+            if (EnabledBoost)
+            {
+                _inputData.timeBoostPressed += deltaTime;
+
+                if (!_lastBoostState)
+                    _inputData.countBoostPressed++;
+            }
+
+            _lastBoostState = EnabledBoost;
+
             if (_isRotationUpdated)
+            {
                 RotationDirection = _inputSchema.Player.Rotation.ReadValue<float>() * deltaTime;
+                if (RotationDirection > 0)
+                    _inputData.timeRotationRightPressed += deltaTime;
+                else
+                    _inputData.timeRotationLeftPressed += deltaTime;
+
+                if (RotationDirection > 0)
+                {
+                    _inputData.timeRotationRightPressed += deltaTime;
+                    if (!_lastRotationRightState)
+                        _inputData.countRotationLeftPressed++;
+                    
+                    _lastRotationRightState = true;
+                    _lastRotationLeftState = false;
+                }
+                else
+                {
+                    _inputData.timeRotationLeftPressed += deltaTime;
+                    if (!_lastRotationLeftState)
+                        _inputData.countRotationLeftPressed++;
+                    
+                    _lastRotationLeftState = true;
+                    _lastRotationRightState = false;
+                }
+            }
             else
+            {
                 RotationDirection = 0;
+                _lastRotationLeftState = false;
+                _lastRotationRightState = false;
+            }
         }
 
         public void ResetInput()
@@ -42,6 +87,8 @@ namespace CBH.Core.Entity.Input
 
             _isRotationUpdated = false;
             _isBoostUpdated = false;
+
+            _lastBoostState = false;
         }
 
         public void OnVelocity(InputAction.CallbackContext context)
