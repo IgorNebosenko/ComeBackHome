@@ -1,7 +1,9 @@
-﻿using CBH.Analytics;
+﻿using System.Collections;
+using CBH.Analytics;
 using CBH.Analytics.Events;
 using CBH.Core.IAP;
 using UnityEngine;
+using UniRx;
 
 namespace CBH.Ads
 {
@@ -30,7 +32,7 @@ namespace CBH.Ads
         
         public void LoadInterstitial()
         {
-            IronSource.Agent.loadInterstitial();
+            Observable.FromCoroutine(AdLoadProcess).Subscribe();
         }
 
         public void ShowInterstitial()
@@ -44,6 +46,15 @@ namespace CBH.Ads
                 IronSource.Agent.showInterstitial();
             
             LoadInterstitial();
+        }
+
+        private IEnumerator AdLoadProcess()
+        {
+            while (!IronSource.Agent.isInterstitialReady())
+            {
+                IronSource.Agent.loadInterstitial();
+                yield return new WaitForEndOfFrame();
+            }
         }
     }
 }
