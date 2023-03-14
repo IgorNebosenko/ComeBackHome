@@ -1,8 +1,6 @@
-﻿using System;
-using CBH.UI.Game.Presenters;
+﻿using CBH.UI.Game.Presenters;
 using ElectrumGames.MVP;
 using TMPro;
-using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,15 +14,16 @@ namespace CBH.UI.Game.Views
         [SerializeField] private Image gpsImage;
         [SerializeField] private Button buttonToMenu;
 
-        private IDisposable _updateGpsProcess;
-
         private void Start()
         {
             Presenter.HeaderTextChanged += SetHeaderText;
             Presenter.TimerTextChanged += SetTimerText;
             buttonToMenu.onClick.AddListener(Presenter.OnToMenuClicked);
-            
-            _updateGpsProcess = Observable.EveryLateUpdate().Subscribe(_ => UpdateGps());
+        }
+
+        private void FixedUpdate()
+        {
+            UpdateGps();
         }
 
         protected override void OnBeforeClose()
@@ -33,12 +32,7 @@ namespace CBH.UI.Game.Views
             Presenter.TimerTextChanged -= SetTimerText;
             buttonToMenu.onClick.RemoveListener(Presenter.OnToMenuClicked);
         }
-
-        private void OnDestroy()
-        {
-            _updateGpsProcess?.Dispose();
-        }
-
+        
         private void UpdateGps()
         {
             Presenter.UpdateGps(gpsImage);
