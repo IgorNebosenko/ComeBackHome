@@ -67,10 +67,16 @@ namespace CBH.Core.IAP
             if (product == null || !product.availableToPurchase)
                 return;
 
-            var sm = new SubscriptionManager(product, product.definition.storeSpecificId);
-            HasNoAdsSubscription = sm.getSubscriptionInfo().isFreeTrial() == Result.True || 
-                                   sm.getSubscriptionInfo().isSubscribed() == Result.True ||
-                                   sm.getSubscriptionInfo().isAutoRenewing() == Result.True;
+            if (product.hasReceipt)
+            {
+                var sm = new SubscriptionManager(product, product.definition.storeSpecificId);
+
+                HasNoAdsSubscription = sm.getSubscriptionInfo().isFreeTrial() == Result.True ||
+                                       sm.getSubscriptionInfo().isSubscribed() == Result.True ||
+                                       sm.getSubscriptionInfo().isAutoRenewing() == Result.True;
+            }
+            else
+                HasNoAdsSubscription = false;
         }
 
         public bool TryPurchaseSubscription()

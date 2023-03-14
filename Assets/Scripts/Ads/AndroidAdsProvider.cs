@@ -16,12 +16,13 @@ namespace CBH.Ads
         
         private const string AdsKey = "18895eccd";
 
-        public AndroidAdsProvider(IAnalyticsManager analyticsManager, IStorePurchaseController _storePurchaseController,
+        public AndroidAdsProvider(IAnalyticsManager analyticsManager, IStorePurchaseController storePurchaseController,
             AdsConfig adsConfig, AdsData adsData)
         {
             _analyticsManager = analyticsManager;
             _adsConfig = adsConfig;
             _adsData = adsData;
+            _storePurchaseController = storePurchaseController;
             
             IronSourceConfig.Instance.setClientSideCallbacks(true);
             IronSource.Agent.validateIntegration();
