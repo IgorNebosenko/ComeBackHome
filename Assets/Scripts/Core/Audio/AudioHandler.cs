@@ -11,13 +11,14 @@ namespace CBH.Core.Audio
 
         [SerializeField] private AudioClip[] soundsAudioClips;
 
+        private const int DelayForFixAudioMixerInit = 1000;
+
         private AudioManager _audioManager;
 
         private static AudioHandler audioHandler;
         
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
             audioHandler = this;
         }
 
@@ -30,6 +31,8 @@ namespace CBH.Core.Audio
         private void Start()
         {
             _audioManager.Apply();
+            
+            musicSource.Play(DelayForFixAudioMixerInit);
         }
 
         public static void PlaySoundEffect(SoundEffect effect)
