@@ -21,9 +21,10 @@ namespace CBH.UI.Menu.Views
 
             for (var i = 0; i < GameData.CountLevels; i++)
             {
-                var j = i + 1; //<- Solve closure
+                var closureRepairIndex = i + 1;
                 var levelButton = Instantiate(levelButtonTemplate, containerLevels);
-                levelButton.Init(() => Presenter.LoadLevel(j), j, j <= Presenter.LastCompletedScene);
+                levelButton.Init(() => Presenter.LoadLevel(closureRepairIndex), closureRepairIndex, 
+                    closureRepairIndex <= Presenter.LastCompletedScene);
             }
         }
 
