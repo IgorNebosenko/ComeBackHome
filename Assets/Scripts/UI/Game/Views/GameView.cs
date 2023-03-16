@@ -14,6 +14,9 @@ namespace CBH.UI.Game.Views
         [SerializeField] private Image gpsImage;
         [SerializeField] private Button buttonToMenu;
 
+        private const float TimeUpdateGps = 0.05f;
+        private float _timePassed;
+
         private void Start()
         {
             Presenter.HeaderTextChanged += SetHeaderText;
@@ -23,7 +26,12 @@ namespace CBH.UI.Game.Views
 
         private void FixedUpdate()
         {
-            UpdateGps();
+            _timePassed += Time.fixedDeltaTime;
+            if (_timePassed >= TimeUpdateGps)
+            {
+                UpdateGps();
+                _timePassed = 0f;
+            }
         }
 
         protected override void OnBeforeClose()
