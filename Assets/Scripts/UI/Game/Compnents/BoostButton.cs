@@ -12,7 +12,7 @@ namespace CBH.UI.Game
         [InputControl(layout = "Button")] 
         [SerializeField] private string controlPath;
 
-        private static readonly Color32 ButtonNotPressedColor = new Color32(255, 255, 255, 127);
+        private static readonly Color32 ButtonPressedColor = new Color32(255, 255, 255, 127);
 
         private bool _isPressed;
 
@@ -30,13 +30,13 @@ namespace CBH.UI.Game
         public void OnPointerDown(PointerEventData eventData)
         {
             _isPressed = true;
-            buttonImage.color = Color.white;
+            buttonImage.color = ButtonPressedColor;
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
             _isPressed = false;
-            buttonImage.color = ButtonNotPressedColor;
+            buttonImage.color = Color.white;
         }
     }
 }
