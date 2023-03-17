@@ -4,6 +4,7 @@ using CBH.Core;
 using CBH.Core.Audio;
 using CBH.Core.Configs;
 using CBH.Core.IAP;
+using CBH.Core.Misc;
 using UnityEngine;
 using UnityEngine.Audio;
 using Zenject;
@@ -23,6 +24,8 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
 
         Container.BindInstance(adsConfig).AsSingle();
         Container.Bind<AdsData>().AsSingle();
+
+        Container.Bind<TutorialHandler>().AsSingle();
 
 #if UNITY_EDITOR
         Container.Bind<IAdsProvider>().To<EditorAdsProvider>().AsSingle();
