@@ -29,8 +29,6 @@ namespace CBH.UI.Menu.Presenters
             _gameData = gameData;
             _viewManager = viewManager;
             _popupManager = popupManager;
-
-            //Debug.Log(storePurchaseController.HasNoAdsSubscription);
         }
 
         public void OnPlayButtonPressed()
