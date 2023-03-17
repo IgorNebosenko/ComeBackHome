@@ -22,6 +22,8 @@ namespace CBH.UI.Game.Views
             Presenter.HeaderTextChanged += SetHeaderText;
             Presenter.TimerTextChanged += SetTimerText;
             buttonToMenu.onClick.AddListener(Presenter.OnToMenuClicked);
+            
+            UpdateGps();
         }
 
         private void FixedUpdate()
