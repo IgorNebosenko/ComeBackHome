@@ -63,38 +63,25 @@ namespace CBH.UI.Game.Presenters
             _gameManager.UpdateFlyTime -= OnUpdateFlyTimer;
         }
 
-        public void UpdateGps(Image gpsImage)
+        public void UpdateGps(Image arrowImage, RectTransform pivotTransform)
         {
             var distanceToPlayer = _landingPad.transform.position - _rocketController.ControllerPosition;
-            var ray = new Ray(_rocketController.ControllerPosition, distanceToPlayer);
 
-            var planes = GeometryUtility.CalculateFrustumPlanes(_mainCamera);
-
-            var minDistance = Mathf.Infinity;
-
-            for (var i = 0; i < CountDirections; i++)
-            {
-                if (!planes[i].Raycast(ray, out var distance))
-                    continue;
-                if (distance < minDistance)
-                    minDistance = distance;
-            }
-
-            minDistance = Mathf.Clamp(minDistance - ClampModifier, 0, distanceToPlayer.magnitude);
-            gpsImage.rectTransform.position = _mainCamera.WorldToScreenPoint(ray.GetPoint(minDistance));
+            var normalized = distanceToPlayer.normalized;
+            pivotTransform.eulerAngles = Mathf.Atan2(normalized.x, normalized.y) * Mathf.Rad2Deg * Vector3.back;
 
             var distanceLength = distanceToPlayer.magnitude;
             
             if (distanceLength >= distanceFullVisibleGPS)
-                gpsImage.color = Color.white;
+                arrowImage.color = Color.white;
             else
             {
                 if (distanceLength <= distanceInvisibleGPS)
-                    gpsImage.color = Color.clear;
+                    arrowImage.color = Color.clear;
                 else
                 {
                     distanceLength -= distanceInvisibleGPS;
-                    gpsImage.color = new Color(1, 1, 1, distanceLength / distanceDifferenceVisibility);
+                    arrowImage.color = new Color(1, 1, 1, distanceLength / distanceDifferenceVisibility);
                 }
             }
         }

@@ -11,11 +11,9 @@ namespace CBH.UI.Game.Views
     {
         [SerializeField] private TMP_Text textHeader;
         [SerializeField] private TMP_Text textTimer;
-        [SerializeField] private Image gpsImage;
+        [SerializeField] private Image arrowImage;
+        [SerializeField] private RectTransform pivotArrow;
         [SerializeField] private Button buttonToMenu;
-
-        private const float TimeUpdateGps = 0.05f;
-        private float _timePassed;
 
         private void Start()
         {
@@ -26,14 +24,9 @@ namespace CBH.UI.Game.Views
             UpdateGps();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
-            _timePassed += Time.fixedDeltaTime;
-            if (_timePassed >= TimeUpdateGps)
-            {
-                UpdateGps();
-                _timePassed = 0f;
-            }
+            UpdateGps();
         }
 
         protected override void OnBeforeClose()
@@ -45,7 +38,7 @@ namespace CBH.UI.Game.Views
         
         private void UpdateGps()
         {
-            Presenter.UpdateGps(gpsImage);
+            Presenter.UpdateGps(arrowImage, pivotArrow);
         }
 
         private void SetHeaderText(string text)
