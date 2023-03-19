@@ -1,4 +1,3 @@
-using System;
 using CBH.Core.Entity;
 using UnityEngine;
 using Zenject;
