@@ -45,6 +45,10 @@ namespace CBH.Core.Entity.Input
             _input = new RocketInput(inputSchema, inputData);
             _input.Init();
             
+#if UNITY_EDITOR
+            rotationSensitivity = 2000f;
+#endif
+            
             _motor = new RocketMotor(physicModel, trustPower, rotationSensitivity);
 
             _entityVisualsList = new List<IEntityVisual>()
