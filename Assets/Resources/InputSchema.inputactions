@@ -160,7 +160,7 @@
                 {
                     "name": "positive",
                     "id": "76c9cef0-1c19-4ac3-a0d7-94b20d09c4a4",
-                    "path": "<Touchscreen>/delta/left",
+                    "path": "<Touchscreen>/touch0/delta/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -171,7 +171,40 @@
                 {
                     "name": "negative",
                     "id": "c62c8d7c-3452-4d49-9387-7953277686b7",
-                    "path": "<Touchscreen>/primaryTouch/delta/right",
+                    "path": "<Touchscreen>/touch0/delta/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "TouchscreenAlt",
+                    "id": "5482b396-170e-4a73-ac64-7fae203c19ca",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "1418af5b-1e13-4221-9acc-16b9df824f0d",
+                    "path": "<Touchscreen>/touch1/delta/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "6824bd07-92e4-423c-ac66-dfc558492fc8",
+                    "path": "<Touchscreen>/touch1/delta/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
