@@ -43,7 +43,8 @@ namespace CBH.Core.Audio
         public static void PlaySoundLooped(SoundEffect effect)
         {
             audioHandler.loopedSoundsSource.mute = false;
-            audioHandler.loopedSoundsSource.PlayOneShot(audioHandler.soundsAudioClips[(int) effect]);
+            audioHandler.loopedSoundsSource.clip = audioHandler.soundsAudioClips[(int) effect];
+            audioHandler.loopedSoundsSource.Play();
         }
 
         public static void StopLoopSound()
