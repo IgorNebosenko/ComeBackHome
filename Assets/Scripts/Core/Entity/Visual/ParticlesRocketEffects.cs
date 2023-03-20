@@ -26,7 +26,7 @@ namespace CBH.Core.Core.Entity.Visual
             switch (input.RotationDirection)
             {
                 case 0f:
-                    StopAll();
+                    Stop();
                     break;
                 case > 0f:
                     AddRightEffect();
@@ -39,7 +39,7 @@ namespace CBH.Core.Core.Entity.Visual
             SetBoostEffect(input.EnabledBoost);
         }
 
-        private void StopAll()
+        public void Stop()
         {
             _particlesLeft.Stop();
             _particlesRight.Stop();

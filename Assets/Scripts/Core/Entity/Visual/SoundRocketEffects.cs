@@ -19,5 +19,10 @@ namespace CBH.Core.Core.Entity.Visual
             else
                 AudioHandler.StopLoopSound();
         }
+
+        public void Stop()
+        {
+            AudioHandler.StopLoopSound();
+        }
     }
 }

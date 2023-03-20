@@ -63,6 +63,9 @@ namespace CBH.Core.Entity.Input
             _gameManager.BeforeWin += OnBeforeWin;
             _gameManager.BeforeWin += _finishGameEffect.PlayWin;
             _gameManager.LevelLose += _finishGameEffect.PlayLose;
+
+            _gameManager.BeforeWin += StopAll;
+            _gameManager.LevelLose += StopAll;
         }
 
         private void FixedUpdate()
@@ -87,7 +90,9 @@ namespace CBH.Core.Entity.Input
             _gameManager.BeforeWin -= OnBeforeWin;
             _gameManager.BeforeWin -= _finishGameEffect.PlayWin;
             _gameManager.LevelLose -= _finishGameEffect.PlayLose;
-        }
+            
+            _gameManager.BeforeWin -= StopAll;
+            _gameManager.LevelLose -= StopAll;        }
 
         private void OnBeforeWin()
         {
@@ -106,6 +111,12 @@ namespace CBH.Core.Entity.Input
                 _isInputMade = true;
                 _gameManager.StartFlyProcess();
             }
+        }
+
+        private void StopAll()
+        {
+            foreach (var visualEffect in _entityVisualsList)
+                visualEffect.Stop();
         }
     }
 }

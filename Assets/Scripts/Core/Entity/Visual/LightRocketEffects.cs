@@ -42,5 +42,13 @@ namespace CBH.Core.Core.Entity.Visual
                     break;
             }
         }
+
+        public void Stop()
+        {
+            _boostLight.intensity = 0f;
+            _leftRotationLight.intensity = 0f;
+            _rightRotationLight.intensity = 0f;
+            
+        }
     }
 }

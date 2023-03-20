@@ -5,5 +5,6 @@ namespace CBH.Core.Core.Entity.Visual
     public interface IEntityVisual
     {
         void Simulate(IInput input);
+        void Stop();
     }
 }
