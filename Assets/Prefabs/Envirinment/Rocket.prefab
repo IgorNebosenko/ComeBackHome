@@ -479,7 +479,7 @@ MonoBehaviour:
   rightRotationLight: {fileID: 5156848751990901637}
   physicModel: {fileID: 1392153954}
   trustPower: 5000
-  rotationSensitivity: 100
+  rotationSensitivity: 150
 --- !u!114 &883163345
 MonoBehaviour:
   m_ObjectHideFlags: 0
