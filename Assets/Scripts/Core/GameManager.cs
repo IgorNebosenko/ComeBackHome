@@ -40,9 +40,8 @@ namespace CBH.Core
         public event Action<float> PlatformStay;
         public event Action BeforeWin;
         public event Action PlatformLeave;
-        
-        public event Action LevelWin;
         public event Action LevelLose;
+        public event Action ReturnToMenu;
 
         public event Action<TimeSpan> UpdateFlyTime; 
 
@@ -98,6 +97,12 @@ namespace CBH.Core
             _analyticsManager.SendEvent(new LaunchFromLaunchPadEvent(SceneManager.GetActiveScene().buildIndex, 
                 _gameData.LastCompletedScene, timeDifference));
             Observable.FromCoroutine(UpdateFlyTimeProcess).Subscribe();
+        }
+
+        public void BackToMenu()
+        {
+            ReturnToMenu?.Invoke();
+            Observable.FromCoroutine(ToMenuProcess).Subscribe();
         }
 
         private IEnumerator RestartProcess()
@@ -159,8 +164,7 @@ namespace CBH.Core
                 _analyticsManager.SendEvent(new SuccessfulLandingRocketEvent(SceneManager.GetActiveScene().buildIndex,
                     _gameData.LastCompletedScene,
                     (float) TimeFly.TotalSeconds, _inputData, _attemptsLanding));
-
-                LevelWin?.Invoke();
+                
                 var nextScene = SceneManager.GetActiveScene().buildIndex + 1;
 
                 if (nextScene == SceneManager.sceneCountInBuildSettings)
@@ -186,6 +190,11 @@ namespace CBH.Core
                 TimeFly = TimeFly.Add(TimeSpan.FromSeconds(Time.deltaTime));
                 UpdateFlyTime?.Invoke(TimeFly);
             }
+        }
+        
+        private IEnumerator ToMenuProcess()
+        {
+            yield return SceneManager.LoadSceneAsync(0);
         }
     }
 }

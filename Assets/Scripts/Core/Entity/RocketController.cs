@@ -66,6 +66,7 @@ namespace CBH.Core.Entity.Input
 
             _gameManager.BeforeWin += StopAll;
             _gameManager.LevelLose += StopAll;
+            _gameManager.ReturnToMenu += StopAll;
         }
 
         private void FixedUpdate()
@@ -92,7 +93,9 @@ namespace CBH.Core.Entity.Input
             _gameManager.LevelLose -= _finishGameEffect.PlayLose;
             
             _gameManager.BeforeWin -= StopAll;
-            _gameManager.LevelLose -= StopAll;        }
+            _gameManager.LevelLose -= StopAll;
+            _gameManager.ReturnToMenu -= StopAll;
+        }
 
         private void OnBeforeWin()
         {

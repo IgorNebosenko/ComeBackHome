@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using CBH.Analytics;
 using CBH.Analytics.Events;
 using CBH.Core;
@@ -7,7 +6,6 @@ using CBH.Core.Collision;
 using CBH.Core.Entity.Input;
 using CBH.UI.Game.Views;
 using ElectrumGames.MVP;
-using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -85,12 +83,7 @@ namespace CBH.UI.Game.Presenters
         {
             _analyticsManager.SendEvent(new ToMenuButtonPressedEvent(SceneManager.GetActiveScene().buildIndex, 
                 _gameData.LastCompletedScene, (float)_gameManager.TimeFly.TotalSeconds));
-            Observable.FromCoroutine(ToMenuProcess).Subscribe();
-        }
-
-        private IEnumerator ToMenuProcess()
-        {
-            yield return SceneManager.LoadSceneAsync(0);
+            _gameManager.BackToMenu();
         }
 
         private void OnBeforeRestartLevel(float time)
