@@ -22,7 +22,6 @@ public class GameInstaller : BaseSceneInstaller
         Container.Bind<GameManager>().AsSingle();
         Container.Bind<RocketController>().FromInstance(rocketController);
         Container.Bind<FinishCollisionObject>().FromInstance(landingPad);
-        Container.Bind<Camera>().FromInstance(mainCamera).WhenInjectedInto<GamePresenter>();
 
         Container.Bind<InputSchema>().WhenInjectedInto<RocketController>();
         Container.Bind<InputData>().AsSingle();

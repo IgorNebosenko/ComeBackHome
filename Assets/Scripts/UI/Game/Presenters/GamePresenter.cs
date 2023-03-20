@@ -19,12 +19,8 @@ namespace CBH.UI.Game.Presenters
         private IAnalyticsManager _analyticsManager;
         private RocketController _rocketController;
         private FinishCollisionObject _landingPad;
-        private Camera _mainCamera;
         private GameManager _gameManager;
         private GameData _gameData;
-        
-        private const int CountDirections = 4;
-        private const float ClampModifier = 1.1f;
 
         private const float distanceFullVisibleGPS = 50f;
         private const float distanceInvisibleGPS = 15f;
@@ -34,13 +30,12 @@ namespace CBH.UI.Game.Presenters
         public event Action<string> TimerTextChanged; 
 
         public GamePresenter(GameView view, IAnalyticsManager analyticsManager, RocketController rocketController, 
-            Camera mainCamera, GameManager gameManager, FinishCollisionObject landingPad, GameData gameData) : 
+            GameManager gameManager, FinishCollisionObject landingPad, GameData gameData) : 
                 base(view)
         {
             _analyticsManager = analyticsManager;
             _rocketController = rocketController;
             _landingPad = landingPad;
-            _mainCamera = mainCamera;
             _gameManager = gameManager;
             _gameData = gameData;
         }
