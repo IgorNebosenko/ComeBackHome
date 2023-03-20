@@ -61,7 +61,7 @@ namespace CBH.Core.Entity.Input
             _finishGameEffect = new FinishGameEffect(winEffect, explosionEffect);
 
             _gameManager.BeforeWin += OnBeforeWin;
-            _gameManager.LevelWin += _finishGameEffect.PlayWin;
+            _gameManager.BeforeWin += _finishGameEffect.PlayWin;
             _gameManager.LevelLose += _finishGameEffect.PlayLose;
         }
 
@@ -85,7 +85,7 @@ namespace CBH.Core.Entity.Input
         private void OnDestroy()
         {
             _gameManager.BeforeWin -= OnBeforeWin;
-            _gameManager.LevelWin -= _finishGameEffect.PlayWin;
+            _gameManager.BeforeWin -= _finishGameEffect.PlayWin;
             _gameManager.LevelLose -= _finishGameEffect.PlayLose;
         }
 
