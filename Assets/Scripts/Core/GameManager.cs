@@ -159,6 +159,9 @@ namespace CBH.Core
                 _analyticsManager.SendEvent(new LoadNextGameLevelEvent(SceneManager.GetActiveScene().buildIndex,
                     _gameData.LastCompletedScene, _adsData.timeFlyFromLastAd, _adsData.countRestartsFromLastAd));
                 BeforeWin?.Invoke();
+                
+                _adsData.timeFlyFromLastAd += (float)TimeFly.TotalSeconds;
+                
                 yield return new WaitForSeconds(BeforeWinDuration);
                 
                 _analyticsManager.SendEvent(new SuccessfulLandingRocketEvent(SceneManager.GetActiveScene().buildIndex,
