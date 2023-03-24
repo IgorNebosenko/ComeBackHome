@@ -10,16 +10,20 @@ namespace CBH.Core.Audio
         [SerializeField] private AudioSource loopedSoundsSource;
 
         [SerializeField] private AudioClip[] soundsAudioClips;
+        [SerializeField] private AudioClip[] musicAudioClips;
 
         private const int DelayForFixAudioMixerInit = 1000;
 
         private AudioManager _audioManager;
+
+        private MusicClip _currentMusicClip;
 
         private static AudioHandler audioHandler;
         
         private void Awake()
         {
             audioHandler = this;
+            _currentMusicClip = MusicClip.MainTheme;
         }
 
         [Inject]
@@ -50,6 +54,16 @@ namespace CBH.Core.Audio
         public static void StopLoopSound()
         {
             audioHandler.loopedSoundsSource.mute = true;
+        }
+
+        public static void PlayMusicClip(MusicClip clip)
+        {
+            if (audioHandler._currentMusicClip == clip)
+                return;
+
+            audioHandler._currentMusicClip = clip;
+            audioHandler.musicSource.clip = audioHandler.musicAudioClips[(int) clip];
+            audioHandler.musicSource.Play();
         }
     }
 }
