@@ -182,6 +182,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cefd2d92aa91c0d41b32af57bb8fb278, type: 3}
   - {fileID: 8300000, guid: 9ac07d0bc45a57c4b90d7284b1cc167a, type: 3}
   - {fileID: 8300000, guid: e47e4d86e92570b409cf71b1a6dcdd04, type: 3}
+  musicAudioClips:
+  - {fileID: 8300000, guid: ad403fe5cb1141c4db962f01954ad170, type: 3}
 --- !u!1 &5607379141726045722
 GameObject:
   m_ObjectHideFlags: 0
