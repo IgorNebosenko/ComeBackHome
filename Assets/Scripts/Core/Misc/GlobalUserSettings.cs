@@ -4,12 +4,12 @@ namespace CBH.Core.Core.Misc
 {
     public class GlobalUserSettings
     {
-        private const string IsLeftPositionBoostButtonKey = "IsLeftPositionBoostButton";
+        private const string IsRightPositionBoostButtonKey = "IsRightPositionBoostButton";
 
-        public bool IsLeftPositionBoost
+        public bool IsRightPositionBoost
         {
-            get => PlayerPrefs.GetInt(IsLeftPositionBoostButtonKey, 0) != 0;
-            set => PlayerPrefs.SetInt(IsLeftPositionBoostButtonKey, value ? 1 : 0);
+            get => PlayerPrefs.GetInt(IsRightPositionBoostButtonKey, 0) != 0;
+            set => PlayerPrefs.SetInt(IsRightPositionBoostButtonKey, value ? 1 : 0);
         }
     }
 }

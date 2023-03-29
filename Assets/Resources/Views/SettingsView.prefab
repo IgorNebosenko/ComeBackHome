@@ -58,9 +58,9 @@ MonoBehaviour:
   enableMusic: {fileID: 6408843651144363856}
   enableSounds: {fileID: 6243448418907455030}
   fpsSlider: {fileID: 4565551541694751564}
+  fpsText: {fileID: 767948377203722749}
   leftButtonBoostToggle: {fileID: 1706174395077888309}
   buttonExit: {fileID: 8771268807228612186}
-  fpsText: {fileID: 767948377203722749}
 --- !u!1 &235349761046211619
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,9 +922,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Music
-
-'
+  m_text: Boost buton at right
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9da84dc41cb47b44caabada3e0e17907, type: 2}
   m_sharedMaterial: {fileID: -3151201376398331799, guid: 9da84dc41cb47b44caabada3e0e17907, type: 2}

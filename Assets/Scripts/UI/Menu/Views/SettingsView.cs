@@ -31,6 +31,10 @@ namespace CBH.UI.Menu.Views
             enableMusic.onValueChanged.AddListener(Presenter.OnMusicStateChanged);
             enableSounds.onValueChanged.AddListener(Presenter.OnSoundsStateChanged);
             fpsSlider.onValueChanged.AddListener((value) => Presenter.OnSliderValueChanged(value, SetFpsText));
+            
+            leftButtonBoostToggle.onValueChanged.AddListener(Presenter.OnChangeBoostPositionClicked);
+            leftButtonBoostToggle.isOn = Presenter.IsRightPositionBoost;
+            
             buttonExit.onClick.AddListener(Presenter.OnButtonExitPressed);
         }
 
@@ -38,6 +42,7 @@ namespace CBH.UI.Menu.Views
         {
             enableMusic.onValueChanged.RemoveListener(Presenter.OnMusicStateChanged);
             enableSounds.onValueChanged.RemoveListener(Presenter.OnSoundsStateChanged);
+            leftButtonBoostToggle.onValueChanged.RemoveListener(Presenter.OnChangeBoostPositionClicked);
             fpsSlider.onValueChanged.RemoveListener((value) => Presenter.OnSliderValueChanged(value, SetFpsText));
             buttonExit.onClick.RemoveListener(Presenter.OnButtonExitPressed);
         }
