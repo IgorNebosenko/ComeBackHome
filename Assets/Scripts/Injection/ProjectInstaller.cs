@@ -3,6 +3,7 @@ using CBH.Analytics;
 using CBH.Core;
 using CBH.Core.Audio;
 using CBH.Core.Configs;
+using CBH.Core.Core.Misc;
 using CBH.Core.IAP;
 using CBH.Core.Misc;
 using UnityEngine;
@@ -26,6 +27,7 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
         Container.Bind<AdsData>().AsSingle();
 
         Container.Bind<TutorialHandler>().AsSingle();
+        Container.Bind<GlobalUserSettings>().AsSingle();
 
 #if UNITY_EDITOR
         Container.Bind<IAdsProvider>().To<EditorAdsProvider>().AsSingle();
