@@ -504,6 +504,97 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &7215654801905864814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7842031186221106426}
+  - component: {fileID: 6439816435601676808}
+  - component: {fileID: 8734533553003301237}
+  - component: {fileID: 475269457253021452}
+  m_Layer: 5
+  m_Name: BoostButtonRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7842031186221106426
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215654801905864814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9087443849992122834}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -232.2444, y: 232.24438}
+  m_SizeDelta: {x: 256.48877, y: 256.4888}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6439816435601676808
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215654801905864814}
+  m_CullTransparentMesh: 1
+--- !u!114 &8734533553003301237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215654801905864814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e1f6a6b626aecb84da5b3d1f977a5092, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &475269457253021452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215654801905864814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df6f0284509485cae8d34aef71f044f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonImage: {fileID: 8734533553003301237}
+  controlPath: <Keyboard>/space
 --- !u!1 &8853030911915304679
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +608,7 @@ GameObject:
   - component: {fileID: 1444032491293425158}
   - component: {fileID: 1660869916530005745}
   m_Layer: 5
-  m_Name: BoostButton
+  m_Name: BoostButtonLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -541,7 +632,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 232.24438, y: 232.24438}
-  m_SizeDelta: {x: 256.4888, y: 256.4888}
+  m_SizeDelta: {x: 256.48877, y: 256.4888}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8985694896322538505
 CanvasRenderer:
@@ -628,6 +719,7 @@ RectTransform:
   - {fileID: 2994362190610277588}
   - {fileID: 5277963183682766515}
   - {fileID: 7084917556400815157}
+  - {fileID: 7842031186221106426}
   - {fileID: 2543983716065025333}
   m_Father: {fileID: 0}
   m_RootOrder: -1
@@ -654,3 +746,5 @@ MonoBehaviour:
   arrowImage: {fileID: 688731273801510827}
   pivotArrow: {fileID: 2543983716065025333}
   buttonToMenu: {fileID: 9164826700169339554}
+  leftBoostButton: {fileID: 8853030911915304679}
+  rightBoostButton: {fileID: 7215654801905864814}

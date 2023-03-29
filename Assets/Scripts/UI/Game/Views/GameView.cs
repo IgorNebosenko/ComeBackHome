@@ -14,12 +14,18 @@ namespace CBH.UI.Game.Views
         [SerializeField] private Image arrowImage;
         [SerializeField] private RectTransform pivotArrow;
         [SerializeField] private Button buttonToMenu;
+        [Space] 
+        [SerializeField] private GameObject leftBoostButton;
+        [SerializeField] private GameObject rightBoostButton;
 
         private void Start()
         {
             Presenter.HeaderTextChanged += SetHeaderText;
             Presenter.TimerTextChanged += SetTimerText;
             buttonToMenu.onClick.AddListener(Presenter.OnToMenuClicked);
+            
+            leftBoostButton.SetActive(!Presenter.IsRightPositionBoost);
+            rightBoostButton.SetActive(Presenter.IsRightPositionBoost);
             
             UpdateGps();
         }
