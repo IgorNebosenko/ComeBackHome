@@ -11,10 +11,13 @@ namespace CBH.UI.Menu.Views
     {
         [SerializeField] private Toggle enableMusic;
         [SerializeField] private Toggle enableSounds;
+        [Space]
         [SerializeField] private Slider fpsSlider;
+        [SerializeField] private TMP_Text fpsText;
+        [Space] 
+        [SerializeField] private Toggle leftButtonBoostToggle;
+        [Space]
         [SerializeField] private Button buttonExit;
-        
-        public TMP_Text fpsText;
 
         private void Start()
         {
@@ -27,7 +30,11 @@ namespace CBH.UI.Menu.Views
             
             enableMusic.onValueChanged.AddListener(Presenter.OnMusicStateChanged);
             enableSounds.onValueChanged.AddListener(Presenter.OnSoundsStateChanged);
-            fpsSlider.onValueChanged.AddListener(Presenter.OnSliderValueChanged);
+            fpsSlider.onValueChanged.AddListener((value) => Presenter.OnSliderValueChanged(value, SetFpsText));
+            
+            leftButtonBoostToggle.onValueChanged.AddListener(Presenter.OnChangeBoostPositionClicked);
+            leftButtonBoostToggle.isOn = Presenter.IsRightPositionBoost;
+            
             buttonExit.onClick.AddListener(Presenter.OnButtonExitPressed);
         }
 
@@ -35,8 +42,14 @@ namespace CBH.UI.Menu.Views
         {
             enableMusic.onValueChanged.RemoveListener(Presenter.OnMusicStateChanged);
             enableSounds.onValueChanged.RemoveListener(Presenter.OnSoundsStateChanged);
-            fpsSlider.onValueChanged.RemoveListener(Presenter.OnSliderValueChanged);
+            leftButtonBoostToggle.onValueChanged.RemoveListener(Presenter.OnChangeBoostPositionClicked);
+            fpsSlider.onValueChanged.RemoveListener((value) => Presenter.OnSliderValueChanged(value, SetFpsText));
             buttonExit.onClick.RemoveListener(Presenter.OnButtonExitPressed);
+        }
+
+        private void SetFpsText(string text)
+        {
+            fpsText.text = text;
         }
     }
 }

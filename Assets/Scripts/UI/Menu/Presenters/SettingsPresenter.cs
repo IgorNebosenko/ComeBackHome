@@ -1,8 +1,10 @@
-﻿using CBH.Analytics;
+﻿using System;
+using CBH.Analytics;
 using CBH.Analytics.Events;
 using CBH.Core;
 using CBH.Core.Audio;
 using CBH.Core.Configs;
+using CBH.Core.Core.Misc;
 using CBH.UI.Menu.Views;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Managers;
@@ -14,19 +16,22 @@ namespace CBH.UI.Menu.Presenters
         private FpsConfig _fpsConfig;
         private GameData _gameData;
         private AudioManager _audioManager;
+        private GlobalUserSettings _globalUserSettings;
         private ViewManager _viewManager;
 
         private IAnalyticsManager _analyticsManager;
         
-        public SettingsInitData InitData { get; private set; }
+        public SettingsInitData InitData { get; }
+        public bool IsRightPositionBoost => _globalUserSettings.IsRightPositionBoost;
         
         public SettingsPresenter(SettingsView view, FpsConfig fpsConfig, AudioManager audioManager, 
-            GameData gameData, IAnalyticsManager analyticsManager, ViewManager viewManager) :
-            base(view)
+            GameData gameData, GlobalUserSettings globalUserSettings, IAnalyticsManager analyticsManager, 
+            ViewManager viewManager) : base(view)
         {
             _fpsConfig = fpsConfig;
             _gameData = gameData;
             _audioManager = audioManager;
+            _globalUserSettings = globalUserSettings;
             _viewManager = viewManager;
             _analyticsManager = analyticsManager;
 
@@ -56,14 +61,20 @@ namespace CBH.UI.Menu.Presenters
             _analyticsManager.SendEvent(new ChangeEnableSoundsEvent(state));
         }
 
-        public void OnSliderValueChanged(float index)
+        public void OnSliderValueChanged(float index, Action<string> onComplete)
         {
             var fpsData = _fpsConfig.config[(int)index];
             
             _gameData.UpdateTargetFps(fpsData.fps);
             _analyticsManager.SendEvent(new ChangeTargetFpsEvent(fpsData.fps));
             
-            View.fpsText.text = fpsData.name;
+            onComplete?.Invoke(fpsData.name);
+        }
+
+        public void OnChangeBoostPositionClicked(bool state)
+        {
+            _globalUserSettings.IsRightPositionBoost = state;
+            _analyticsManager.SendEvent(new ChangeBoostPositionEvent(state));
         }
 
         public void OnButtonExitPressed()

@@ -3,6 +3,7 @@ using CBH.Analytics;
 using CBH.Analytics.Events;
 using CBH.Core;
 using CBH.Core.Collision;
+using CBH.Core.Core.Misc;
 using CBH.Core.Entity.Input;
 using CBH.UI.Game.Views;
 using ElectrumGames.MVP;
@@ -19,16 +20,19 @@ namespace CBH.UI.Game.Presenters
         private FinishCollisionObject _landingPad;
         private GameManager _gameManager;
         private GameData _gameData;
+        private GlobalUserSettings _globalUserSettings;
 
         private const float distanceFullVisibleGPS = 50f;
         private const float distanceInvisibleGPS = 15f;
         private const float distanceDifferenceVisibility = distanceFullVisibleGPS - distanceInvisibleGPS;
 
         public event Action<string> HeaderTextChanged;
-        public event Action<string> TimerTextChanged; 
+        public event Action<string> TimerTextChanged;
 
-        public GamePresenter(GameView view, IAnalyticsManager analyticsManager, RocketController rocketController, 
-            GameManager gameManager, FinishCollisionObject landingPad, GameData gameData) : 
+        public bool IsRightPositionBoost => _globalUserSettings.IsRightPositionBoost;
+
+        public GamePresenter(IAnalyticsManager analyticsManager, RocketController rocketController, GameManager gameManager,
+            FinishCollisionObject landingPad, GameData gameData, GlobalUserSettings globalUserSettings, GameView view) : 
                 base(view)
         {
             _analyticsManager = analyticsManager;
@@ -36,6 +40,7 @@ namespace CBH.UI.Game.Presenters
             _landingPad = landingPad;
             _gameManager = gameManager;
             _gameData = gameData;
+            _globalUserSettings = globalUserSettings;
         }
 
         protected override void Init()
