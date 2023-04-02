@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb77073f396f49f9b68b244c46b80e2a, type: 3}
   m_Name: AdsConfig
   m_EditorClassIdentifier: 
-  timeFlyBetweenAds: 60
-  countRestartsBetweenAds: 5
+  timeFlyBetweenAds: 30
+  countRestartsBetweenAds: 3
