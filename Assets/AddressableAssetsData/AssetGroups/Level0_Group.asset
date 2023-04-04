@@ -24,13 +24,13 @@ MonoBehaviour:
     - levels
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 040bdc624ead3a84a82c5f68285ba98b
-    m_Address: Level_0001
+    m_Address: Level_0002
     m_ReadOnly: 0
     m_SerializedLabels:
     - levels
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b1ccd673193c1f44d9426716e091f6c3
-    m_Address: Level_0002
+    m_Address: Level_0001
     m_ReadOnly: 0
     m_SerializedLabels:
     - levels
