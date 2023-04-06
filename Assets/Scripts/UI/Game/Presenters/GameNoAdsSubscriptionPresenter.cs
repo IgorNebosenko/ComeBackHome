@@ -8,16 +8,23 @@ using CBH.UI.Game.Views;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Utils;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CBH.UI.Game.Presenters
 {
-    public class GameNoAdsSubscriptionPresenter : PopupPresenterCoroutine<GameNoAdsSubscriptionPopup, PopupArgs, PopupResult>
+    public class GameNoAdsPopupArgs : PopupArgs
+    {
+        public float chanceToBeShown;
+    }
+
+    public class GameNoAdsSubscriptionPresenter : PopupPresenterCoroutine<GameNoAdsSubscriptionPopup, GameNoAdsPopupArgs, PopupResult>
     {
         private IAnalyticsManager _analyticsManager;
         private IStorePurchaseController _storePurchaseController;
         private GameData _gameData;
 
         private float _startShowingTime;
+        private GameNoAdsPopupArgs _args;
 
         public event Action<bool> SubscriptionStatusChanged;
 
@@ -35,15 +42,17 @@ namespace CBH.UI.Game.Presenters
             _startShowingTime = Time.realtimeSinceStartup;
         }
 
-        public override IEnumerable<PopupResult> Init(PopupArgs args)
+        public override IEnumerable<PopupResult> Init(GameNoAdsPopupArgs args)
         {
-            throw new System.NotImplementedException();
+            _args = args;
+            yield return null;
         }
 
         public void OnButtonBuyPressed()
         {
             var result = _storePurchaseController.TryPurchaseSubscription();
-            _analyticsManager.SendEvent(new ResultBuyNoAdsEvent(_gameData.LastCompletedScene, result));
+            _analyticsManager.SendEvent(new GameResultBuyNoAdsEvent(SceneManager.GetActiveScene().buildIndex, 
+                _args.chanceToBeShown, _gameData.LastCompletedScene, result));
             SubscriptionStatusChanged?.Invoke(result);
         }
 
@@ -51,7 +60,8 @@ namespace CBH.UI.Game.Presenters
         {
             var timeShowingPopup = Time.realtimeSinceStartup - _startShowingTime;
 
-            _analyticsManager.SendEvent(new NoAdsShowResultEvent(_gameData.LastCompletedScene,
+            _analyticsManager.SendEvent(new GameNoAdsShowResultEvent(SceneManager.GetActiveScene().buildIndex, 
+                _args.chanceToBeShown, _gameData.LastCompletedScene, 
                 !_storePurchaseController.HasNoAdsSubscription, timeShowingPopup));
 
             Close();
@@ -59,7 +69,8 @@ namespace CBH.UI.Game.Presenters
 
         public void SendEventShowPopup()
         {
-            _analyticsManager.SendEvent(new ShowNoAdsPopupEvent(_gameData.LastCompletedScene));
+            _analyticsManager.SendEvent(new ShowGameNoAdsPopupEvent(SceneManager.GetActiveScene().buildIndex, 
+                _args.chanceToBeShown, _gameData.LastCompletedScene));
         }
     }
 }
