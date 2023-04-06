@@ -16,55 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 08fe285e1c1343a49b6a8b82a3d94c0f
-  m_SerializeEntries:
-  - m_GUID: 3dc37e13bd1e37046825dac300b0cd04
-    m_Address: Level_0008
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - levels
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: be7b66b18a829d5409ff3bfd6933f752
-    m_Address: Level_0004
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - levels
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e89d9183fb892e442bcf8809f69687aa
-    m_Address: Level_0006
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - levels
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0ccee0930d8e78941b1a2a5629efef58
-    m_Address: Level_0009
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - levels
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8181f654cec51ce4ea9414dee3165d6e
-    m_Address: Level_0005
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - levels
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1575475af4c0db24682d0adf803deed1
-    m_Address: Level_0007
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - levels
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b806c8a2aa4d1e441b140a09d042b575
-    m_Address: Level_0011
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - levels
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bb637b42cf36d7d4da26c2cb68d2e466
-    m_Address: Level_0010
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - levels
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d5d5a468d87501949a426cea358bf853, type: 2}
   m_SchemaSet:

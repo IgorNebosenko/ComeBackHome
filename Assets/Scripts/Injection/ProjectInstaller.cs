@@ -30,6 +30,7 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
         Container.Bind<TutorialHandler>().AsSingle();
         Container.Bind<GlobalUserSettings>().AsSingle();
 
+        levelsConfig.Init();
         Container.BindInstance(levelsConfig).AsSingle();
 
 #if UNITY_EDITOR
