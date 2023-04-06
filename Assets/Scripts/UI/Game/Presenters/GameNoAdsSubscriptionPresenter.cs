@@ -4,14 +4,14 @@ using CBH.Analytics;
 using CBH.Analytics.Events;
 using CBH.Core;
 using CBH.Core.IAP;
-using CBH.UI.Menu.Views;
+using CBH.UI.Game.Views;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Utils;
 using UnityEngine;
 
-namespace CBH.UI.Menu.Presenters
+namespace CBH.UI.Game.Presenters
 {
-    public class NoAdsSubscriptionPresenter : PopupPresenterCoroutine<NoAdsSubscriptionPopup, PopupArgs, PopupResult>
+    public class GameNoAdsSubscriptionPresenter : PopupPresenterCoroutine<GameNoAdsSubscriptionPopup, PopupArgs, PopupResult>
     {
         private IAnalyticsManager _analyticsManager;
         private IStorePurchaseController _storePurchaseController;
@@ -23,8 +23,9 @@ namespace CBH.UI.Menu.Presenters
 
         public string CostLocalized => _storePurchaseController.GetNoAdsSubscriptionCost();
         public bool HasNoAds => _storePurchaseController.HasNoAdsSubscription;
-        
-        public NoAdsSubscriptionPresenter(NoAdsSubscriptionPopup view, IAnalyticsManager analyticsManager, IStorePurchaseController storePurchaseController,
+
+        public GameNoAdsSubscriptionPresenter(GameNoAdsSubscriptionPopup view, IAnalyticsManager analyticsManager,
+            IStorePurchaseController storePurchaseController,
             GameData gameData) : base(view)
         {
             _analyticsManager = analyticsManager;
@@ -50,8 +51,9 @@ namespace CBH.UI.Menu.Presenters
         {
             var timeShowingPopup = Time.realtimeSinceStartup - _startShowingTime;
 
-            _analyticsManager.SendEvent(new NoAdsShowResultEvent(_gameData.LastCompletedScene, !_storePurchaseController.HasNoAdsSubscription, timeShowingPopup));
-            
+            _analyticsManager.SendEvent(new NoAdsShowResultEvent(_gameData.LastCompletedScene,
+                !_storePurchaseController.HasNoAdsSubscription, timeShowingPopup));
+
             Close();
         }
 
