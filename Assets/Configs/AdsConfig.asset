@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeFlyBetweenAds: 30
   countRestartsBetweenAds: 3
+  chanceNoAdsPopup: 0.15
