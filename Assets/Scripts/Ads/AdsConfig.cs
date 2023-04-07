@@ -7,5 +7,6 @@ namespace CBH.Ads
     {
         public float timeFlyBetweenAds = 60f;
         public int countRestartsBetweenAds = 5;
+        [Range(0f, 1f)] public float chanceNoAdsPopup = 0.15f;
     }
 }

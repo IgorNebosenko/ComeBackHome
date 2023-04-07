@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CBH.Ads;
 using CBH.Analytics;
 using CBH.Analytics.Events;
 using CBH.Core;
@@ -17,7 +16,6 @@ namespace CBH.UI.Menu.Presenters
         private IAnalyticsManager _analyticsManager;
         private IStorePurchaseController _storePurchaseController;
         private GameData _gameData;
-        private AdsData _adsData;
 
         private float _startShowingTime;
 
@@ -27,12 +25,11 @@ namespace CBH.UI.Menu.Presenters
         public bool HasNoAds => _storePurchaseController.HasNoAdsSubscription;
         
         public NoAdsSubscriptionPresenter(NoAdsSubscriptionPopup view, IAnalyticsManager analyticsManager, IStorePurchaseController storePurchaseController,
-            GameData gameData, AdsData adsData) : base(view)
+            GameData gameData) : base(view)
         {
             _analyticsManager = analyticsManager;
             _storePurchaseController = storePurchaseController;
             _gameData = gameData;
-            _adsData = adsData;
 
             _startShowingTime = Time.realtimeSinceStartup;
         }

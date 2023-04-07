@@ -7,6 +7,7 @@ using CBH.Core.Core.Misc;
 using CBH.Core.Entity.Input;
 using CBH.UI.Game.Views;
 using ElectrumGames.MVP;
+using ElectrumGames.MVP.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -21,6 +22,7 @@ namespace CBH.UI.Game.Presenters
         private GameManager _gameManager;
         private GameData _gameData;
         private GlobalUserSettings _globalUserSettings;
+        private PopupManager _popupManager;
 
         private const float distanceFullVisibleGPS = 50f;
         private const float distanceInvisibleGPS = 15f;
@@ -32,8 +34,8 @@ namespace CBH.UI.Game.Presenters
         public bool IsRightPositionBoost => _globalUserSettings.IsRightPositionBoost;
 
         public GamePresenter(IAnalyticsManager analyticsManager, RocketController rocketController, GameManager gameManager,
-            FinishCollisionObject landingPad, GameData gameData, GlobalUserSettings globalUserSettings, GameView view) : 
-                base(view)
+            FinishCollisionObject landingPad, GameData gameData, GlobalUserSettings globalUserSettings, PopupManager popupManager, 
+            GameView view) : base(view)
         {
             _analyticsManager = analyticsManager;
             _rocketController = rocketController;
@@ -41,6 +43,7 @@ namespace CBH.UI.Game.Presenters
             _gameManager = gameManager;
             _gameData = gameData;
             _globalUserSettings = globalUserSettings;
+            _popupManager = popupManager;
         }
 
         protected override void Init()
@@ -50,6 +53,7 @@ namespace CBH.UI.Game.Presenters
             _gameManager.PlatformLeave += OnLeavePlatform;
             _gameManager.BeforeWin += OnBeforeWin;
             _gameManager.UpdateFlyTime += OnUpdateFlyTimer;
+            _gameManager.ShowNoAdsPopup += OnShowNoAdsPopup;
         }
 
         protected override void Closing()
@@ -59,6 +63,7 @@ namespace CBH.UI.Game.Presenters
             _gameManager.PlatformLeave -= OnLeavePlatform;
             _gameManager.BeforeWin -= OnBeforeWin;
             _gameManager.UpdateFlyTime -= OnUpdateFlyTimer;
+            _gameManager.ShowNoAdsPopup -= OnShowNoAdsPopup;
         }
 
         public void UpdateGps(Image arrowImage, RectTransform pivotTransform)
@@ -127,6 +132,12 @@ namespace CBH.UI.Game.Presenters
                 TimerTextChanged?.Invoke("More than 1 hour!");
             else
                 TimerTextChanged?.Invoke($"{time.Minutes:00}:{time.Seconds:00}:{time.Milliseconds / 10:00}");
+        }
+
+        private void OnShowNoAdsPopup(float chanceToShow)
+        {
+            var popup = _popupManager.ShowPopup<GameNoAdsSubscriptionPresenter>();
+            popup.SetArgs(new GameNoAdsPopupArgs(chanceToShow));
         }
     }
 }
