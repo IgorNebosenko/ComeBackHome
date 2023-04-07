@@ -21,8 +21,6 @@ namespace CBH.UI.Game.Views
 
         private void Start()
         {
-            Presenter.SendEventShowPopup();
-            
             buttonBuy.onClick.AddListener(Presenter.OnButtonBuyPressed);
             buttonBuy.onClick.AddListener(SwapToPendingButton);
             buttonClose.onClick.AddListener(Presenter.OnButtonClosePressed);

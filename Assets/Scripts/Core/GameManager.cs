@@ -9,6 +9,7 @@ using CBH.Core.IAP;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace CBH.Core
 {
@@ -42,14 +43,18 @@ namespace CBH.Core
         public event Action PlatformLeave;
         public event Action LevelLose;
         public event Action ReturnToMenu;
+        
+        public event Action<float> ShowNoAdsPopup;
 
         public event Action<TimeSpan> UpdateFlyTime; 
 
         public RocketState CurrentState { get; private set; }
         public TimeSpan TimeFly { get; private set; } = TimeSpan.Zero;
+        
+        public bool IsInterruptedForPopup { get; set; }
 
-        public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig, InputData inputData, IAdsProvider adsProvider, 
-            IStorePurchaseController storePurchaseController, IAnalyticsManager analyticsManager)
+        public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig, InputData inputData,
+            IAdsProvider adsProvider, IStorePurchaseController storePurchaseController, IAnalyticsManager analyticsManager)
         {
             _gameData = gameData;
             _adsData = adsData;
@@ -128,7 +133,20 @@ namespace CBH.Core
                     _adsData.timeFlyFromLastAd >= _adsConfig.timeFlyBetweenAds)
                 {
                     isNeedAd = true;
-                    _adsProvider.ShowInterstitial();
+
+                    var randomPercent = Random.Range(0f, 1f);
+                    if (randomPercent <= _adsConfig.chanceNoAdsPopup)
+                    {
+                        ShowNoAdsPopup?.Invoke(randomPercent);
+                        IsInterruptedForPopup = true;
+                        while (IsInterruptedForPopup)
+                        {
+                            yield return new WaitForEndOfFrame();
+                        }
+                    }
+                    else
+                        _adsProvider.ShowInterstitial();
+                    
                     _adsData.Reset();
                 }
             }

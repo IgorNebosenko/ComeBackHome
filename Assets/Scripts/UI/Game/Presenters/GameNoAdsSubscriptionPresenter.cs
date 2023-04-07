@@ -15,6 +15,11 @@ namespace CBH.UI.Game.Presenters
     public class GameNoAdsPopupArgs : PopupArgs
     {
         public float chanceToBeShown;
+
+        public GameNoAdsPopupArgs(float chanceToBeShown)
+        {
+            this.chanceToBeShown = chanceToBeShown;
+        }
     }
 
     public class GameNoAdsSubscriptionPresenter : PopupPresenterCoroutine<GameNoAdsSubscriptionPopup, GameNoAdsPopupArgs, PopupResult>
@@ -25,27 +30,41 @@ namespace CBH.UI.Game.Presenters
 
         private float _startShowingTime;
         private GameNoAdsPopupArgs _args;
+        private GameManager _gameManager;
 
         public event Action<bool> SubscriptionStatusChanged;
 
         public string CostLocalized => _storePurchaseController.GetNoAdsSubscriptionCost();
         public bool HasNoAds => _storePurchaseController.HasNoAdsSubscription;
 
-        public GameNoAdsSubscriptionPresenter(GameNoAdsSubscriptionPopup view, IAnalyticsManager analyticsManager,
-            IStorePurchaseController storePurchaseController,
+        public GameNoAdsSubscriptionPresenter(GameNoAdsSubscriptionPopup view, GameManager gameManager,
+            IAnalyticsManager analyticsManager, IStorePurchaseController storePurchaseController,
             GameData gameData) : base(view)
         {
             _analyticsManager = analyticsManager;
             _storePurchaseController = storePurchaseController;
             _gameData = gameData;
+            _gameManager = gameManager;
 
             _startShowingTime = Time.realtimeSinceStartup;
         }
 
         public override IEnumerable<PopupResult> Init(GameNoAdsPopupArgs args)
         {
+            throw new NotImplementedException();
+        }
+
+        protected override void Closing()
+        {
+            _gameManager.IsInterruptedForPopup = false;
+        }
+
+        public void SetArgs(GameNoAdsPopupArgs args)
+        {
             _args = args;
-            yield return null;
+            
+            _analyticsManager.SendEvent(new ShowGameNoAdsPopupEvent(SceneManager.GetActiveScene().buildIndex, 
+                _args.chanceToBeShown, _gameData.LastCompletedScene));
         }
 
         public void OnButtonBuyPressed()
@@ -65,12 +84,6 @@ namespace CBH.UI.Game.Presenters
                 !_storePurchaseController.HasNoAdsSubscription, timeShowingPopup));
 
             Close();
-        }
-
-        public void SendEventShowPopup()
-        {
-            _analyticsManager.SendEvent(new ShowGameNoAdsPopupEvent(SceneManager.GetActiveScene().buildIndex, 
-                _args.chanceToBeShown, _gameData.LastCompletedScene));
         }
     }
 }
