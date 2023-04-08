@@ -11,7 +11,6 @@ public class GameInstaller : BaseSceneInstaller
 {
     [SerializeField] private RocketController rocketController;
     [SerializeField] private FinishCollisionObject landingPad;
-    [SerializeField] private Camera mainCamera;
 
     protected override Assembly UiAssembly => typeof(GameAssemblyPlaceholder).Assembly;
 
