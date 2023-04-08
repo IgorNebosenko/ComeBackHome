@@ -3,6 +3,7 @@ using CBH.Analytics;
 using CBH.Core;
 using CBH.Core.Audio;
 using CBH.Core.Configs;
+using CBH.Core.Configs.Levels;
 using CBH.Core.Core.Misc;
 using CBH.Core.IAP;
 using CBH.Core.Misc;
@@ -16,6 +17,7 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
     [SerializeField] private AudioMixer audioMixer;
     
     [SerializeField] private AdsConfig adsConfig;
+    [SerializeField] private LevelsConfig levelsConfig;
     
     public override void InstallBindings()
     {
@@ -28,6 +30,8 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
 
         Container.Bind<TutorialHandler>().AsSingle();
         Container.Bind<GlobalUserSettings>().AsSingle();
+
+        Container.BindInstance(levelsConfig).AsSingle();
 
 #if UNITY_EDITOR
         Container.Bind<IAdsProvider>().To<EditorAdsProvider>().AsSingle();

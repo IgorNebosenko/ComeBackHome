@@ -78,6 +78,7 @@ MonoBehaviour:
   fpsConfig: {fileID: 11400000, guid: efc7039fdcb1e294c9604fe302f5ff24, type: 2}
   audioMixer: {fileID: 24100000, guid: 21edf37edfb20ce4ab266b326ab6d14f, type: 2}
   adsConfig: {fileID: 11400000, guid: 3fda3390265414c4b8bfb31a7a3d3aa8, type: 2}
+  levelsConfig: {fileID: 11400000, guid: 9dd21d9008a250348b70adf7116773f8, type: 2}
 --- !u!1001 &2016385645321888558
 PrefabInstance:
   m_ObjectHideFlags: 0
