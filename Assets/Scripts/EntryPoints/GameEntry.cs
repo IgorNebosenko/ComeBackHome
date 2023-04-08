@@ -1,4 +1,5 @@
 ﻿using CBH.Core.Audio;
+using CBH.Core.Configs.Levels;
 using CBH.UI.Game.Presenters;
 using ElectrumGames.MVP.Managers;
 using UnityEngine;
@@ -8,9 +9,11 @@ namespace CBH.EntryPoints
 {
     public class GameEntry : MonoBehaviour
     {
-        [SerializeField] private MusicClip musicClip = MusicClip.MainTheme;
-        [SerializeField] private Vector3 gameGravity = Vector3.down * 40;
-        
+        [SerializeField] private Transform visualParent;
+        [SerializeField] private Transform launchPadTransform;
+        [SerializeField] private Transform landingPadTransform;
+        [SerializeField] private Transform rocketTransform;
+
         private ViewManager _viewManager;
         
         [Inject]
@@ -19,11 +22,19 @@ namespace CBH.EntryPoints
             _viewManager = viewManager;
         }
 
+        public void Init(LevelDataConfig config)
+        {
+            Instantiate(config.visual, visualParent);
+            landingPadTransform.position = config.landingPadPosition;
+            launchPadTransform.position = config.launchPadPosition;
+            rocketTransform.position = config.rocketPosition;
+            
+            AudioHandler.PlayMusicClip(config.musicClip);
+            Physics.gravity = config.gameGravity;
+        }
+
         private void Start()
         {
-            AudioHandler.PlayMusicClip(musicClip);
-            Physics.gravity = gameGravity;
-            
             _viewManager.ShowView<GamePresenter>();
         }
     }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace CBH.Core.Configs.Levels
 {
@@ -8,5 +9,30 @@ namespace CBH.Core.Configs.Levels
         public LevelGroupConfig tutorialGroup;
 
         [SerializeField] private LevelGroupConfig[] levelGroupConfigs;
+
+        private List<LevelDataPair> _levelDataPairs;
+
+        public int CountGameLevels => _levelDataPairs.Count;
+
+        public LevelsConfig()
+        {
+            _levelDataPairs = new List<LevelDataPair>();
+
+            foreach (var levelGroupConfig in levelGroupConfigs)
+            {
+                foreach (var levelData in levelGroupConfig.levelsConfig)
+                {
+                    _levelDataPairs.Add(new LevelDataPair(levelGroupConfig.buildIndex, levelData));
+                }
+            }
+        }
+
+        public LevelDataPair GetLevelByIndex(int index)
+        {
+            if (index < 0 || index >= _levelDataPairs.Count)
+                return null;
+
+            return _levelDataPairs[index];
+        }
     }
 }
