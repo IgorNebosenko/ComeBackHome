@@ -7,8 +7,8 @@ namespace CBH.Core.Configs.Levels
     public class LevelsConfig : ScriptableObject
     {
         public LevelGroupConfig tutorialGroup;
-
         [SerializeField] private LevelGroupConfig[] levelGroupConfigs;
+        public int lastLevelIndex;
 
         private List<LevelDataPair> _levelDataPairs;
 
@@ -17,7 +17,10 @@ namespace CBH.Core.Configs.Levels
         public LevelsConfig()
         {
             _levelDataPairs = new List<LevelDataPair>();
+        }
 
+        public void Init()
+        {
             foreach (var levelGroupConfig in levelGroupConfigs)
             {
                 foreach (var levelData in levelGroupConfig.levelsConfig)

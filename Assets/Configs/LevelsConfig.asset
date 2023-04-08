@@ -12,5 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e4a8f749933434b893b881d73da0696, type: 3}
   m_Name: LevelsConfig
   m_EditorClassIdentifier: 
-  tutorialScene: {fileID: 0}
-  mainMenuScene: {fileID: 102900000, guid: edf1458dc9f7b394987aba80d03f59f2, type: 3}
+  tutorialGroup:
+    groupName: Tutorial
+    buildIndex: 1
+    levelsConfig: []
+  levelGroupConfigs:
+  - groupName: OtherPlanet
+    buildIndex: 2
+    levelsConfig: []
+  - groupName: RedForest
+    buildIndex: 3
+    levelsConfig: []
+  - groupName: DarkCave
+    buildIndex: 4
+    levelsConfig: []
+  - groupName: Moutians
+    buildIndex: 5
+    levelsConfig: []
+  - groupName: Asteroids
+    buildIndex: 6
+    levelsConfig: []
+  lastLevelIndex: 7
