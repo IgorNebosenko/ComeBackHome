@@ -6,13 +6,14 @@ namespace CBH.Core.Configs.Levels
     [CreateAssetMenu(fileName = "LevelsConfig", menuName = "Configs/Levels Config")]
     public class LevelsConfig : ScriptableObject
     {
-        public LevelGroupConfig tutorialGroup;
+        [SerializeField] private LevelGroupConfig tutorialGroup;
         [SerializeField] private LevelGroupConfig[] levelGroupConfigs;
-        public int lastLevelIndex;
+        [SerializeField] private int lastLevelIndex;
 
         private List<LevelDataPair> _levelDataPairs;
 
         public int CountGameLevels => _levelDataPairs.Count;
+        public int LastLevelBuildIndex => lastLevelIndex;
 
         public LevelsConfig()
         {
@@ -36,6 +37,12 @@ namespace CBH.Core.Configs.Levels
                 return null;
 
             return _levelDataPairs[index];
+        }
+
+        public LevelDataPair GetRandomTutorial()
+        {
+            return new LevelDataPair(tutorialGroup.buildIndex,
+                tutorialGroup.levelsConfig[Random.Range(0, tutorialGroup.levelsConfig.Length)]);
         }
     }
 }
