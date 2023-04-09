@@ -19,10 +19,87 @@ MonoBehaviour:
   levelGroupConfigs:
   - groupName: OtherPlanet
     buildIndex: 2
-    levelsConfig: []
+    levelsConfig:
+    - levelUniqueId: Level00_00
+      visual: {fileID: 8334525173795130375, guid: 9138d1611e66d47499e27c4e4d2c12dc, type: 3}
+      launchPadPosition: {x: 69.83419, y: 48.054005, z: 0.7745209}
+      landingPadPosition: {x: -84.37581, y: 68.534004, z: 0.7745209}
+      rocketPosition: {x: 69.704185, y: 51.194008, z: 0.7745209}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
+    - levelUniqueId: Level00_01
+      visual: {fileID: 2671407435147518167, guid: c3711c98b40e97a4181b6c2050bad513, type: 3}
+      launchPadPosition: {x: 105.098015, y: 38.37883, z: 2.2748718}
+      landingPadPosition: {x: -131.89198, y: 39.32883, z: 2.2748718}
+      rocketPosition: {x: 104.96801, y: 41.51883, z: 2.2748718}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
+    - levelUniqueId: Level00_02
+      visual: {fileID: 6162590818052534482, guid: 162a69b9370ec324b8699f7595dee0fa, type: 3}
+      launchPadPosition: {x: 105.098015, y: 38.37883, z: 2.2748718}
+      landingPadPosition: {x: -131.89198, y: 39.32883, z: 2.2748718}
+      rocketPosition: {x: 104.96801, y: 41.51883, z: 2.2748718}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
+    - levelUniqueId: Level00_03
+      visual: {fileID: 9030456824523961898, guid: 677232a45fcbf814f851d1be0c506d87, type: 3}
+      launchPadPosition: {x: -299.97202, y: 423.03882, z: 2.2748718}
+      landingPadPosition: {x: 324.078, y: 2076.7188, z: 2.2748718}
+      rocketPosition: {x: -299.992, y: 426.04883, z: 2.2748718}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
   - groupName: RedForest
     buildIndex: 3
-    levelsConfig: []
+    levelsConfig:
+    - levelUniqueId: Level01_00
+      visual: {fileID: 2417483379747828355, guid: 9230f68d3d55c0341b0b06b6a50fdd26, type: 3}
+      launchPadPosition: {x: -9.79, y: 29.06, z: 0}
+      landingPadPosition: {x: 77.65, y: 64.9, z: 0}
+      rocketPosition: {x: -9.89, y: 31.869999, z: 0}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
+    - levelUniqueId: Level01_01
+      visual: {fileID: 2561813913958487253, guid: bceb90fb019016941a702d3284876ad1, type: 3}
+      launchPadPosition: {x: -91.92, y: 66.2, z: 0}
+      landingPadPosition: {x: 67.84, y: 29, z: 0}
+      rocketPosition: {x: -91.95, y: 69.2, z: 0}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
+    - levelUniqueId: Level01_02
+      visual: {fileID: 724065644568616372, guid: 577ee06584cdff04e93b12c48628f409, type: 3}
+      launchPadPosition: {x: -77.91, y: 29.029999, z: 0}
+      landingPadPosition: {x: 65.600006, y: 64.81435, z: 0}
+      rocketPosition: {x: -78.16, y: 32.4, z: 0}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
+    - levelUniqueId: Level01_03
+      visual: {fileID: 5083221435442387536, guid: d3c058db71ffc5b41a951f906656a751, type: 3}
+      launchPadPosition: {x: -423.6, y: 64.72434, z: -445}
+      landingPadPosition: {x: 1.5, y: 70.8, z: -445}
+      rocketPosition: {x: -423.5, y: 67.82435, z: -445}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
+    - levelUniqueId: Level01_04
+      visual: {fileID: 5761088566321976119, guid: 926838e2aca09d2468d3132470881bb4, type: 3}
+      launchPadPosition: {x: -630.8, y: 69.5, z: -445}
+      landingPadPosition: {x: -283, y: 56.78, z: -445}
+      rocketPosition: {x: -630.81, y: 73, z: -445}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
+    - levelUniqueId: Level01_05
+      visual: {fileID: 8120847856254016100, guid: 472ba07a880fdb047adfbeb82a4fe8e7, type: 3}
+      launchPadPosition: {x: -298, y: 46.2, z: -445}
+      landingPadPosition: {x: 369.09998, y: 169.3, z: -445}
+      rocketPosition: {x: -298, y: 49.6, z: -445}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
+    - levelUniqueId: Level01_06
+      visual: {fileID: 6661001969390079272, guid: 60a779a4807b90f4b96fee7b535eb7f8, type: 3}
+      launchPadPosition: {x: -1075.3, y: 157.1, z: -445}
+      landingPadPosition: {x: -316, y: 219.3, z: -445}
+      rocketPosition: {x: -1075.15, y: 160.07, z: -445}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
   - groupName: DarkCave
     buildIndex: 4
     levelsConfig: []
