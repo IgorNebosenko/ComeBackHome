@@ -6,6 +6,7 @@ using CBH.Core.Configs;
 using CBH.Core.Configs.Levels;
 using CBH.Core.Core.Misc;
 using CBH.Core.IAP;
+using CBH.Core.Levels;
 using CBH.Core.Misc;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -31,7 +32,9 @@ public class ProjectInstaller : MonoInstaller<ProjectInstaller>
         Container.Bind<TutorialHandler>().AsSingle();
         Container.Bind<GlobalUserSettings>().AsSingle();
 
-        Container.BindInstance(levelsConfig).AsSingle();
+        Container.BindInstance(levelsConfig).WhenInjectedInto<IHaveLevelsConfig>();
+        Container.Bind<ILevelsManager>().To<LevelsManager>().AsSingle();
+        Container.Bind<IUserLevelsInfo>().To<UserLevelsInfo>().AsSingle();
 
 #if UNITY_EDITOR
         Container.Bind<IAdsProvider>().To<EditorAdsProvider>().AsSingle();

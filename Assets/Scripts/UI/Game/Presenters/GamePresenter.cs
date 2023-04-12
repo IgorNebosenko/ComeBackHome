@@ -5,11 +5,11 @@ using CBH.Core;
 using CBH.Core.Collision;
 using CBH.Core.Core.Misc;
 using CBH.Core.Entity.Input;
+using CBH.Core.Levels;
 using CBH.UI.Game.Views;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Managers;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace CBH.UI.Game.Presenters
@@ -17,10 +17,11 @@ namespace CBH.UI.Game.Presenters
     public class GamePresenter : Presenter<GameView>
     {
         private IAnalyticsManager _analyticsManager;
+        private ILevelsManager _levelsManager;
+        private IUserLevelsInfo _userLevelsInfo;
         private RocketController _rocketController;
         private FinishCollisionObject _landingPad;
         private GameManager _gameManager;
-        private GameData _gameData;
         private GlobalUserSettings _globalUserSettings;
         private PopupManager _popupManager;
 
@@ -34,14 +35,15 @@ namespace CBH.UI.Game.Presenters
         public bool IsRightPositionBoost => _globalUserSettings.IsRightPositionBoost;
 
         public GamePresenter(IAnalyticsManager analyticsManager, RocketController rocketController, GameManager gameManager,
-            FinishCollisionObject landingPad, GameData gameData, GlobalUserSettings globalUserSettings, PopupManager popupManager, 
+            FinishCollisionObject landingPad, ILevelsManager levelsManager, IUserLevelsInfo userLevelsInfo, GlobalUserSettings globalUserSettings, PopupManager popupManager, 
             GameView view) : base(view)
         {
             _analyticsManager = analyticsManager;
+            _levelsManager = levelsManager;
+            _userLevelsInfo = userLevelsInfo;
             _rocketController = rocketController;
             _landingPad = landingPad;
             _gameManager = gameManager;
-            _gameData = gameData;
             _globalUserSettings = globalUserSettings;
             _popupManager = popupManager;
         }
@@ -91,8 +93,8 @@ namespace CBH.UI.Game.Presenters
 
         public void OnToMenuClicked()
         {
-            _analyticsManager.SendEvent(new ToMenuButtonPressedEvent(SceneManager.GetActiveScene().buildIndex, 
-                _gameData.LastCompletedScene, (float)_gameManager.TimeFly.TotalSeconds));
+            _analyticsManager.SendEvent(new ToMenuButtonPressedEvent(_levelsManager.CurrentLevelId, _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId,
+                _userLevelsInfo.LastOpenedLevel, (float)_gameManager.TimeFly.TotalSeconds));
             _gameManager.BackToMenu();
         }
 

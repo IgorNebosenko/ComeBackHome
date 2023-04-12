@@ -1,3 +1,4 @@
+using CBH.Core.Levels;
 using CBH.Core.Misc;
 using CBH.UI.Menu.Presenters;
 using ElectrumGames.MVP.Managers;
@@ -11,18 +12,20 @@ namespace CBH.EntryPoints
     {
         private ViewManager _viewManager;
         private TutorialHandler _tutorialHandler;
+        private ILevelsManager _levelsManager;
         
         [Inject]
-        private void Construct(ViewManager viewManager, TutorialHandler tutorialHandler)
+        private void Construct(ViewManager viewManager, TutorialHandler tutorialHandler, ILevelsManager levelsManager)
         {
             _viewManager = viewManager;
             _tutorialHandler = tutorialHandler;
+            _levelsManager = levelsManager;
         }
 
         private void Awake()
         {
             if (_tutorialHandler.IsNeedShowTutorial())
-                SceneManager.LoadScene(1);
+                _levelsManager.LoadTutorial();
             else
                 _viewManager.ShowView<MainMenuPresenter>();
         }

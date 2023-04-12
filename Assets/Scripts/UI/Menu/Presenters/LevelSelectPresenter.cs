@@ -2,6 +2,7 @@
 using CBH.Analytics;
 using CBH.Analytics.Events;
 using CBH.Core;
+using CBH.Core.Levels;
 using CBH.UI.Menu.Views;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Managers;
@@ -13,21 +14,24 @@ namespace CBH.UI.Menu.Presenters
     public class LevelSelectPresenter : Presenter<LevelSelectView>
     {
         private ViewManager _viewManager;
-        private GameData _gameData;
 
         private IAnalyticsManager _analyticsManager;
+        private ILevelsManager _levelsManager;
+        private IUserLevelsInfo _userLevelsInfo;
 
         private int _cachedSelectedLevel = -1;
 
-        public int LastCompletedScene => _gameData.LastCompletedScene;
+        public int LastCompletedScene => _userLevelsInfo.TotalLevels;
+        public int TotalLevels => _userLevelsInfo.TotalLevels;
         
-        public LevelSelectPresenter(ViewManager viewManager, GameData gameData, LevelSelectView view, 
-            IAnalyticsManager analyticsManager) : base(view)
+        public LevelSelectPresenter(ViewManager viewManager, LevelSelectView view, 
+            IAnalyticsManager analyticsManager, ILevelsManager levelsManager, IUserLevelsInfo userLevelsInfo) : base(view)
         {
             _viewManager = viewManager;
-            _gameData = gameData;
 
             _analyticsManager = analyticsManager;
+            _levelsManager = levelsManager;
+            _userLevelsInfo = userLevelsInfo;
         }
 
         public void OnToMenuClicked()
@@ -46,7 +50,7 @@ namespace CBH.UI.Menu.Presenters
 
         private IEnumerator LoadLevelProcess()
         {
-            yield return SceneManager.LoadSceneAsync(_cachedSelectedLevel);
+            yield return _levelsManager.LoadLevelByIndex(_cachedSelectedLevel);
         }
     }
 }

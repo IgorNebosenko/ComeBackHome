@@ -6,9 +6,9 @@ using CBH.Analytics.Events;
 using CBH.Core.Audio;
 using CBH.Core.Entity;
 using CBH.Core.IAP;
+using CBH.Core.Levels;
 using UniRx;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace CBH.Core
@@ -22,6 +22,8 @@ namespace CBH.Core
         private IAdsProvider _adsProvider;
         private IStorePurchaseController _storePurchaseController;
         private IAnalyticsManager _analyticsManager;
+        private IUserLevelsInfo _userLevelsInfo;
+        private ILevelsManager _levelsManager;
         
         private bool _isLanded;
         private bool _isGameEnded;
@@ -54,7 +56,8 @@ namespace CBH.Core
         public bool IsInterruptedForPopup { get; set; }
 
         public GameManager(GameData gameData, AdsData adsData, AdsConfig adsConfig, InputData inputData,
-            IAdsProvider adsProvider, IStorePurchaseController storePurchaseController, IAnalyticsManager analyticsManager)
+            IAdsProvider adsProvider, IStorePurchaseController storePurchaseController, IAnalyticsManager analyticsManager,
+            IUserLevelsInfo userLevelsInfo, ILevelsManager levelsManager)
         {
             _gameData = gameData;
             _adsData = adsData;
@@ -63,6 +66,8 @@ namespace CBH.Core
             _adsProvider = adsProvider;
             _storePurchaseController = storePurchaseController;
             _analyticsManager = analyticsManager;
+            _userLevelsInfo = userLevelsInfo;
+            _levelsManager = levelsManager;
 
             CurrentState = RocketState.Live;
             _timeAtStartLevel = Time.realtimeSinceStartup;
@@ -76,20 +81,22 @@ namespace CBH.Core
             {
                 case RocketState.Dead:
                     AudioHandler.StopLoopSound();
-                    _analyticsManager.SendEvent(new CrashPlayerRocketEvent(SceneManager.GetActiveScene().buildIndex,
-                        _gameData.LastCompletedScene,
+                    _analyticsManager.SendEvent(new CrashPlayerRocketEvent(_levelsManager.CurrentLevelId, 
+                        _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId, _userLevelsInfo.LastOpenedLevel,
                         (float) TimeFly.TotalSeconds, _inputData, _attemptsLanding));
                     LevelLose?.Invoke();
                     Observable.FromCoroutine(RestartProcess).Subscribe();
                     break;
                 case RocketState.LandFinishPad:
-                    _analyticsManager.SendEvent(new LandingOnLandingPadEvent(SceneManager.GetActiveScene().buildIndex,
-                        _gameData.LastCompletedScene, (float) TimeFly.TotalSeconds, ++_attemptsLanding));
+                    _analyticsManager.SendEvent(new LandingOnLandingPadEvent(_levelsManager.CurrentLevelId, 
+                        _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId, _userLevelsInfo.LastOpenedLevel,
+                        (float) TimeFly.TotalSeconds, ++_attemptsLanding));
                     Observable.FromCoroutine(LandingProcess).Subscribe();
                     break;
                 case RocketState.LeaveFinishPad:
-                    _analyticsManager.SendEvent(new LeaveLandingPadEvent(SceneManager.GetActiveScene().buildIndex,
-                        _gameData.LastCompletedScene, (float) TimeFly.TotalSeconds, _attemptsLanding, _timeStayLeft));
+                    _analyticsManager.SendEvent(new LeaveLandingPadEvent(_levelsManager.CurrentLevelId, 
+                        _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId, _userLevelsInfo.LastOpenedLevel,
+                        (float) TimeFly.TotalSeconds, _attemptsLanding, _timeStayLeft));
                     PlatformLeave?.Invoke();
                     CurrentState = RocketState.Live;
                     break;
@@ -99,8 +106,8 @@ namespace CBH.Core
         public void StartFlyProcess()
         {
             var timeDifference = Time.realtimeSinceStartup - _timeAtStartLevel;
-            _analyticsManager.SendEvent(new LaunchFromLaunchPadEvent(SceneManager.GetActiveScene().buildIndex, 
-                _gameData.LastCompletedScene, timeDifference));
+            _analyticsManager.SendEvent(new LaunchFromLaunchPadEvent(_levelsManager.CurrentLevelId, 
+                _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId, _userLevelsInfo.LastOpenedLevel, timeDifference));
             Observable.FromCoroutine(UpdateFlyTimeProcess).Subscribe();
         }
 
@@ -151,12 +158,12 @@ namespace CBH.Core
                 }
             }
 
-            _analyticsManager.SendEvent(new RestartLevelEvent(SceneManager.GetActiveScene().buildIndex,
-                _gameData.LastCompletedScene, _adsData.timeFlyFromLastAd, _adsData.countRestartsFromLastAd, isNeedAd,
+            _analyticsManager.SendEvent(new RestartLevelEvent(_levelsManager.CurrentLevelId, 
+                _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId, _userLevelsInfo.LastOpenedLevel,
+                _adsData.timeFlyFromLastAd, _adsData.countRestartsFromLastAd, isNeedAd,
                 _storePurchaseController.HasNoAdsSubscription));
-
-            var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            yield return SceneManager.LoadSceneAsync(currentSceneIndex);
+            
+            yield return _levelsManager.RestartLevel();
         }
         
         private IEnumerator LandingProcess()
@@ -174,25 +181,28 @@ namespace CBH.Core
             if (CurrentState == RocketState.LandFinishPad)
             {
                 _isGameEnded = true;
-                _analyticsManager.SendEvent(new LoadNextGameLevelEvent(SceneManager.GetActiveScene().buildIndex,
-                    _gameData.LastCompletedScene, _adsData.timeFlyFromLastAd, _adsData.countRestartsFromLastAd));
+                _analyticsManager.SendEvent(new LoadNextGameLevelEvent(_levelsManager.CurrentLevelId, 
+                    _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId, _userLevelsInfo.LastOpenedLevel,
+                    _adsData.timeFlyFromLastAd, _adsData.countRestartsFromLastAd));
                 BeforeWin?.Invoke();
                 
                 _adsData.timeFlyFromLastAd += (float)TimeFly.TotalSeconds;
                 
                 yield return new WaitForSeconds(BeforeWinDuration);
                 
-                _analyticsManager.SendEvent(new SuccessfulLandingRocketEvent(SceneManager.GetActiveScene().buildIndex,
-                    _gameData.LastCompletedScene,
+                _analyticsManager.SendEvent(new SuccessfulLandingRocketEvent(_levelsManager.CurrentLevelId, 
+                    _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId, _userLevelsInfo.LastOpenedLevel,
                     (float) TimeFly.TotalSeconds, _inputData, _attemptsLanding));
                 
-                var nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+                var nextScene = _levelsManager.CurrentLevelId;
 
-                if (nextScene == SceneManager.sceneCountInBuildSettings)
-                    nextScene = 1;
-
-                _gameData.SaveGame(nextScene);
-                yield return SceneManager.LoadSceneAsync(nextScene);
+                if (nextScene == _userLevelsInfo.TotalLevels)
+                    yield return _levelsManager.LoadLastLevel();
+                else
+                {
+                    _userLevelsInfo.WriteResult(_levelsManager.CurrentLevelId, TimeFly);
+                    yield return _levelsManager.LoadLevelByIndex(nextScene);
+                }
             }
             else
                 _isLanded = false;
@@ -215,7 +225,7 @@ namespace CBH.Core
         
         private IEnumerator ToMenuProcess()
         {
-            yield return SceneManager.LoadSceneAsync(0);
+            yield return _levelsManager.LoadMenu();
         }
     }
 }

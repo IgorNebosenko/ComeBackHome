@@ -4,9 +4,10 @@
     {
         public override string Key => "successful_landing_ rocket";
         
-        public SuccessfulLandingRocketEvent(int levelId, int maxOpenedLevel, float flyTime, InputData inputData, int countLandingOnLandingPad)
+        public SuccessfulLandingRocketEvent(int levelId, string levelName, int maxOpenedLevel, float flyTime, InputData inputData, int countLandingOnLandingPad)
         {
             Data.Add("level_id", levelId);
+            Data.Add("level_name", levelName);
             Data.Add("max_opened_level", maxOpenedLevel);
             Data.Add("fly_time", flyTime);
             Data.Add("count_boost_button_pressed", inputData.countBoostPressed);

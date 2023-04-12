@@ -4,6 +4,7 @@ using CBH.Analytics;
 using CBH.Analytics.Events;
 using CBH.Core;
 using CBH.Core.IAP;
+using CBH.Core.Levels;
 using CBH.UI.Menu.Views;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Utils;
@@ -15,7 +16,7 @@ namespace CBH.UI.Menu.Presenters
     {
         private IAnalyticsManager _analyticsManager;
         private IStorePurchaseController _storePurchaseController;
-        private GameData _gameData;
+        private IUserLevelsInfo _userLevelsInfo;
 
         private float _startShowingTime;
 
@@ -25,11 +26,11 @@ namespace CBH.UI.Menu.Presenters
         public bool HasNoAds => _storePurchaseController.HasNoAdsSubscription;
         
         public NoAdsSubscriptionPresenter(NoAdsSubscriptionPopup view, IAnalyticsManager analyticsManager, IStorePurchaseController storePurchaseController,
-            GameData gameData) : base(view)
+            IUserLevelsInfo userLevelsInfo) : base(view)
         {
             _analyticsManager = analyticsManager;
             _storePurchaseController = storePurchaseController;
-            _gameData = gameData;
+            _userLevelsInfo = userLevelsInfo;
 
             _startShowingTime = Time.realtimeSinceStartup;
         }
@@ -42,7 +43,7 @@ namespace CBH.UI.Menu.Presenters
         public void OnButtonBuyPressed()
         {
             var result = _storePurchaseController.TryPurchaseSubscription();
-            _analyticsManager.SendEvent(new ResultBuyNoAdsEvent(_gameData.LastCompletedScene, result));
+            _analyticsManager.SendEvent(new ResultBuyNoAdsEvent(_userLevelsInfo.LastOpenedLevel, result));
             SubscriptionStatusChanged?.Invoke(result);
         }
 
@@ -50,14 +51,14 @@ namespace CBH.UI.Menu.Presenters
         {
             var timeShowingPopup = Time.realtimeSinceStartup - _startShowingTime;
 
-            _analyticsManager.SendEvent(new NoAdsShowResultEvent(_gameData.LastCompletedScene, !_storePurchaseController.HasNoAdsSubscription, timeShowingPopup));
+            _analyticsManager.SendEvent(new NoAdsShowResultEvent(_userLevelsInfo.LastOpenedLevel, !_storePurchaseController.HasNoAdsSubscription, timeShowingPopup));
             
             Close();
         }
 
         public void SendEventShowPopup()
         {
-            _analyticsManager.SendEvent(new ShowNoAdsPopupEvent(_gameData.LastCompletedScene));
+            _analyticsManager.SendEvent(new ShowNoAdsPopupEvent(_userLevelsInfo.LastOpenedLevel));
         }
     }
 }

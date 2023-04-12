@@ -1,6 +1,7 @@
 ﻿using CBH.Core;
 using CBH.Core.Audio;
 using CBH.Core.Configs.Levels;
+using CBH.Core.Levels;
 using CBH.UI.Game.Presenters;
 using ElectrumGames.MVP.Managers;
 using UnityEngine;
@@ -16,15 +17,15 @@ namespace CBH.EntryPoints
         [SerializeField] private Transform rocketTransform;
 
         private ViewManager _viewManager;
-        private GameManager _gameManager;
-        private LevelsConfig _levelsConfig;
+        private ILevelsManager _levelsManager;
         
         [Inject]
-        private void Construct(ViewManager viewManager, GameManager gameManager, LevelsConfig levelsConfig)
+        private void Construct(ViewManager viewManager, ILevelsManager levelsManager)
         {
             _viewManager = viewManager;
-            _gameManager = gameManager;
-            _levelsConfig = levelsConfig;
+            _levelsManager = levelsManager;
+            
+            Init(levelsManager.CurrentLevel.levelDataConfig);
         }
 
         public void Init(LevelDataConfig config)

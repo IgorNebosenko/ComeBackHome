@@ -1,5 +1,4 @@
-﻿using CBH.Core;
-using CBH.UI.Menu.Presenters;
+﻿using CBH.UI.Menu.Presenters;
 using CBH.UI.Menu.UI.Menu.Components;
 using ElectrumGames.MVP;
 using UnityEngine;
@@ -19,7 +18,7 @@ namespace CBH.UI.Menu.Views
         {
             toMenuButton.onClick.AddListener(Presenter.OnToMenuClicked);
 
-            for (var i = 0; i < GameData.CountLevels; i++)
+            for (var i = 0; i < Presenter.TotalLevels; i++)
             {
                 var closureRepairIndex = i + 1;
                 var levelButton = Instantiate(levelButtonTemplate, containerLevels);

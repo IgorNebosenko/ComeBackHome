@@ -4,9 +4,10 @@
     {
         public override string Key => "crash_player_rocket";
 
-        public CrashPlayerRocketEvent(int levelId, int maxOpenedLevel, float flyTime, InputData inputData, int countLandingOnLandingPad)
+        public CrashPlayerRocketEvent(int levelId, string levelName, int maxOpenedLevel, float flyTime, InputData inputData, int countLandingOnLandingPad)
         {
             Data.Add("level_id", levelId);
+            Data.Add("level_name", levelName);
             Data.Add("max_opened_level", maxOpenedLevel);
             Data.Add("fly_time", flyTime);
             Data.Add("count_boost_button_pressed", inputData.countBoostPressed);

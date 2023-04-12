@@ -4,6 +4,7 @@ using CBH.Analytics;
 using CBH.Analytics.Events;
 using CBH.Core;
 using CBH.Core.IAP;
+using CBH.Core.Levels;
 using CBH.UI.Game.Views;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Utils;
@@ -26,7 +27,8 @@ namespace CBH.UI.Game.Presenters
     {
         private IAnalyticsManager _analyticsManager;
         private IStorePurchaseController _storePurchaseController;
-        private GameData _gameData;
+        private ILevelsManager _levelsManager;
+        private IUserLevelsInfo _userLevelsInfo;
 
         private float _startShowingTime;
         private GameNoAdsPopupArgs _args;
@@ -39,12 +41,13 @@ namespace CBH.UI.Game.Presenters
 
         public GameNoAdsSubscriptionPresenter(GameNoAdsSubscriptionPopup view, GameManager gameManager,
             IAnalyticsManager analyticsManager, IStorePurchaseController storePurchaseController,
-            GameData gameData) : base(view)
+            ILevelsManager levelsManager, IUserLevelsInfo userLevelsInfo) : base(view)
         {
             _analyticsManager = analyticsManager;
             _storePurchaseController = storePurchaseController;
-            _gameData = gameData;
             _gameManager = gameManager;
+            _levelsManager = levelsManager;
+            _userLevelsInfo = userLevelsInfo;
 
             _startShowingTime = Time.realtimeSinceStartup;
         }
@@ -63,15 +66,17 @@ namespace CBH.UI.Game.Presenters
         {
             _args = args;
             
-            _analyticsManager.SendEvent(new ShowGameNoAdsPopupEvent(SceneManager.GetActiveScene().buildIndex, 
-                _args.chanceToBeShown, _gameData.LastCompletedScene));
+            _analyticsManager.SendEvent(new ShowGameNoAdsPopupEvent(_levelsManager.CurrentLevelId, 
+                _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId, _args.chanceToBeShown,
+                _userLevelsInfo.LastOpenedLevel));
         }
 
         public void OnButtonBuyPressed()
         {
             var result = _storePurchaseController.TryPurchaseSubscription();
-            _analyticsManager.SendEvent(new GameResultBuyNoAdsEvent(SceneManager.GetActiveScene().buildIndex, 
-                _args.chanceToBeShown, _gameData.LastCompletedScene, result));
+            _analyticsManager.SendEvent(new GameResultBuyNoAdsEvent(_levelsManager.CurrentLevelId, 
+                _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId, _args.chanceToBeShown,
+                _userLevelsInfo.LastOpenedLevel, result));
             SubscriptionStatusChanged?.Invoke(result);
         }
 
@@ -79,9 +84,9 @@ namespace CBH.UI.Game.Presenters
         {
             var timeShowingPopup = Time.realtimeSinceStartup - _startShowingTime;
 
-            _analyticsManager.SendEvent(new GameNoAdsShowResultEvent(SceneManager.GetActiveScene().buildIndex, 
-                _args.chanceToBeShown, _gameData.LastCompletedScene, 
-                !_storePurchaseController.HasNoAdsSubscription, timeShowingPopup));
+            _analyticsManager.SendEvent(new GameNoAdsShowResultEvent(_levelsManager.CurrentLevelId, 
+                _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId, _args.chanceToBeShown,
+                _userLevelsInfo.LastOpenedLevel, !_storePurchaseController.HasNoAdsSubscription, timeShowingPopup));
 
             Close();
         }
