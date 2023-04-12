@@ -6,12 +6,12 @@ namespace CBH.Core.Levels
     [Serializable]
     public class LevelsPrefsData
     {
-        public TimeSpan timeFly;
+        public double timeFly;
         public string gameVersion;
 
         public LevelsPrefsData(TimeSpan timeFly, string gameVersion)
         {
-            this.timeFly = timeFly;
+            this.timeFly = timeFly.TotalSeconds;
             this.gameVersion = gameVersion;
         }
 

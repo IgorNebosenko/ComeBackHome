@@ -32,7 +32,7 @@ namespace CBH.Core.Levels
 
         public bool IsLevelOpened(int id)
         {
-            return string.IsNullOrEmpty(
+            return !string.IsNullOrEmpty(
                 PlayerPrefs.GetString(_levelsConfig.GetLevelByIndex(id).levelDataConfig.levelUniqueId));
         }
 
@@ -44,7 +44,7 @@ namespace CBH.Core.Levels
                     PlayerPrefs.GetString(_levelsConfig.GetLevelByIndex(levelId).levelDataConfig.levelUniqueId);
                 var data = JsonUtility.FromJson<LevelsPrefsData>(result);
                 
-                if (data.timeFly <= time)
+                if (data.timeFly <= time.TotalSeconds)
                     return;
             }
 
@@ -54,6 +54,8 @@ namespace CBH.Core.Levels
 
         private void Init()
         {
+            _levelsConfig.Init();
+            
             if (PlayerPrefs.HasKey(ObsoletePrefsName))
                 UpdateSaves();
 
