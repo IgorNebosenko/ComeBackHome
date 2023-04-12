@@ -178,5 +178,33 @@ MonoBehaviour:
       gameGravity: {x: 0, y: -40, z: 0}
   - groupName: Asteroids
     buildIndex: 6
-    levelsConfig: []
+    levelsConfig:
+    - levelUniqueId: Level04_00
+      visual: {fileID: 8242916694418408545, guid: 035338defb13f484293d249cb26d5e7f, type: 3}
+      launchPadPosition: {x: -127.79492, y: 103.07001, z: 50.496765}
+      landingPadPosition: {x: 409.05518, y: 417.4, z: 50.496765}
+      rocketPosition: {x: -127.84473, y: 107.17001, z: 50.496765}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
+    - levelUniqueId: Level04_01
+      visual: {fileID: 177026630446808545, guid: 275fd001e169a414ea92e42208d12599, type: 3}
+      launchPadPosition: {x: -333.5503, y: 419.69995, z: 50.496765}
+      landingPadPosition: {x: 290.8999, y: 139.2, z: 50.496765}
+      rocketPosition: {x: -333.6001, y: 423.8, z: 50.496765}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
+    - levelUniqueId: Level04_02
+      visual: {fileID: 9196537097888358726, guid: 59daba2888b2c1d4d82e36bdb4e3cbe4, type: 3}
+      launchPadPosition: {x: -477.8501, y: 137.27, z: 50.496765}
+      landingPadPosition: {x: 534.2998, y: 87.9, z: 50.496765}
+      rocketPosition: {x: -477.8999, y: 141.37012, z: 50.496765}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
+    - levelUniqueId: Level04_03
+      visual: {fileID: 6918534945866574907, guid: 055486e1cbdba6247afb034a8b53dd11, type: 3}
+      launchPadPosition: {x: 557.1499, y: 97.89989, z: 50.496765}
+      landingPadPosition: {x: 582.93994, y: 2289.84, z: 50.496765}
+      rocketPosition: {x: 557.1001, y: 102, z: 50.496765}
+      musicClip: 0
+      gameGravity: {x: 0, y: -40, z: 0}
   lastLevelIndex: 7
