@@ -20,7 +20,7 @@ namespace CBH.UI.Menu.Views
 
             for (var i = 0; i < Presenter.TotalLevels; i++)
             {
-                var closureRepairIndex = i + 1;
+                var closureRepairIndex = i;
                 var levelButton = Instantiate(levelButtonTemplate, containerLevels);
                 levelButton.Init(() => Presenter.LoadLevel(closureRepairIndex), closureRepairIndex, 
                     closureRepairIndex <= Presenter.LastCompletedScene);

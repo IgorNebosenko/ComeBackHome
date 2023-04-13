@@ -25,7 +25,7 @@ namespace CBH.UI.Menu.Views
             settingsButton.onClick.AddListener(Presenter.OnSettingsButtonPressed);
             noAdsButton.onClick.AddListener(Presenter.OnNoAdsButtonPressed);
             
-            textProgress.text = $"Progress: {Presenter.CurrentLevel}/{Presenter.MaxGameLevel}";
+            textProgress.text = $"Progress: {Presenter.CurrentLevel + 1}/{Presenter.MaxGameLevel}";
         }
 
         protected override void OnBeforeClose()

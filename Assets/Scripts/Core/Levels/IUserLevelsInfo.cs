@@ -11,5 +11,7 @@ namespace CBH.Core.Levels
         bool IsLevelOpened(int id);
 
         void WriteResult(int levelId, TimeSpan result);
+
+        void UpdateLastOpenedLevel(int levelId);
     }
 }

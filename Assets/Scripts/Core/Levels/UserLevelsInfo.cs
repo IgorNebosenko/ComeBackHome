@@ -52,6 +52,12 @@ namespace CBH.Core.Levels
                 JsonUtility.ToJson(new LevelsPrefsData(time, Application.version)));
         }
 
+        public void UpdateLastOpenedLevel(int levelId)
+        {
+            if (LastOpenedLevel < levelId)
+                LastOpenedLevel = levelId;
+        }
+
         private void Init()
         {
             _levelsConfig.Init();

@@ -194,13 +194,14 @@ namespace CBH.Core
                     _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId, _userLevelsInfo.LastOpenedLevel,
                     (float) TimeFly.TotalSeconds, _inputData, _attemptsLanding));
                 
-                var nextScene = _levelsManager.CurrentLevelId;
+                var nextScene = _levelsManager.CurrentLevelId + 1;
 
                 if (nextScene == _userLevelsInfo.TotalLevels)
                     yield return _levelsManager.LoadLastLevel();
                 else
                 {
                     _userLevelsInfo.WriteResult(_levelsManager.CurrentLevelId, TimeFly);
+                    _userLevelsInfo.UpdateLastOpenedLevel(_levelsManager.CurrentLevelId);
                     yield return _levelsManager.LoadLevelByIndex(nextScene);
                 }
             }

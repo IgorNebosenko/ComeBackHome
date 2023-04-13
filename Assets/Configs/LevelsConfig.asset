@@ -36,9 +36,9 @@ MonoBehaviour:
       gameGravity: {x: 0, y: -40, z: 0}
     - levelUniqueId: Level00_02
       visual: {fileID: 6162590818052534482, guid: 162a69b9370ec324b8699f7595dee0fa, type: 3}
-      launchPadPosition: {x: 105.098015, y: 38.37883, z: 2.2748718}
-      landingPadPosition: {x: -131.89198, y: 39.32883, z: 2.2748718}
-      rocketPosition: {x: 104.96801, y: 41.51883, z: 2.2748718}
+      launchPadPosition: {x: 116.24801, y: 44.84883, z: 2.2748718}
+      landingPadPosition: {x: -300.332, y: 423.48883, z: 2.2748718}
+      rocketPosition: {x: 116.118004, y: 48.25883, z: 2.2748718}
       musicClip: 0
       gameGravity: {x: 0, y: -40, z: 0}
     - levelUniqueId: Level00_03
