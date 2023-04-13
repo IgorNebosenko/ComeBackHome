@@ -201,7 +201,7 @@ namespace CBH.Core
                 else
                 {
                     _userLevelsInfo.WriteResult(_levelsManager.CurrentLevelId, TimeFly);
-                    _userLevelsInfo.UpdateLastOpenedLevel(_levelsManager.CurrentLevelId);
+                    _userLevelsInfo.UpdateLastOpenedLevel(nextScene);
                     yield return _levelsManager.LoadLevelByIndex(nextScene);
                 }
             }
