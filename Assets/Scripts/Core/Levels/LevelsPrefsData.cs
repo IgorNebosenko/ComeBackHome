@@ -17,7 +17,7 @@ namespace CBH.Core.Levels
 
         public static LevelsPrefsData Empty()
         {
-            return new LevelsPrefsData(TimeSpan.MinValue, Application.version);
+            return new LevelsPrefsData(TimeSpan.MaxValue, Application.version);
         }
     }
 }

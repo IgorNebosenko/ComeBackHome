@@ -9,16 +9,21 @@ namespace CBH.UI.Menu.UI.Menu.Components
     {
         [SerializeField] private Button buttonInstance;
         [SerializeField] private TMP_Text levelNumberText;
+        [SerializeField] private TMP_Text bestTime;
         [SerializeField] private GameObject borderImage;
 
         private Action _cachedEvent;
         
-        public void Init(Action onClick, int levelId, bool isInteractable)
+        public void Init(Action onClick, int levelId, string bestTimeText, bool isInteractable)
         {
             _cachedEvent = onClick;
             
             buttonInstance.onClick.AddListener(() => _cachedEvent?.Invoke());
-            levelNumberText.text = $"{levelId}";
+            levelNumberText.text = $"{levelId + 1}";
+            
+            bestTime.text = bestTimeText;
+            bestTime.gameObject.SetActive(isInteractable);
+            
             buttonInstance.interactable = isInteractable;
             borderImage.SetActive(isInteractable);
         }

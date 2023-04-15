@@ -22,7 +22,7 @@ namespace CBH.UI.Menu.Views
             {
                 var closureRepairIndex = i;
                 var levelButton = Instantiate(levelButtonTemplate, containerLevels);
-                levelButton.Init(() => Presenter.LoadLevel(closureRepairIndex), closureRepairIndex, 
+                levelButton.Init(() => Presenter.LoadLevel(closureRepairIndex), closureRepairIndex, Presenter.GetBestLevelTime(closureRepairIndex),
                     closureRepairIndex <= Presenter.LastCompletedScene);
             }
         }

@@ -1,13 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using CBH.Analytics;
 using CBH.Analytics.Events;
-using CBH.Core;
 using CBH.Core.Levels;
 using CBH.UI.Menu.Views;
 using ElectrumGames.MVP;
 using ElectrumGames.MVP.Managers;
 using UniRx;
-using UnityEngine.SceneManagement;
 
 namespace CBH.UI.Menu.Presenters
 {
@@ -19,9 +18,12 @@ namespace CBH.UI.Menu.Presenters
         private ILevelsManager _levelsManager;
         private IUserLevelsInfo _userLevelsInfo;
 
+        private const string TooMuchTime = "--:--:--";
+        private const double MaxTimeToDisplay = 3600;
+
         private int _cachedSelectedLevel = -1;
 
-        public int LastCompletedScene => _userLevelsInfo.TotalLevels;
+        public int LastCompletedScene => _userLevelsInfo.LastOpenedLevel;
         public int TotalLevels => _userLevelsInfo.TotalLevels;
         
         public LevelSelectPresenter(ViewManager viewManager, LevelSelectView view, 
@@ -51,6 +53,17 @@ namespace CBH.UI.Menu.Presenters
         private IEnumerator LoadLevelProcess()
         {
             yield return _levelsManager.LoadLevelByIndex(_cachedSelectedLevel);
+        }
+
+        public string GetBestLevelTime(int id)
+        {
+            var levelData = _userLevelsInfo.GetDataAboutLevel(id);
+            if (levelData.timeFly >= MaxTimeToDisplay)
+                return TooMuchTime;
+            
+            var time = TimeSpan.FromSeconds(levelData.timeFly);
+
+            return $"{time.Minutes:00}:{time.Seconds:00}:{time.Milliseconds / 10:00}";
         }
     }
 }
