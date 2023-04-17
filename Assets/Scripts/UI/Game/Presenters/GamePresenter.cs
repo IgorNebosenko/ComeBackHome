@@ -28,6 +28,7 @@ namespace CBH.UI.Game.Presenters
         private const float distanceFullVisibleGPS = 50f;
         private const float distanceInvisibleGPS = 15f;
         private const float distanceDifferenceVisibility = distanceFullVisibleGPS - distanceInvisibleGPS;
+        private const double MaxTimeToDisplay = 3600;
 
         public event Action<string> HeaderTextChanged;
         public event Action<string> TimerTextChanged;
@@ -96,6 +97,17 @@ namespace CBH.UI.Game.Presenters
             _analyticsManager.SendEvent(new ToMenuButtonPressedEvent(_levelsManager.CurrentLevelId, _levelsManager.CurrentLevel.levelDataConfig.levelUniqueId,
                 _userLevelsInfo.LastOpenedLevel, (float)_gameManager.TimeFly.TotalSeconds));
             _gameManager.BackToMenu();
+        }
+
+        public string BestTimeText()
+        {
+            var levelData = _userLevelsInfo.GetDataAboutLevel(_levelsManager.CurrentLevelId);
+            if (levelData.timeFly >= MaxTimeToDisplay)
+                return string.Empty;
+            
+            var time = TimeSpan.FromSeconds(levelData.timeFly);
+
+            return $"Best time: {time.Minutes:00}:{time.Seconds:00}:{time.Milliseconds / 10:00}";
         }
 
         private void OnBeforeRestartLevel(float time)

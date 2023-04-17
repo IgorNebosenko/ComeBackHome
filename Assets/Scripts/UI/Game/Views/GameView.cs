@@ -11,6 +11,7 @@ namespace CBH.UI.Game.Views
     {
         [SerializeField] private TMP_Text textHeader;
         [SerializeField] private TMP_Text textTimer;
+        [SerializeField] private TMP_Text textBestTime;  
         [SerializeField] private Image arrowImage;
         [SerializeField] private RectTransform pivotArrow;
         [SerializeField] private Button buttonToMenu;
@@ -26,6 +27,8 @@ namespace CBH.UI.Game.Views
             
             leftBoostButton.SetActive(!Presenter.IsRightPositionBoost);
             rightBoostButton.SetActive(Presenter.IsRightPositionBoost);
+
+            textBestTime.text = Presenter.BestTimeText();
             
             UpdateGps();
         }
