@@ -8,7 +8,7 @@ using Zenject;
 
 namespace CBH.EntryPoints
 {
-    public class GameEntry : MonoBehaviour
+    public class TutorialEntry : MonoBehaviour
     {
         [SerializeField] private Transform visualParent;
         [SerializeField] private Transform launchPadTransform;

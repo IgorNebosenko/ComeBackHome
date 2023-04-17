@@ -655,8 +655,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1976224088}
   - component: {fileID: 1976224087}
-  - component: {fileID: 3744265227623408799}
   - component: {fileID: 3744265227623408800}
+  - component: {fileID: 3744265227623408801}
   m_Layer: 0
   m_Name: GameContext
   m_TagString: Untagged
@@ -809,22 +809,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7206582156517749443, guid: 767344d4afbe3dc458314d055b4c4719, type: 3}
   m_PrefabInstance: {fileID: 3655128752767278669}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3744265227623408799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976224085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea5d1ce41f3f47f7990dc52dbfe47353, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visualParent: {fileID: 2021020348}
-  launchPadTransform: {fileID: 3655128752767278670}
-  landingPadTransform: {fileID: 4783053302240476977}
-  rocketTransform: {fileID: 1520347660}
 --- !u!114 &3744265227623408800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,6 +825,22 @@ MonoBehaviour:
   popupContainer: {fileID: 6830317542946424422}
   rocketController: {fileID: 756371963}
   landingPad: {fileID: 4783053302240476976}
+--- !u!114 &3744265227623408801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976224085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0bb7040e81445d8c70585c3a1edc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualParent: {fileID: 2021020348}
+  launchPadTransform: {fileID: 3655128752767278670}
+  landingPadTransform: {fileID: 4783053302240476977}
+  rocketTransform: {fileID: 1520347660}
 --- !u!1001 &4783053302240476975
 PrefabInstance:
   m_ObjectHideFlags: 0
