@@ -47,7 +47,7 @@ namespace CBH.UI.Menu.Presenters
             _viewManager.ShowView<LevelSelectPresenter>();
         }
 
-        public void OnHowPlayButtonPressed()
+        public void OnTutorialButtonPressed()
         {
             _analyticsManager.SendEvent(new HowToPlayMenuEvent());
             _viewManager.ShowView<HowPlayPresenter>();
@@ -57,6 +57,11 @@ namespace CBH.UI.Menu.Presenters
         {
             _analyticsManager.SendEvent(new SettingsOpenMenuEvent());
             _viewManager.ShowView<SettingsPresenter>();
+        }
+
+        public void OnQuitButtonPressed()
+        {
+            Application.Quit();
         }
 
         private IEnumerator LoadSceneProcess()
